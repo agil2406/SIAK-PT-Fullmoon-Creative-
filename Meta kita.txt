@@ -1,0 +1,9 @@
+Rules : 
+1. Structure Views pake konsep Include, Layouts and Pages.
+2. Git Clone Repo
+3. Git branch sesuai task
+4. Sebelum push, git pull dulu
+5. Baru Push
+6. Kabarin digrup, kalo ada request MR
+7. done
+8. Nongki
