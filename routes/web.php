@@ -16,3 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('pages.dashboard');
 });
+Route::view('/login','pages.login');
+Route::view('/profile','pages.profile');
+Route::view('/bukuKas','pages.bukuKas');
+Route::view('/bukuOperasional','pages.bukuOperasional');
+Route::view('/bukuMaterial','pages.bukuMaterial');
+Route::view('/bukuAset','pages.bukuAset');
+Route::view('/bukuUpah','pages.bukuUpah');
