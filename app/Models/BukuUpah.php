@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class BukuUpah extends Model
 {
     protected $table = 'buku_upahs';
-    protected $guarded = ['id_bu'];
+    protected $guarded = ['id'];
 }

@@ -36,7 +36,7 @@ Dashboard Admin Fullmoon
                 </div>
                 <label for="volume_bu" class="col-sm-2 col-form-label">Volume</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" id="inputText" name="volume_bu">
+                    <input type="number" class="form-control" id="inputText" name="volume_bu">
                 </div>
             </div>
             <div class="row mb-3">

@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class BukuKas extends Model
 {
-    use HasFactory;
+    protected $table = 'buku_kas';
+    protected $guarded = ['id'];
 }
