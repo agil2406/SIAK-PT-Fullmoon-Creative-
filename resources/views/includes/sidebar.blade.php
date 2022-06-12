@@ -16,27 +16,27 @@
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="/bukuKas">
+            <a href="/bukukas">
               <i class="bi bi-circle"></i><span>Buku Kas</span>
             </a>
           </li>
           <li>
-            <a href="/bukuMaterial">
+            <a href="/bukumaterial">
               <i class="bi bi-circle"></i><span>Buku Material</span>
             </a>
           </li>
           <li>
-            <a href="/bukuOperasional">
+            <a href="/bukuoperasional">
               <i class="bi bi-circle"></i><span>Buku Operasional</span>
             </a>
           </li>
           <li>
-            <a href="/bukuAset">
+            <a href="/bukuaset">
               <i class="bi bi-circle"></i><span>Buku Aset</span>
             </a>
           </li>
           <li>
-            <a href="/bukuUpah">
+            <a href="/bukuupah">
               <i class="bi bi-circle"></i><span>Buku Upah</span>
             </a>
           </li>

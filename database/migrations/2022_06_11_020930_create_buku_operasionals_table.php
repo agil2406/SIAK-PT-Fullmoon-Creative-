@@ -15,14 +15,13 @@ return new class extends Migration
     {
         Schema::create('buku_operasionals', function (Blueprint $table) {
             $table->id();
-            $table->string('uraian_bo',191);
+            $table->string('uraian_bo', 191);
             $table->integer('volume_bo');
-            $table->string('satuan_bo',191);
-            $table->string('noBukti_bo',191);
+            $table->string('satuan_bo', 191);
+            $table->string('noBukti_bo', 191);
             $table->integer('jumlah_bo');
-            $table->timestamp('tanggal_bo');
+            $table->date('tanggal_bo');
             $table->timestamps();
-
         });
     }
 

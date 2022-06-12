@@ -15,14 +15,14 @@ return new class extends Migration
     {
         Schema::create('buku_kas', function (Blueprint $table) {
             $table->id();
-            $table->string('uraian_bk',191);
+            $table->string('uraian_bk', 191);
             $table->integer('volume_bk');
-            $table->string('satuan_bk',191);
-            $table->string('noBukti_bk',191);
+            $table->string('satuan_bk', 191);
+            $table->string('noBukti_bk', 191);
             $table->integer('penerimaan_bk');
             $table->integer('pengeluaran_bk');
             $table->integer('saldo_bk');
-            $table->timestamp('tanggal_bk');
+            $table->date('tanggal_bk');
             $table->timestamps();
         });
     }

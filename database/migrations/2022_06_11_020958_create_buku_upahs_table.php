@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('buku_upahs', function (Blueprint $table) {
             $table->id();
-            $table->string('uraian_bu',191);
+            $table->string('uraian_bu', 191);
             $table->integer('volume_bu');
-            $table->string('satuan_bu',191);
-            $table->string('noBukti_bu',191);
+            $table->string('satuan_bu', 191);
+            $table->string('noBukti_bu', 191);
             $table->integer('jumlah_bu');
-            $table->timestamp('tanggal_bu');
+            $table->date('tanggal_bu');
             $table->timestamps();
         });
     }
