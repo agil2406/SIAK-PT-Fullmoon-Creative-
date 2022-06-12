@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('buku_materials', function (Blueprint $table) {
             $table->id();
             $table->string('uraian_bm', 191);
-            $table->integer('volume_bm');
-            $table->string('satuan_bm', 191);
+            $table->integer('volume_bm')->nullable();
+            $table->string('satuan_bm', 191)->nullable();
             $table->string('noBukti_bm', 191);
             $table->integer('jumlah_bm');
             $table->date('tanggal_bm');

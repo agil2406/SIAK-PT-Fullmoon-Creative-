@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('buku_asets', function (Blueprint $table) {
             $table->id();
             $table->string('uraian_ba', 191);
-            $table->integer('volume_ba');
-            $table->string('satuan_ba', 191);
+            $table->integer('volume_ba')->nullable();
+            $table->string('satuan_ba', 191)->nullable();
             $table->string('noBukti_ba', 191);
             $table->integer('jumlah_ba');
             $table->date('tanggal_ba');
