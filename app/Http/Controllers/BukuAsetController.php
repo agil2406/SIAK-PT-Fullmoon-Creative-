@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\BukuAset;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class BukuAsetController extends Controller
 {
     public function index()
     {
-        $bukuaset = BukuAset::all();
-        return view('pages.bukuaset.bukuAset', compact(['bukuaset']));
+        $data = BukuAset::all();
+        return view('pages.bukuaset.bukuAset', compact('data'));
     }
 
     public function create()
@@ -38,5 +39,9 @@ class BukuAsetController extends Controller
         $bukuaset = BukuAset::find($id);
         $bukuaset->delete();
         return redirect('/bukuaset');
+    }
+    public function json()
+    {
+        return DataTables::of(BukuAset::limit(10))->make(true);
     }
 }

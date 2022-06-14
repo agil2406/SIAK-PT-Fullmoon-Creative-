@@ -21,45 +21,45 @@ Dashboard Admin Fullmoon
     <div class="container">
       <a href="/bukuupah/create" class="btn btn-primary mb-3 mt-2">Tambah Data</a>
 
-      <table id="example" class="table table-bordered table-hover">
-        <tr>
-          <th>No</th>
-          <th>Uraian</th>
-          <th>Tanggal </th>
-          <th>Volume</th>
-          <th>Satuan</th>
-          <th>No.Bukti</th>
-          <th>Jumlah</th>
-          <th>Aksi</th>
-        </tr>
-        @foreach ($bukuupah as $s)
+      <table id="datatables" class="table table-striped table-hover table-bordered">
+        <thead>
+          <tr>
+            <th> URAIAN </th>
+            <th> TANGGAL </th>
+            <th> VOLUME </th>
+            <th> SATUAN </th>
+            <th> NO BUKTI </th>
+            <th> JUMLAH </th>
+            <th> AKSI </th>
+
+          </tr>
+        </thead>
+
         <tbody>
-          <td>{{$s->id}}</td>
-          <td>{{$s->uraian_bu}}</td>
-          <td>{{$s->tanggal_bu}}</td>
-          <td>{{$s->volume_bu}}</td>
-          <td>{{$s->satuan_bu}}</td>
-          <td>{{$s->noBukti_bu}}</td>
-          <td>{{$s->jumlah_bu}}</td>
-          <td>
-            <div class="row">
-              <div class="col-sm-4">
-                <a href="/bukuupah/{{$s->id}}/edit" class="btn mb-2 btn-sm btn-warning btn-block">Ubah</a>
+          @foreach ($data as $d )
+          <tr>
+            <td> {{$d->uraian_bu}}</td>
+            <td> {{$d->tanggal_bu}}</td>
+            <td> {{$d->volume_bu}}</td>
+            <td> {{$d->satuan_bu}}</td>
+            <td> {{$d->noBukti_bu}}</td>
+            <td> {{$d->jumlah_bu}}</td>
+            <td>
+              <div class="row">
+                <div class="col-sm-4">
+                  <a href="/bukuupah/{{$d->id}}/edit" class="btn mb-2 btn-sm btn-warning btn-block">Detail</a>
+                </div>
+
               </div>
-              <div class="col-sm-4">
-                <form action="/bukuupah/{{$s->id}}" method="POST">
-                  @csrf
-                  @method('delete')
-                  <button class="btn btn-sm btn-danger btn-block" type="submit" value="Delete">Hapus</button>
-                </form>
-              </div>
-            </div>
+            </td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+
     </div>
-    </td>
-    </tbody>
-    @endforeach
-    </table>
   </div>
 </div>
-</div>
+
+
 @endsection

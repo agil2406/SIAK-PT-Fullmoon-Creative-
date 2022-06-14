@@ -21,49 +21,48 @@ Dashboard Admin Fullmoon
     <div class="container">
       <a href="/bukukas/create" class="btn btn-primary mb-3 mt-2">Tambah Data</a>
 
-      <table id="example" class="table table-bordered table-hover">
-        <tr>
-          <th>No</th>
-          <th>Uraian</th>
-          <th>Tanggal </th>
-          <th>Volume</th>
-          <th>Satuan</th>
-          <th>No.Bukti</th>
-          <th>Penerimaan</th>
-          <th>Pengeluaran</th>
-          <th>Aksi</th>
-        </tr>
-        @foreach ($bukukas as $s)
+      <table id="datatables" class="table table-striped table-hover table-bordered">
+        <thead>
+          <tr>
+            <th> URAIAN </th>
+            <th> TANGGAL </th>
+            <th> VOLUME </th>
+            <th> SATUAN </th>
+            <th> NO BUKTI </th>
+            <th> PENERIMAAN </th>
+            <th> PENGELUARAN </th>
+            <th> AKSI </th>
+
+
+          </tr>
+        </thead>
+
         <tbody>
-          <td>{{$s->id}}</td>
-          <td>{{$s->uraian_bk}}</td>
-          <td>{{$s->tanggal_bk}}</td>
-          <td>{{$s->volume_bk}}</td>
-          <td>{{$s->satuan_bk}}</td>
-          <td>{{$s->noBukti_bk}}</td>
-          <td>{{$s->penerimaan_bk}}</td>
-          <td>{{$s->pengeluaran_bk}}</td>
-          <td>
-            <div class="row">
-              <div class="col-sm-4">
-                <a href="/bukukas/{{$s->id}}/edit" class="btn mb-1 btn-sm btn-warning btn-block">Ubah</a>
+          @foreach ($data as $d )
+          <tr>
+            <td> {{$d->uraian_bk}}</td>
+            <td> {{$d->tanggal_bk}}</td>
+            <td> {{$d->volume_bk}}</td>
+            <td> {{$d->satuan_bk}}</td>
+            <td> {{$d->noBukti_bk}}</td>
+            <td> {{$d->penerimaan_bk}}</td>
+            <td> {{$d->pengeluaran_bk}}</td>
+            <td>
+              <div class="row">
+                <div class="col-sm-4">
+                  <a href="/bukukas/{{$d->id}}/edit" class="btn mb-2 btn-sm btn-warning btn-block">Detail</a>
+                </div>
+
               </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-4">
-                <form action="/bukukas/{{$s->id}}" method="POST">
-                  @csrf
-                  @method('delete')
-                  <button class="btn btn-sm btn-danger btn-block" type="submit" value="Delete">Hapus</button>
-                </form>
-              </div>
-            </div>
+
+            </td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
     </div>
-    </td>
-    </tbody>
-    @endforeach
-    </table>
   </div>
 </div>
-</div>
+
+
 @endsection

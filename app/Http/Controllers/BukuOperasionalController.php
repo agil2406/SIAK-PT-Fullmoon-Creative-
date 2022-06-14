@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\BukuOperasional;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class BukuOperasionalController extends Controller
 {
     public function index()
     {
-        $bukuoperasional = BukuOperasional::all();
-        return view('pages.bukuoperasional.bukuOperasional', compact(['bukuoperasional']));
+        $data = BukuOperasional::all();
+        return view('pages.bukuoperasional.bukuOperasional', compact('data'));
     }
 
     public function create()
@@ -38,5 +39,9 @@ class BukuOperasionalController extends Controller
         $bukuoperasional = BukuOperasional::find($id);
         $bukuoperasional->delete();
         return redirect('/bukuoperasional');
+    }
+    public function json()
+    {
+        return DataTables::of(BukuOperasional::limit(10))->make(true);
     }
 }

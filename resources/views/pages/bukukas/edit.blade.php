@@ -70,10 +70,16 @@ Dashboard Admin Fullmoon
                     </div>
                 </div>
             </div>
-            <div class="text-center">
+            <div class="text-center mt-2">
                 <button type="submit" class="btn btn-primary" value="update">Simpan Data</button>
-                <a href="/bukuupah" class="btn btn-secondary" type="reset">Batal</a>
+                <a href="/bukukas" class="btn btn-secondary" type="reset">Batal</a>
+                <form action="/bukukas/{{$bukukas->id}}" method="POST">
+                    @csrf
+                    @method('delete')
+                    <button class="btn btn-danger btn-block" type="submit" value="Delete">Hapus</button>
+                </form>
             </div>
+
         </form><!-- End Horizontal Form -->
 
     </div>

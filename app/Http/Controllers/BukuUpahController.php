@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\BukuUpah;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class BukuUpahController extends Controller
 {
     public function index()
     {
-        $bukuupah = BukuUpah::all();
-        return view('pages.bukuupah.bukuUpah', compact(['bukuupah']));
+        $data = BukuUpah::all();
+        return view('pages.bukuupah.bukuUpah', compact('data'));
     }
 
     public function create()
@@ -38,5 +39,9 @@ class BukuUpahController extends Controller
         $bukuupah = BukuUpah::find($id);
         $bukuupah->delete();
         return redirect('/bukuupah');
+    }
+    public function json()
+    {
+        return DataTables::of(BukuUpah::limit(10))->make(true);
     }
 }

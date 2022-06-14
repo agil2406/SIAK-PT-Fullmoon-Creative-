@@ -59,6 +59,11 @@ Dashboard Admin Fullmoon
             <div class="text-center">
                 <button type="submit" class="btn btn-primary">Simpan Data</button>
                 <a href="/bukuupah" class="btn btn-secondary" type="reset">Batal</a>
+                <form action="/bukuupah/{{$bukuupah->id}}" method="POST">
+                    @csrf
+                    @method('delete')
+                    <button class="btn btn-danger btn-block" type="submit" value="Delete">Hapus</button>
+                </form>
             </div>
         </form><!-- End Horizontal Form -->
 

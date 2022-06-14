@@ -21,45 +21,46 @@ Dashboard Admin Fullmoon
     <div class="container">
       <a href="/bukuoperasional/create" class="btn btn-primary mb-3 mt-2">Tambah Data</a>
 
-      <table id="example" class="table table-bordered table-hover">
+      <table id="datatables" class="table table-striped table-hover table-bordered">
+        <thead>
+          <tr>
+            <th> URAIAN </th>
+            <th> TANGGAL </th>
+            <th> VOLUME </th>
+            <th> SATUAN </th>
+            <th> NO BUKTI </th>
+            <th> JUMLAH </th>
+            <th> AKSI </th>
+
+          </tr>
+        </thead>
+        @foreach ($data as $d )
         <tr>
-          <th>No</th>
-          <th>Uraian</th>
-          <th>Tanggal </th>
-          <th>Volume</th>
-          <th>Satuan</th>
-          <th>No.Bukti</th>
-          <th>Jumlah</th>
-          <th>Aksi</th>
-        </tr>
-        @foreach ($bukuoperasional as $s)
-        <tbody>
-          <td>{{$s->id}}</td>
-          <td>{{$s->uraian_bo}}</td>
-          <td>{{$s->tanggal_bo}}</td>
-          <td>{{$s->volume_bo}}</td>
-          <td>{{$s->satuan_bo}}</td>
-          <td>{{$s->noBukti_bo}}</td>
-          <td>{{$s->jumlah_bo}}</td>
+          <td> {{$d->uraian_bo}}</td>
+          <td> {{$d->tanggal_bo}}</td>
+          <td> {{$d->volume_bo}}</td>
+          <td> {{$d->satuan_bo}}</td>
+          <td> {{$d->noBukti_bo}}</td>
+          <td> {{$d->jumlah_bo}}</td>
           <td>
             <div class="row">
               <div class="col-sm-4">
-                <a href="/bukuoperasional/{{$s->id}}/edit" class="btn mb-2 btn-sm btn-warning btn-block">Ubah</a>
+                <a href="/bukuoperasional/{{$d->id}}/edit" class="btn mb-2 btn-sm btn-warning btn-block">Detail</a>
               </div>
-              <div class="col-sm-4">
-                <form action="/bukuoperasional/{{$s->id}}" method="POST">
-                  @csrf
-                  @method('delete')
-                  <button class="btn btn-sm btn-danger btn-block" type="submit" value="Delete">Hapus</button>
-                </form>
-              </div>
+
             </div>
+          </td>
+        </tr>
+        @endforeach
+        <tbody>
+
+        </tbody>
+      </table>
+
     </div>
-    </td>
-    </tbody>
-    @endforeach
-    </table>
   </div>
 </div>
-</div>
+
+
+
 @endsection

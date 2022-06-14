@@ -69,7 +69,7 @@ Dashboard Admin Fullmoon
                     </div>
                 </div>
             </div>
-            <div class="text-center">
+            <div class="text-center mt-3">
                 <button type="submit" class="btn btn-primary">Tambah Data</button>
                 <a href="/bukukas" class="btn btn-secondary" type="reset">Batal</a>
             </div>

@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\BukuMaterial;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class BukuMaterialController extends Controller
 {
     public function index()
     {
-        $bukumaterial = BukuMaterial::all();
-        return view('pages.bukumaterial.bukuMaterial', compact(['bukumaterial']));
+        $data = BukuMaterial::all();
+        return view('pages.bukumaterial.bukuMaterial', compact('data'));
     }
 
     public function create()
@@ -38,5 +39,9 @@ class BukuMaterialController extends Controller
         $bukumaterial = BukuMaterial::find($id);
         $bukumaterial->delete();
         return redirect('/bukumaterial');
+    }
+    public function json()
+    {
+        return DataTables::of(BukuMaterial::limit(10))->make(true);
     }
 }
