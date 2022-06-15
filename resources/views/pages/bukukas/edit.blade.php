@@ -50,6 +50,23 @@ Dashboard Admin Fullmoon
                     <input type="text" class="form-control" id="inputText" name="noBukti_bk" value="{{$bukukas->noBukti_bk}}">
                 </div>
             </div>
+
+            <div class="row g-2 mb-3">
+                <div class="col-md">
+                    <div class="form-floating">
+                        <select name="jenisKas" class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" value="{{$bukukas->jenisKas_bk}}">
+                            <option selected>Pilih Jenis Kas</option>
+
+                            <option value="bukuaset " @if ($bukukas->jenisKas == "bukuaset") selected @endif > Buku Aset</option>
+                            <option value="bukumaterial" @if ($bukukas->jenisKas == "bukumaterial") selected @endif>Buku Material</option>
+                            <option value="bukuoperasional " @if ($bukukas->jenisKas == "bukuoperasional") selected @endif>Buku Operasional</option>
+                            <option value="bukuupah" @if ($bukukas->jenisKas == "bukuupah") selected @endif>Buku Upah</option>
+                        </select>
+                        <label for="floatingSelectGrid">Jenis Kas</label>
+                    </div>
+                </div>
+            </div>
+
             <div class="row g-2">
                 <div class="col-md">
                     <div class="form-floating">
@@ -70,16 +87,14 @@ Dashboard Admin Fullmoon
                     </div>
                 </div>
             </div>
-            <div class="text-center mt-2">
-                <button type="submit" class="btn btn-primary" value="update">Simpan Data</button>
-                <a href="/bukukas" class="btn btn-secondary" type="reset">Batal</a>
-                <form action="/bukukas/{{$bukukas->id}}" method="POST">
-                    @csrf
-                    @method('delete')
-                    <button class="btn btn-danger btn-block" type="submit" value="Delete">Hapus</button>
-                </form>
-            </div>
+            <div class="row">
 
+                <div class="text-center mt-2">
+                    <button type="submit" class="btn btn-primary" value="update">Simpan Data</button>
+                    <a href="/bukukas" class="btn btn-secondary" type="reset">Batal</a>
+                </div>
+
+            </div>
         </form><!-- End Horizontal Form -->
 
     </div>

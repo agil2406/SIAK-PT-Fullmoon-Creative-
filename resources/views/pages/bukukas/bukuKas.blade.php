@@ -20,6 +20,7 @@ Dashboard Admin Fullmoon
 
     <div class="container">
       <a href="/bukukas/create" class="btn btn-primary mb-3 mt-2">Tambah Data</a>
+      <a href="/bukukas/export" class="btn btn-success mb-3 mt-2">Export Excel</a>
 
       <table id="datatables" class="table table-striped table-hover table-bordered">
         <thead>
@@ -53,6 +54,13 @@ Dashboard Admin Fullmoon
                   <a href="/bukukas/{{$d->id}}/edit" class="btn mb-2 btn-sm btn-warning btn-block">Detail</a>
                 </div>
 
+              </div>
+              <div class="text-center mt-2">
+                <form action="/bukukas/{{$d->id}}" method="POST">
+                  @csrf
+                  @method('delete')
+                  <button class="btn btn-danger btn-block" type="submit" value="Delete">Hapus</button>
+                </form>
               </div>
 
             </td>

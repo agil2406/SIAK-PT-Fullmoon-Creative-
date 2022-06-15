@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\BukukasExport;
 use App\Models\BukuKas;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
@@ -12,6 +14,10 @@ class BukuKasController extends Controller
     {
         $data = BukuKas::all();
         return view('pages.bukukas.bukuKas', compact('data'));
+    }
+    public function export()
+    {
+        return Excel::download(new BukukasExport, 'bukukas.xlsx');
     }
 
     public function create()

@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class BukuAset extends Model
 {
-    protected $table = 'buku_asets';
+    protected $table = 'buku_kas';
     protected $guarded = ['id'];
 }

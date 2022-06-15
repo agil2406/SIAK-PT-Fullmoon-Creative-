@@ -19,7 +19,8 @@ Dashboard Admin Fullmoon
   <div class="card-body">
 
     <div class="container">
-      <a href="/bukuaset/create" class="btn btn-primary mb-3 mt-2">Tambah Data</a>
+      <a href="/bukukas/create" class="btn btn-primary mb-3 mt-2">Tambah Data</a>
+      <a href="/bukuaset/export" class="btn btn-success mb-3 mt-2">Export Excel</a>
 
       <table id="datatables" class="table table-striped table-hover table-bordered">
         <thead>
@@ -38,18 +39,25 @@ Dashboard Admin Fullmoon
         <tbody>
           @foreach ($data as $d )
           <tr>
-            <td> {{$d->uraian_ba}}</td>
-            <td> {{$d->tanggal_ba}}</td>
-            <td> {{$d->volume_ba}}</td>
-            <td> {{$d->satuan_ba}}</td>
-            <td> {{$d->noBukti_ba}}</td>
-            <td> {{$d->jumlah_ba}}</td>
+            <td> {{$d->uraian_bk}}</td>
+            <td> {{$d->tanggal_bk}}</td>
+            <td> {{$d->volume_bk}}</td>
+            <td> {{$d->satuan_bk}}</td>
+            <td> {{$d->noBukti_bk}}</td>
+            <td> {{$d->pengeluaran_bk}}</td>
             <td>
               <div class="row">
                 <div class="col-sm-4">
-                  <a href="/bukuaset/{{$d->id}}/edit" class="btn mb-2 btn-sm btn-warning btn-block">Detail</a>
+                  <a href="/bukukas/{{$d->id}}/edit" class="btn mb-2 btn-sm btn-warning btn-block">Detail</a>
                 </div>
 
+              </div>
+              <div class="mt-2">
+                <form action="/bukukas/{{$d->id}}" method="POST">
+                  @csrf
+                  @method('delete')
+                  <button class="btn btn-danger btn-block" type="submit" value="Delete">Hapus</button>
+                </form>
               </div>
             </td>
           </tr>

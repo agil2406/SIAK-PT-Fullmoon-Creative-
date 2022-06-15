@@ -2,46 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\BukuasetExport;
 use App\Models\BukuAset;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
+use Maatwebsite\Excel\Facades\Excel;
 
 class BukuAsetController extends Controller
 {
     public function index()
     {
-        $data = BukuAset::all();
+        $data = DB::table('buku_kas')
+            ->where('jenisKas', 'bukuaset')
+            ->get();
         return view('pages.bukuaset.bukuAset', compact('data'));
     }
-
-    public function create()
+    public function export()
     {
-        return view('pages.bukuaset.create');
-    }
-    public function save(Request $request)
-    {
-        BukuAset::create($request->except(['_token']));
-        return redirect('/bukuaset');
-    }
-    public function edit($id)
-    {
-        $bukuaset = BukuAset::find($id);
-        return view('pages.bukuaset.edit', compact(['bukuaset']));
-    }
-    public function update($id, Request $request)
-    {
-        $bukuaset = BukuAset::find($id);
-        $bukuaset->update($request->except(['_token']));
-        return redirect('/bukuaset');
-    }
-    public function destroy($id, Request $request)
-    {
-        $bukuaset = BukuAset::find($id);
-        $bukuaset->delete();
-        return redirect('/bukuaset');
-    }
-    public function json()
-    {
-        return DataTables::of(BukuAset::limit(10))->make(true);
+        return Excel::download(new BukuasetExport, 'bukuaset.xlsx');
     }
 }

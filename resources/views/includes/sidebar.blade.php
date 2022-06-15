@@ -4,22 +4,23 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item bg-dark">
-        <a class="nav-link " href="index.html">
+        <a class="nav-link collapsed" href="index.html">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
-      </li><!-- End Dashboard Nav -->
+      </li>
+      <li class="nav-item bg-dark">
+        <a class="nav-link collapsed" href="/bukukas">
+          <i class="bi bi-menu-button-wide"></i>
+          <span>Buku Kas Umum</span>
+        </a>
+      </li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-menu-button-wide"></i><span>Pelayanan</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-menu-button-wide"></i><span>Jenis Kas</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="/bukukas">
-              <i class="bi bi-circle"></i><span>Buku Kas</span>
-            </a>
-          </li>
           <li>
             <a href="/bukumaterial">
               <i class="bi bi-circle"></i><span>Buku Material</span>
@@ -40,13 +41,15 @@
               <i class="bi bi-circle"></i><span>Buku Upah</span>
             </a>
           </li>
-          <li>
-            <a href="/rekap">
-              <i class="bi bi-circle"></i><span>Rekap</span>
-            </a>
-          </li>
         </ul>
       </li><!-- End Components Nav -->
+      <li class="nav-item bg-dark">
+        <a class="nav-link collapsed" href="/rekap">
+          <i class="bi bi-menu-button-wide"></i>
+          <span>Rekap Buku Kas</span>
+        </a>
+      </li>
+
 
 
       <li class="nav-heading">Pages</li>

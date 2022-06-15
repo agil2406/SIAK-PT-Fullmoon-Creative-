@@ -15,11 +15,12 @@ Dashboard Admin Fullmoon
   </nav>
 </div><!-- End Page Title -->
 
-<div class="card">
+<div class="card" style="width: 90%">
   <div class="card-body">
 
     <div class="container">
-      <a href="/bukumaterial/create" class="btn btn-primary mb-3 mt-2">Tambah Data</a>
+      <a href="/bukukas/create" class="btn btn-primary mb-3 mt-2">Tambah Data</a>
+      <a href="/bukumaterial/export" class="btn btn-success mb-3 mt-2">Export Excel</a>
 
       <table id="datatables" class="table table-striped table-hover table-bordered">
         <thead>
@@ -38,24 +39,32 @@ Dashboard Admin Fullmoon
         <tbody>
           @foreach ($data as $d )
           <tr>
-            <td> {{$d->uraian_bm}}</td>
-            <td> {{$d->tanggal_bm}}</td>
-            <td> {{$d->volume_bm}}</td>
-            <td> {{$d->satuan_bm}}</td>
-            <td> {{$d->noBukti_bm}}</td>
-            <td> {{$d->jumlah_bm}}</td>
+            <td> {{$d->uraian_bk}}</td>
+            <td> {{$d->tanggal_bk}}</td>
+            <td> {{$d->volume_bk}}</td>
+            <td> {{$d->satuan_bk}}</td>
+            <td> {{$d->noBukti_bk}}</td>
+            <td> {{$d->pengeluaran_bk}}</td>
             <td>
               <div class="row">
                 <div class="col-sm-4">
-                  <a href="/bukumaterial/{{$d->id}}/edit" class="btn mb-2 btn-sm btn-warning btn-block">Detail</a>
+                  <a href="/bukukas/{{$d->id}}/edit" class="btn mb-2 btn-sm btn-warning btn-block">Detail</a>
                 </div>
 
+              </div>
+              <div class="mt-2">
+                <form action="/bukukas/{{$d->id}}" method="POST">
+                  @csrf
+                  @method('delete')
+                  <button class="btn btn-danger btn-block" type="submit" value="Delete">Hapus</button>
+                </form>
               </div>
             </td>
           </tr>
           @endforeach
         </tbody>
       </table>
+
     </div>
   </div>
 </div>

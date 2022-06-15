@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Dashboard Admin Fullmoon
+Tambah Data Buku Kas
 
 @section('content')
 
@@ -49,11 +49,26 @@ Dashboard Admin Fullmoon
                     <input type="text" class="form-control" id="inputText" name="noBukti_bk">
                 </div>
             </div>
+            <div class="row g-2 mb-3">
+                <div class="col-md">
+                    <div class="form-floating">
+                        <select name="jenisKas" class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
+                            <option selected>Pilih Jenis Kas</option>
+
+                            <option value="bukuaset ">Buku Aset</option>
+                            <option value="bukumaterial">Buku Material</option>
+                            <option value="bukuoperasional">Buku Operasional</option>
+                            <option value="bukuupah">Buku Upah</option>
+                        </select>
+                        <label for="floatingSelectGrid">Jenis Kas</label>
+                    </div>
+                </div>
+            </div>
             <div class="row g-2">
                 <div class="col-md">
                     <div class="form-floating">
                         <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
-                            <option selected>Pilih Jenis Kas</option>
+                            <option selected>Pilih Jenis Uang</option>
 
                             <option value=" <?php $a = "penerimaan_bk"; ?>">Penerimaan</option>
                             <option value="<?php $a = "pengeluaran_bk"; ?>">Pengeluaran</option>
