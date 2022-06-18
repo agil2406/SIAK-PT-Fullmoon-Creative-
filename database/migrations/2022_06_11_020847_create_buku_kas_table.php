@@ -16,15 +16,16 @@ return new class extends Migration
         Schema::create('buku_kas', function (Blueprint $table) {
             $table->id();
 
-            $table->string('uraian_bk', 191);
-            $table->integer('volume_bk')->nullable();
-            $table->string('satuan_bk', 191)->nullable();
-            $table->string('jenisKas_bk', 191)->nullable();
-            $table->string('noBukti_bk', 191);
-            $table->integer('penerimaan_bk')->nullable();
-            $table->integer('pengeluaran_bk')->nullable();
-            $table->integer('saldo_bk');
-            $table->date('tanggal_bk');
+            $table->string('uraian', 191);
+            $table->integer('volume')->nullable();
+            $table->string('satuan', 191)->nullable();
+            $table->string('jenisKas', 191)->nullable();
+            $table->string('noBukti', 191);
+            $table->integer('penerimaan')->nullable();
+            $table->integer('pengeluaran')->nullable();
+            $table->integer('saldo');
+            $table->string('image')->nullable();
+            $table->date('tanggal');
             $table->timestamps();
         });
     }

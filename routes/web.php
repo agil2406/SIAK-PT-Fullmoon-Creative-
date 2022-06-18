@@ -32,6 +32,7 @@ Route::controller(BukuKasController::class)->group(function () {
     Route::get('/bukukas/create',  'create');
     Route::post('/bukukas/save', 'save');
     Route::get('/bukukas/{id}/edit', 'edit');
+    Route::get('/bukukas/{id}/detail', 'detail');
     Route::put('/bukukas/{id}', 'update');
     Route::delete('/bukukas/{id}', 'destroy');
 });

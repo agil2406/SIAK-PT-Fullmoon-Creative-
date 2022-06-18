@@ -6,6 +6,7 @@ use App\Exports\BukukasExport;
 use App\Models\BukuKas;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
 
 class BukuKasController extends Controller
@@ -26,25 +27,71 @@ class BukuKasController extends Controller
     }
     public function save(Request $request)
     {
-        BukuKas::create($request->except(['_token']));
-        return redirect('/bukukas');
+
+        $validateData = $request->validate([
+            'jenisKas' => 'required',
+            'uraian' => 'required',
+            'tanggal' => 'required',
+            'jenisKas' => 'required',
+            'image' => 'required|image|file|max:2048',
+            'noBukti' => 'required'
+        ]);
+        $file_name = $request->image->getClientOriginalName();
+        $image = $request->image->storeAs('kwitansi', $file_name);
+        BukuKas::create([
+            'uraian' => $request->uraian,
+            'image' => $image,
+            'noBukti' => $request->noBukti,
+            'jenisKas' => $request->jenisKas,
+            'pengeluaran' => $request->pengeluaran,
+            'penerimaan' => $request->penerimaan,
+            'tanggal' => $request->tanggal
+        ]);
+        return redirect('/bukukas')->with('success', 'Data berhasil di tambahkan');
     }
     public function edit($id)
     {
         $bukukas = BukuKas::find($id);
         return view('pages.bukukas.edit', compact(['bukukas']));
     }
-    public function update($id, Request $request)
+    public function detail($id)
     {
         $bukukas = BukuKas::find($id);
-        $bukukas->update($request->except(['_token']));
-        return redirect('/bukukas');
+        return view('pages.bukukas.detail', compact(['bukukas']));
+    }
+    public function update($id, Request $request)
+    {
+        $validateData = $request->validate([
+            'jenisKas' => 'required',
+            'uraian' => 'required',
+            'jenisKas' => 'required',
+            'tanggal' => 'required',
+            'image' => 'required|image|file|max:2048',
+            'noBukti' => 'required'
+        ]);
+        $file_name = $request->image->getClientOriginalName();
+        $image = $request->image->storeAs('kwitansi', $file_name);
+
+        $bukukas = BukuKas::find($id);
+        $bukukas->update(
+            [
+                'uraian' => $request->uraian,
+                'image' => $image,
+                'noBukti' => $request->noBukti,
+                'jenisKas' => $request->jenisKas,
+                'pengeluaran' => $request->pengeluaran,
+                'penerimaan' => $request->penerimaan,
+                'tanggal' => $request->tanggal
+            ]
+        );
+
+        return redirect('/bukukas')->with('success', 'Data berhasil di ubah');
     }
     public function destroy($id, Request $request)
     {
         $bukukas = BukuKas::find($id);
         $bukukas->delete();
-        return redirect('/bukukas');
+        return redirect('/bukukas')->with('success', 'Data berhasil di Hapus');
     }
     public function json()
     {

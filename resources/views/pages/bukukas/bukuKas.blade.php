@@ -15,6 +15,14 @@ Dashboard Admin Fullmoon
   </nav>
 </div><!-- End Page Title -->
 
+@if (session()->has('success'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  {{ session('success')}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
+
+
 <div class="card">
   <div class="card-body">
 
@@ -22,13 +30,24 @@ Dashboard Admin Fullmoon
       <a href="/bukukas/create" class="btn btn-primary mb-3 mt-2">Tambah Data</a>
       <a href="/bukukas/export" class="btn btn-success mb-3 mt-2">Export Excel</a>
 
+      <table>
+        <tbody>
+          <tr>
+            <td>Minimum date:</td>
+            <td><input type="text" id="min" name="min"></td>
+          </tr>
+          <tr>
+            <td>Maximum date:</td>
+            <td><input type="text" id="max" name="max"></td>
+          </tr>
+      </table>
+
       <table id="datatables" class="table table-striped table-hover table-bordered">
         <thead>
           <tr>
             <th> URAIAN </th>
             <th> TANGGAL </th>
             <th> VOLUME </th>
-            <th> SATUAN </th>
             <th> NO BUKTI </th>
             <th> PENERIMAAN </th>
             <th> PENGELUARAN </th>
@@ -41,25 +60,28 @@ Dashboard Admin Fullmoon
         <tbody>
           @foreach ($data as $d )
           <tr>
-            <td> {{$d->uraian_bk}}</td>
-            <td> {{$d->tanggal_bk}}</td>
-            <td> {{$d->volume_bk}}</td>
-            <td> {{$d->satuan_bk}}</td>
-            <td> {{$d->noBukti_bk}}</td>
-            <td> {{$d->penerimaan_bk}}</td>
-            <td> {{$d->pengeluaran_bk}}</td>
+            <td> {{$d->uraian}}</td>
+            <td> {{$d->tanggal}}</td>
+            <td> {{$d->volume}}</td>
+            <td> {{$d->noBukti}}</td>
+            <td> @if ($d->penerimaan == NULL) Rp.- @else Rp.{{$d->penerimaan}} @endif</td>
+            <td> Rp.{{$d->pengeluaran}}</td>
             <td>
               <div class="row">
                 <div class="col-sm-4">
-                  <a href="/bukukas/{{$d->id}}/edit" class="btn mb-2 btn-sm btn-warning btn-block">Detail</a>
-                </div>
 
+                  <a href="/bukukas/{{$d->id}}/edit" class="btn btn-warning"><i class="bi bi-arrow-repeat"></i></a>
+                </div>
+                <div class="col-sm-4 m-auto">
+
+                  <a href="/bukukas/{{$d->id}}/detail" class="btn btn-success"><i class="bi bi-info-circle"></i></a>
+                </div>
               </div>
-              <div class="text-center mt-2">
+              <div class="mt-2">
                 <form action="/bukukas/{{$d->id}}" method="POST">
                   @csrf
                   @method('delete')
-                  <button class="btn btn-danger btn-block" type="submit" value="Delete">Hapus</button>
+                  <button class="btn btn-danger" type="submit" value="Delete" onclick="return confirm('Yakin ingin menghapus ?')"><i class="bx bxs-trash"></i></button>
                 </form>
               </div>
 

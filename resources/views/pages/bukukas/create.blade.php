@@ -21,46 +21,61 @@ Tambah Data Buku Kas
         <h5 class="card-title">Buku Kas</h5>
 
         <!-- Horizontal Form -->
-        <form action="/bukukas/save" method="POST">
+        <form action="/bukukas/save" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row mb-3">
-                <label for="uraian_bk" class="col-sm-2 col-form-label">Uraian</label>
+                <label for="uraian" class="col-sm-2 col-form-label">Uraian</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputText" name="uraian_bk">
+                    <input type="text" class="form-control @error('uraian') is-invalid  @enderror" id="inputText" name="uraian" required autofocus value="{{ old('uraian')}}">
+                    @error('uraian')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
             </div>
             <div class="row mb-3">
-                <label for="tanggal_bk" class="col-sm-2 col-form-label">Tanggal</label>
+                <label for="tanggal" class="col-sm-2 col-form-label">Tanggal</label>
                 <div class="col-sm-4">
-                    <input type="date" class="form-control" name="tanggal_bk">
+                    <input type="date" class="form-control @error('tanggal') is-invalid  @enderror" name="tanggal" value="{{ old('tanggal')}}">
+                    @error('tanggal')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
-                <label for="volume_bk" class="col-sm-2 col-form-label">Volume</label>
+                <label for="volume" class="col-sm-2 col-form-label">Volume</label>
                 <div class="col-sm-4">
-                    <input type="number" class="form-control" id="inputText" name="volume_bk">
+                    <input type="number" class="form-control" id="inputText" name="volume" value="{{ old('volume')}}">
                 </div>
             </div>
             <div class="row mb-3">
-                <label for="satuan_bk" class="col-sm-2 col-form-label">Satuan</label>
+                <label for="satuan" class="col-sm-2 col-form-label">Satuan</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" id="inputText" name="satuan_bk">
+                    <input type="text" class="form-control" id="inputText" name="satuan" value="{{ old('satuan')}}">
                 </div>
-                <label for="noBukti_bk" class="col-sm-2 col-form-label">No Bukti</label>
+                <label for="noBukti" class="col-sm-2 col-form-label">No Bukti</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" id="inputText" name="noBukti_bk">
+                    <input type="text" class="form-control @error('noBukti') is-invalid  @enderror" id="inputText" name="noBukti" value="{{ old('noBukti')}}">
+                    @error('noBukti')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
             </div>
             <div class="row g-2 mb-3">
                 <div class="col-md">
                     <div class="form-floating">
-                        <select name="jenisKas" class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
-                            <option selected>Pilih Jenis Kas</option>
+                        <select name="jenisKas" class="form-select " id="floatingSelectGrid" aria-label="Floating label select example">
+                            <option class="@error('jenisKas') is-invalid  @enderror">Pilih Jenis Buku</option>
 
-                            <option value="bukuaset ">Buku Aset</option>
+                            <option value="bukuaset">Buku Aset</option>
                             <option value="bukumaterial">Buku Material</option>
                             <option value="bukuoperasional">Buku Operasional</option>
                             <option value="bukuupah">Buku Upah</option>
                         </select>
-                        <label for="floatingSelectGrid">Jenis Kas</label>
+                        <label for="floatingSelectGrid">Jenis Buku</label>
                     </div>
                 </div>
             </div>
@@ -68,10 +83,10 @@ Tambah Data Buku Kas
                 <div class="col-md">
                     <div class="form-floating">
                         <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
-                            <option selected>Pilih Jenis Uang</option>
+                            <option selected>Pilih Jenis Kas</option>
 
-                            <option value=" <?php $a = "penerimaan_bk"; ?>">Penerimaan</option>
-                            <option value="<?php $a = "pengeluaran_bk"; ?>">Pengeluaran</option>
+                            <option value=" <?php $a = "penerimaan"; ?>">Penerimaan</option>
+                            <option value="<?php $a = "pengeluaran"; ?>">Pengeluaran</option>
 
                         </select>
                         <label for="floatingSelectGrid">Jenis Kas</label>
@@ -82,6 +97,18 @@ Tambah Data Buku Kas
                         <input type="number" class="form-control" id="floatingInputGrid" placeholder="150000" name="{{$a}}">
                         <label for="floatingInputGrid">Jumlah Uang</label>
                     </div>
+
+                </div>
+            </div>
+            <div class="row mt-3">
+                <label for="image" class="col-sm-2 col-form-label">Bukti Kwitansi</label>
+                <div class="col-sm-10">
+                    <input class="form-control @error('image') is-invalid  @enderror" type="file" id="image" name="image" accept="image/*">
+                    @error('image')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
             </div>
             <div class="text-center mt-3">
