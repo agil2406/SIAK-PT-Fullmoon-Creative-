@@ -44,9 +44,21 @@
         </ul>
       </li><!-- End Components Nav -->
       <li class="nav-item bg-dark">
-        <a class="nav-link collapsed" href="/rekap">
+        <a class="nav-link collapsed" href="{{url('rekap')}}">
           <i class="bi bi-menu-button-wide"></i>
           <span>Rekap Buku Kas</span>
+        </a>
+      </li>
+      <li class="nav-item bg-dark">
+        <a class="nav-link collapsed" href="{{url('pengajuan')}}">
+          <i class="bi bi-menu-button-wide"></i>
+          <span>Laporan Pengajuan</span>
+        </a>
+      </li>
+      <li class="nav-item bg-dark">
+        <a class="nav-link collapsed" href="{{url('laporan')}}">
+          <i class="bi bi-menu-button-wide"></i>
+          <span>Laporan Rekap</span>
         </a>
       </li>
 

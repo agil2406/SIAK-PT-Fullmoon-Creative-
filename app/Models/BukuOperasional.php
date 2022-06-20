@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class BukuOperasional extends Model
 {
-    protected $table = 'buku_operasionals';
+    protected $table = 'buku_kas';
     protected $guarded = ['id'];
 }
