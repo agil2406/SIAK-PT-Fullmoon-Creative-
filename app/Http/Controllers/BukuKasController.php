@@ -25,28 +25,24 @@ class BukuKasController extends Controller
     {
         return view('pages.bukukas.create');
     }
-    public function save(Request $request)
+    public function save()
     {
 
-        $validateData = $request->validate([
-            'jenisKas' => 'required',
-            'uraian' => 'required',
-            'tanggal' => 'required',
-            'jenisKas' => 'required',
-            'image' => 'required|image|file|max:2048',
-            'noBukti' => 'required'
-        ]);
-        $file_name = $request->image->getClientOriginalName();
-        $image = $request->image->storeAs('kwitansi', $file_name);
-        BukuKas::create([
-            'uraian' => $request->uraian,
-            'image' => $image,
-            'noBukti' => $request->noBukti,
-            'jenisKas' => $request->jenisKas,
-            'pengeluaran' => $request->pengeluaran,
-            'penerimaan' => $request->penerimaan,
-            'tanggal' => $request->tanggal
-        ]);
+        $attr = $this->validateRequest();
+        $pengeluaran = request('pengeluaran');
+        $penerimaan = request('penerimaan');
+        $volume = request('volume');
+        $satuan = request('satuan');
+        $file_name = request()->image->getClientOriginalName();
+        $image = request()->image->storeAs('kwitansi', $file_name);
+        
+        $attr['image']=$image;
+        $attr['pengeluaran']=$pengeluaran;
+        $attr['penerimaan']=$penerimaan;
+        $attr['volume']=$volume;
+        $attr['satuan']=$satuan;
+
+        BukuKas::create($attr);
         return redirect('/bukukas')->with('success', 'Data berhasil di tambahkan');
     }
     public function edit($id)
@@ -96,5 +92,16 @@ class BukuKasController extends Controller
     public function json()
     {
         return DataTables::of(BukuKas::limit(10))->make(true);
+    }
+    public function validateRequest()
+    {
+        return request()->validate([
+            'jenisKas' => 'required',
+            'uraian' => 'required',
+            'tanggal' => 'required',
+            'jenisKas' => 'required',
+            'image' => 'required|image|file|max:2048',
+            'noBukti' => 'required'
+        ]);
     }
 }
