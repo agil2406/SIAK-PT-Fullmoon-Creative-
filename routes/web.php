@@ -5,6 +5,7 @@ use App\Http\Controllers\BukuKasController;
 use App\Http\Controllers\BukuMaterialController;
 use App\Http\Controllers\BukuOperasionalController;
 use App\Http\Controllers\BukuUpahController;
+use App\Http\Controllers\RekapController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('dashboard', function () {
     return view('pages.dashboard');
 });
 Route::view('/login', 'pages.login');
@@ -41,26 +42,41 @@ Route::controller(BukuKasController::class)->group(function () {
 #buku operasional
 Route::controller(BukuOperasionalController::class)->group(function () {
     Route::get('/bukuoperasional', 'index');
-    Route::get('/bukuoperasional/export', 'export');
+    Route::get('/carioperasional', 'cari');
+    Route::get('/bukuoperasional/export/{dari}/{sampai}', 'export');
 });
 
 
 #buku material
 Route::controller(BukuMaterialController::class)->group(function () {
     Route::get('/bukumaterial', 'index');
-    Route::get('/bukumaterial/export', 'export');
+    Route::get('/carimaterial', 'cari');
+    Route::get('/bukumaterial/export/{dari}/{sampai}', 'export');
 });
 
 
 #buku aset
 Route::controller(BukuAsetController::class)->group(function () {
     Route::get('/bukuaset', 'index');
-    Route::get('/bukuaset/export', 'export');
+    Route::get('/cariaset', 'cari');
+    Route::get('/bukuaset/export/{dari}/{sampai}', 'export');
 });
 
 
 #buku Upah
 Route::controller(BukuUpahController::class)->group(function () {
     Route::get('/bukuupah', 'index');
-    Route::get('/bukuupah/export', 'export');
+    Route::get('/cariupah', 'cari');
+    Route::get('/bukuupah/export/{dari}/{sampai}', 'export');
+});
+
+Route::controller(RekapController::class)->group(function () {
+    Route::get('/rekap', 'index');
+    Route::get('/buatrekap', 'cari');
+    Route::post('/buatrekap/save', 'save');
+    Route::get('/pengajuan', 'pengajuan');
+    Route::get('/laporan', 'Lrekap');
+    Route::get('/rekap/{id}/detail', 'detail');
+    Route::get('/rekap/{id}/setuju', 'setuju');
+    Route::get('/rekap/{id}/tolak', 'tolak');
 });

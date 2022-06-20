@@ -82,30 +82,21 @@ Dashboard Admin Fullmoon
                 </div>
             </div>
 
-            <div class="row g-2">
-                <div class="col-md">
-                    <div class="form-floating">
-                        <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
-                            <option selected>Pilih Jenis Kas</option>
-
-                            <option value=" <?php $a = "penerimaan"; ?>" @if ($bukukas->penerimaan > 0) selected <?php $b = "penerimaan"; ?> @endif >Penerimaan</option>
-                            <option value="<?php $a = "pengeluaran"; ?>" @if ($bukukas->pengeluaran > 0) selected <?php $b = "pengeluaran"; ?> @endif >Pengeluaran</option>
-
-                        </select>
-                        <label for="floatingSelectGrid">Jenis Kas</label>
-                    </div>
+            <div class="row mb-3">
+                <label for="penerimaan" class="col-sm-2 col-form-label">Penerimaan</label>
+                <div class="col-sm-4">
+                    <input type="number" class="form-control" name="penerimaan" value="{{$bukukas->penerimaan}}">
                 </div>
-                <div class="col-md">
-                    <div class="form-floating">
-                        <input type="number" class="form-control" id="floatingInputGrid" placeholder="150000" name="{{$b}}" @if ($b=="penerimaan" ) value="{{$bukukas->penerimaan}}" @else value="{{$bukukas->pengeluaran}}" @endif>
-                        <label for="floatingInputGrid">Jumlah Uang</label>
-                    </div>
+                <label for="pengeluaran" class="col-sm-2 col-form-label">Pengeluaran</label>
+                <div class="col-sm-4">
+                    <input type="number" class="form-control" name="pengeluaran" value="{{$bukukas->pengeluaran}}">
                 </div>
             </div>
+            @if (!$bukukas->image)
             <div class="row mt-3">
                 <label for="image" class="col-sm-2 col-form-label">Bukti Kwitansi</label>
                 <div class="col-sm-10">
-                    <input class="form-control @error('image') is-invalid  @enderror" type="file" id="image" name="image" accept="image/*" @if ($bukukas->image) disabled @endif>
+                    <input class="form-control @error('image') is-invalid  @enderror" type="file" id="image" name="image" accept="image/*">
                     @error('image')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -113,12 +104,13 @@ Dashboard Admin Fullmoon
                     @enderror
                 </div>
             </div>
-            <div class="row g-2">
-                <div class="container">
-
+            @else
+            <div class="row mt-3">
+                <div class="col-sm-8" style="max-width: 200px;">
+                    <img src="{{asset('/storage/'.$bukukas->image)}}" alt="kwitansi" class=" img-fluid mt-2">
                 </div>
             </div>
-
+            @endif
             <div class="row">
 
                 <div class="text-center mt-2">

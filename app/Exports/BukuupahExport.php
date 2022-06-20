@@ -15,7 +15,7 @@ class BukuupahExport implements FromCollection, WithHeadings
     public function collection()
     {
         $data = DB::table('buku_kas')
-            ->where('jenisKas', 'bukuaset')
+            ->where('jenisKas', 'bukuupah')
             ->select('uraian', 'tanggal', 'volume', 'satuan', 'penerimaan', 'pengeluaran')
             ->get();
         return $data;

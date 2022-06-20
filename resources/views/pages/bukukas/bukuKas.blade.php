@@ -61,11 +61,11 @@ Dashboard Admin Fullmoon
           @foreach ($data as $d )
           <tr>
             <td> {{$d->uraian}}</td>
-            <td> {{$d->tanggal}}</td>
+            <td> {{ date('d M Y',strtotime($d->tanggal))}}</td>
             <td> {{$d->volume}}</td>
             <td> {{$d->noBukti}}</td>
-            <td> @if ($d->penerimaan == NULL) Rp.- @else Rp.{{$d->penerimaan}} @endif</td>
-            <td> Rp.{{$d->pengeluaran}}</td>
+            <td> @if ($d->penerimaan == NULL) Rp.- @else Rp.{{number_format($d->penerimaan,0)}} @endif</td>
+            <td> @if ($d->pengeluaran == NULL) Rp.- @else Rp.{{ number_format($d->pengeluaran,0)}} @endif</td>
             <td>
               <div class="row">
                 <div class="col-sm-4">
@@ -88,7 +88,10 @@ Dashboard Admin Fullmoon
             </td>
           </tr>
           @endforeach
+
         </tbody>
+        <th>Saldo</th>
+        <td>1</td>
       </table>
     </div>
   </div>

@@ -79,27 +79,18 @@ Tambah Data Buku Kas
                     </div>
                 </div>
             </div>
-            <div class="row g-2">
-                <div class="col-md">
-                    <div class="form-floating">
-                        <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
-                            <option selected>Pilih Jenis Kas</option>
-
-                            <option value=" <?php $a = "penerimaan"; ?>">Penerimaan</option>
-                            <option value="<?php $a = "pengeluaran"; ?>">Pengeluaran</option>
-
-                        </select>
-                        <label for="floatingSelectGrid">Jenis Kas</label>
-                    </div>
+            <div class="row mb-3">
+                <label for="penerimaan" class="col-sm-2 col-form-label">Penerimaan</label>
+                <div class="col-sm-4">
+                    <input type="number" class="form-control" name="penerimaan" value="{{ old('penerimaan')}}">
                 </div>
-                <div class="col-md">
-                    <div class="form-floating">
-                        <input type="number" class="form-control" id="floatingInputGrid" placeholder="150000" name="{{$a}}">
-                        <label for="floatingInputGrid">Jumlah Uang</label>
-                    </div>
-
+                <label for="pengeluaran" class="col-sm-2 col-form-label">Pengeluaran</label>
+                <div class="col-sm-4">
+                    <input type="number" class="form-control" name="pengeluaran" value="{{ old('pengeluaran')}}">
                 </div>
             </div>
+
+
             <div class="row mt-3">
                 <label for="image" class="col-sm-2 col-form-label">Bukti Kwitansi</label>
                 <div class="col-sm-10">

@@ -43,6 +43,8 @@ class BukuKasController extends Controller
             'image' => $image,
             'noBukti' => $request->noBukti,
             'jenisKas' => $request->jenisKas,
+            'satuan' => $request->satuan,
+            'volume' => $request->volume,
             'pengeluaran' => $request->pengeluaran,
             'penerimaan' => $request->penerimaan,
             'tanggal' => $request->tanggal
@@ -66,17 +68,14 @@ class BukuKasController extends Controller
             'uraian' => 'required',
             'jenisKas' => 'required',
             'tanggal' => 'required',
-            'image' => 'required|image|file|max:2048',
             'noBukti' => 'required'
         ]);
-        $file_name = $request->image->getClientOriginalName();
-        $image = $request->image->storeAs('kwitansi', $file_name);
+
 
         $bukukas = BukuKas::find($id);
         $bukukas->update(
             [
                 'uraian' => $request->uraian,
-                'image' => $image,
                 'noBukti' => $request->noBukti,
                 'jenisKas' => $request->jenisKas,
                 'pengeluaran' => $request->pengeluaran,

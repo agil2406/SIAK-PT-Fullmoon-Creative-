@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BukuMaterial extends Model
+class Rekap extends Model
 {
-    protected $table = 'buku_kas';
+    protected $table = 'rekap';
     protected $guarded = ['id'];
 }
