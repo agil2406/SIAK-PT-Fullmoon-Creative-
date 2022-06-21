@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('noBukti', 191);
             $table->integer('penerimaan')->nullable();
             $table->integer('pengeluaran')->nullable();
-            $table->integer('saldo');
+            $table->integer('saldo')->nullable();
             $table->string('image')->nullable();
             $table->date('tanggal');
             $table->timestamps();

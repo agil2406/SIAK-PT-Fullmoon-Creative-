@@ -64,7 +64,6 @@ class BukuKasController extends Controller
     public function update($id, Request $request)
     {
         $validateData = $request->validate([
-            'jenisKas' => 'required',
             'uraian' => 'required',
             'jenisKas' => 'required',
             'tanggal' => 'required',
