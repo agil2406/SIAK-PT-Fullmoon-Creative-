@@ -24,11 +24,11 @@ class Level
         }
 
         if (Auth::user()->level == 'admin') {
-            return Redirect::to('bukuoperasional');
+            return Redirect::to('bukukas');
         } elseif (Auth::user()->level == 'supervisor') {
-            return Redirect::to('dashboard');
+            return Redirect::to('laporan');
         } elseif (Auth::user()->level == 'direksi') {
-            return Redirect::to('profile');
+            return Redirect::to('dashboard');
         }
     }
 }

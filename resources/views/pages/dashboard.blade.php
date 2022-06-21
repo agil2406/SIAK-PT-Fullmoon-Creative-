@@ -79,94 +79,12 @@
 
               </div>
             </div>
-
-          </div><!-- End Customers Card -->
-
-          <!-- Reports -->
-          <!-- <div class="col-12">
-            <div class="card">
-
-              <div class="filter">
-                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                  <li class="dropdown-header text-start">
-                    <h6>Filter</h6>
-                  </li>
-
-                  <li><a class="dropdown-item" href="#">Today</a></li>
-                  <li><a class="dropdown-item" href="#">This Month</a></li>
-                  <li><a class="dropdown-item" href="#">This Year</a></li>
-                </ul>
-              </div>
-
-              <div class="card-body">
-                <h5 class="card-title">Reports <span>/Today</span></h5>
-
-                <!-- Line Chart -->
-                <!-- <div id="reportsChart"></div>
-
-                <script>
-                  document.addEventListener("DOMContentLoaded", () => {
-                    new ApexCharts(document.querySelector("#reportsChart"), {
-                      series: [{
-                        name: 'Sales',
-                        data: [31, 40, 28, 51, 42, 82, 56],
-                      }, {
-                        name: 'Revenue',
-                        data: [11, 32, 45, 32, 34, 52, 41]
-                      }, {
-                        name: 'Customers',
-                        data: [15, 11, 32, 18, 9, 24, 11]
-                      }],
-                      chart: {
-                        height: 350,
-                        type: 'area',
-                        toolbar: {
-                          show: false
-                        },
-                      },
-                      markers: {
-                        size: 4
-                      },
-                      colors: ['#4154f1', '#2eca6a', '#ff771d'],
-                      fill: {
-                        type: "gradient",
-                        gradient: {
-                          shadeIntensity: 1,
-                          opacityFrom: 0.3,
-                          opacityTo: 0.4,
-                          stops: [0, 90, 100]
-                        }
-                      },
-                      dataLabels: {
-                        enabled: false
-                      },
-                      stroke: {
-                        curve: 'smooth',
-                        width: 2
-                      },
-                      xaxis: {
-                        type: 'datetime',
-                        categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
-                      },
-                      tooltip: {
-                        x: {
-                          format: 'dd/MM/yy HH:mm'
-                        },
-                      }
-                    }).render();
-                  });
-                </script> -->
-                <!-- End Line Chart -->
-<!-- 
-              </div>
-
-            </div>
-          </div --> 
-         
-
+          </div>
+          
           <!-- Recent Sales -->
-          <div class="col-12">
+          
+        @can('direksi')
+        <div class="col-12">
             <div class="card recent-sales overflow-auto">
 
               <div class="filter">
@@ -185,52 +103,101 @@
               <div class="card-body">
                 <h5 class="card-title">Recent Sales <span>| Today</span></h5>
 
-                <table class="table table-borderless datatable">
-                  <thead>
+                <div class="container">
+
+            <table id="datatables" class="table table-striped table-hover table-bordered">
+                <thead>
                     <tr>
-                      <th scope="col">No</th>
-                      <th scope="col">Tanggal pengajuan</th>
-                      <th scope="col">Jenis Kas</th>
-                      <th scope="col">Status</th>
-                      <th scope="col">Detail</th>
-                      <th scope="col">Aksi</th>
+                        <th> 
+                            <div class="row justify-content-center">
+                                 NO 
+                            </div>
+                        </th>
+                        <th> 
+                            <div class="row justify-content-center">
+                                TANGGAL
+                            </div>    
+                        </th>
+                        <th> 
+                            <div class="row justify-content-center">
+                                 STATUS
+                            </div>
+                        </th>
+                        <th> 
+                            <div class="row justify-content-center">
+                                TINDAKAN 
+                            </div>    
+                        </th>
+                        <th> 
+                            <div class="row justify-content-center">
+                                 AKSI 
+                            </div>    
+                        </th>
                     </tr>
-                  </thead>
-                  <tbody>
+                </thead>
+
+                <tbody>
+                    @foreach ($data as $d )
                     <tr>
-                      <th scope="row"><a href="#">1</a></th>
-                      <td>14 november 2021</td>
-                      <td>Buku Aset</td>
-                      <td><span class="badge bg-success">Approved</span></td>
-                      <td>icon mata</td>
-                      <td>icon hapus dollar</td>
+                        <td> 
+                            <div class="row justify-content-center">
+                                {{$loop->iteration}}
+                            </div>  
+                        </td>
+                        <td> 
+                            <div class="row justify-content-center">
+                                 {{date('d M Y',strtotime($d->created_at))}} 
+                            </div>  
+                        </td>
+                        @if ($d->status == 1 )
+                        <td> 
+                            <div class="d-flex justify-content-center mt-2">
+                                <span class="badge rounded-pill bg-warning text-dark fs-7">Sedang Proses</span>
+                            </div>      
+                        </td>
+                        @elseif ($d->status == 0)
+                        <td> 
+                            <div class="d-flex justify-content-center mt-2">
+                                <span class="badge rounded-pill bg-danger fs-7">Ditolak</span> 
+                            </div>    
+                        </td>
+                        @else
+                        <td> 
+                            <div class="d-flex justify-content-center mt-2">
+                                <span class="badge rounded-pill bg-success fs-7">Diterima</span> 
+                            </div>    
+                        </td>
+                        @endif
+                        <td>       
+                            <div class="d-flex justify-content-center mt-2">
+                                <div class="col-sm-4">
+                                <a class="badge bg-success fs-7" href="{{url('rekap').'/'.$d->id.'/setuju'}}"> Setuju </a>
+                                </div>
+                                <div class="col-sm-4">
+                                <a class="badge bg-danger " href="{{url('rekap').'/'.$d->id.'/tolak'}}"> Tolak </a>
+                                </div>
+                            </div>       
+                                          
+                        </td>
+                        <td  class="align-items-center">
+                            <div class="d-flex justify-content-center">
+                                <div class="col-sm-4">
+                                    <a href="{{url('rekap').'/'.$d->id.'/detail'}}" class="btn btn-outline-warning"><i class="bi bi-info-circle"></i></a>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                
+                            </div>
+
+                        </td>
                     </tr>
-                    <tr>
-                      <th scope="row"><a href="#">2</a></th>
-                      <td>1 Agustu 2020</td>
-                      <td>Buku Upah</td>
-                      <td><span class="badge bg-warning">Pending</span></td>
-                      <td>icon mata</td>
-                      <td>icon hapus dll</td>
-                    </tr>
-                    <tr>
-                      <th scope="row"><a href="#">3</a></th>
-                      <td>29 mei 2021</td>
-                      <td>Buku Aset</td>
-                      <td><span class="badge bg-warning">Pending</span></td>
-                      <td>icon mata</td>
-                      <td>icon hapus dll</td>
-                   </tr>
-                   <tr>
-                      <th scope="row"><a href="#">4</a></th>
-                      <td>1 juli 2022</td>
-                      <td>Buku operasional</td>
-                      <td><span class="badge bg-danger">Rejected</span></td>
-                      <td>icon mata</td>
-                      <td>icon hapus dll</td>
-                   </tr>
-                  </tbody>
-                </table>
+                    @endforeach
+                </tbody>
+
+            </table>
+
+        </div>
+        @endcan
 
               </div>
 

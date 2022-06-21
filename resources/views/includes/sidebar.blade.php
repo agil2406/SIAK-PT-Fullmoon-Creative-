@@ -9,6 +9,8 @@
           <span>Dashboard</span>
         </a>
       </li>
+      
+      @can('combo')
       <li class="nav-item bg-dark">
         <a class="nav-link collapsed" href="/bukukas">
           <i class="bi bi-menu-button-wide"></i>
@@ -42,7 +44,12 @@
             </a>
           </li>
         </ul>
-      </li><!-- End Components Nav -->
+      </li>
+
+      @endcan
+      <!-- End Components Nav -->
+
+      @can('admin')
       <li class="nav-item bg-dark">
         <a class="nav-link collapsed" href="{{url('rekap')}}">
           <i class="bi bi-menu-button-wide"></i>
@@ -55,15 +62,17 @@
           <span>Laporan Pengajuan</span>
         </a>
       </li>
+      @endcan
+
+      @can('supervisor')
       <li class="nav-item bg-dark">
         <a class="nav-link collapsed" href="{{url('laporan')}}">
           <i class="bi bi-menu-button-wide"></i>
           <span>Laporan Rekap</span>
         </a>
       </li>
-
-
-
+      @endcan
+     
       <li class="nav-heading">Pages</li>
 
       <li class="nav-item">
@@ -72,34 +81,25 @@
           <span>Profile</span>
         </a>
       </li><!-- End Profile Page Nav -->
-
+      @auth
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-faq.html">
-          <i class="bi bi-question-circle"></i>
-          <span>F.A.Q</span>
-        </a>
-      </li><!-- End F.A.Q Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-contact.html">
-          <i class="bi bi-envelope"></i>
-          <span>Contact</span>
-        </a>
-      </li><!-- End Contact Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-register.html">
-          <i class="bi bi-card-list"></i>
-          <span>Register</span>
-        </a>
-      </li><!-- End Register Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="\login">
-          <i class="bi bi-box-arrow-in-right"></i>
-          <span>Login</span>
-        </a>
-      </li><!-- End Login Page Nav -->
+           <form action="/logout" method="POST">
+                @csrf
+                  <a class="nav-link collapsed">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Sign Out</span>
+                </a> 
+              </form>
+        </li>
+      @else
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="\login">
+            <i class="bi bi-box-arrow-in-right"></i>
+            <span>Login</span>
+          </a>
+        </li>
+      @endauth
+      <!-- End Login Page Nav -->
 
 
 
