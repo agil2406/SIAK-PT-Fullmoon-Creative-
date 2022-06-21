@@ -15,17 +15,12 @@
 </head>
 
 <body>
-  @include('includes.navbar')
-
-  @include('includes.sidebar')
 
   <main id="main" class="main">
 
     @yield('content')
 
   </main><!-- End #main -->
-
-  @include('includes.footer')
   @include('includes.script')
 
 

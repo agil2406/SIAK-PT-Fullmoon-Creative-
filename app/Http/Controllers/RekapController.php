@@ -57,6 +57,11 @@ class RekapController extends Controller
         $data = Rekap::all();
         return view('pages.rekap.laporan-rekap', compact('data'));
     }
+    public function adminRekap()
+    {
+        $data = Rekap::all();
+        return view('pages.dashboard', compact('data'));
+    }
     public function destroy($id, Request $request)
     {
         $rekap = Rekap::find($id);

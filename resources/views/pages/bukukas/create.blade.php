@@ -2,6 +2,7 @@
 
 @section('title')
 Tambah Data Buku Kas
+@endsection
 
 @section('content')
 

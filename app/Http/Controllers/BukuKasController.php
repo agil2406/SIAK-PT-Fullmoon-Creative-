@@ -27,9 +27,7 @@ class BukuKasController extends Controller
     }
     public function save(Request $request)
     {
-
         $validateData = $request->validate([
-            'jenisKas' => 'required',
             'uraian' => 'required',
             'tanggal' => 'required',
             'jenisKas' => 'required',

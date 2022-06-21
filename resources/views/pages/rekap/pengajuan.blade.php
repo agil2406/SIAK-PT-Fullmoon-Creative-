@@ -24,42 +24,78 @@ Dashboard Admin Fullmoon
             <table id="datatables" class="table table-striped table-hover table-bordered">
                 <thead>
                     <tr>
-                        <th> NO </th>
-                        <th> TANGGAL </th>
-                        <th> STATUS</th>
-                        <th> AKSI </th>
+                        <th> 
+                            <div class="row justify-content-center">
+                                 NO 
+                            </div>
+                        </th>
+                        <th> 
+                            <div class="row justify-content-center">
+                                TANGGAL
+                             </div>
+                        </th>
+                        <th> 
+                            <div class="row justify-content-center">
+                                 STATUS
+                            </div>
+                        </th>
+                        <th> 
+                            <div class="row justify-content-center">
+                                 AKSI
+                            </div>
+                        </th>
                     </tr>
                 </thead>
 
                 <tbody>
                     @foreach ($data as $d )
                     <tr>
-                        <td> {{$loop->iteration}}</td>
-                        <td> {{date('d M Y',strtotime($d->created_at))}}</td>
+                        <td> 
+                            <div class="row justify-content-center">
+                                {{$loop->iteration}}
+                            </div>
+                        </td>
+                        <td> 
+                            <div class="row justify-content-center">
+                                {{date('d M Y',strtotime($d->created_at))}}
+                            </div> 
+                        </td>
                         @if ($d->status == 1 )
-                        <td> <span class="badge bg-warning text-dark">Sedang Proses</span> </td>
+                        <td> 
+                            <div class="d-flex justify-content-center mt-2">
+                                 <span class="badge bg-warning text-dark">Sedang Proses</span> </td>
+                            </div>    
                         @elseif ($d->status == 0)
-                        <td> <span class="badge bg-danger">Ditolak</span> </td>
+                        <td> 
+                            <div class="d-flex justify-content-center mt-2">
+                                <span class="badge bg-danger">Ditolak</span> 
+                            </div>     
+                        </td>
                         @else
-                        <td> <span class="badge bg-success">Diterima</span> </td>
+                        <td> 
+                            <div class="d-flex justify-content-center mt-2">
+                                 <span class="badge bg-success">Diterima</span>
+                            </div> 
+                         </td>
                         @endif
-                        <td>
-                            <div class="row">
-                                <div class="col-sm-4">
-
+                        <td  class="align-items-center">
+                            <div class="row justify-content-center">
+                                <div class="col-sm-2">
                                     <a href="{{url('rekap').'/'.$d->id.'/edit'}}" class="btn btn-warning"><i class="bi bi-arrow-repeat"></i></a>
                                 </div>
-                                <div class="col-sm-4 m-auto">
-
+                                <div class="col-sm-2">
                                     <a href="{{url('rekap').'/'.$d->id.'/detail'}}" class="btn btn-success"><i class="bi bi-info-circle"></i></a>
                                 </div>
-                            </div>
-                            <div class="mt-2">
+                                <div class="col-sm-2">
                                 <form action="{{url('rekap').'/'.$d->id}}" method="POST">
                                     @csrf
                                     @method('delete')
                                     <button class="btn btn-danger" type="submit" value="Delete" onclick="return confirm('Yakin ingin menghapus ?')"><i class="bx bxs-trash"></i></button>
                                 </form>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                
                             </div>
 
                         </td>
