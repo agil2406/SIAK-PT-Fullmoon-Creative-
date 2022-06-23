@@ -34,9 +34,5 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('supervisor',function(User $user){
             return $user->level === 'supervisor';
         });
-        Gate::define('combo',function(User $user){
-            return $user->level === 'supervisor' || 'admin';
-            
-        });
     }
 }
