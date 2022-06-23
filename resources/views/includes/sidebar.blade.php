@@ -9,8 +9,12 @@
           <span>Dashboard</span>
         </a>
       </li>
+
       
-      @can('combo')
+
+      <!-- End Components Nav -->
+
+      @can('admin')
       <li class="nav-item bg-dark">
         <a class="nav-link collapsed" href="/bukukas">
           <i class="bi bi-menu-button-wide"></i>
@@ -45,11 +49,6 @@
           </li>
         </ul>
       </li>
-
-      @endcan
-      <!-- End Components Nav -->
-
-      @can('admin')
       <li class="nav-item bg-dark">
         <a class="nav-link collapsed" href="{{url('rekap')}}">
           <i class="bi bi-menu-button-wide"></i>
@@ -65,6 +64,40 @@
       @endcan
 
       @can('supervisor')
+      <li class="nav-item bg-dark">
+        <a class="nav-link collapsed" href="/bukukas">
+          <i class="bi bi-menu-button-wide"></i>
+          <span>Buku Kas Umum</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>Jenis Kas</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/bukumaterial">
+              <i class="bi bi-circle"></i><span>Buku Material</span>
+            </a>
+          </li>
+          <li>
+            <a href="/bukuoperasional">
+              <i class="bi bi-circle"></i><span>Buku Operasional</span>
+            </a>
+          </li>
+          <li>
+            <a href="/bukuaset">
+              <i class="bi bi-circle"></i><span>Buku Aset</span>
+            </a>
+          </li>
+          <li>
+            <a href="/bukuupah">
+              <i class="bi bi-circle"></i><span>Buku Upah</span>
+            </a>
+          </li>
+        </ul>
+      </li>
       <li class="nav-item bg-dark">
         <a class="nav-link collapsed" href="{{url('laporan')}}">
           <i class="bi bi-menu-button-wide"></i>
