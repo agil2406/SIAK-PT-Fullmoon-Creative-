@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rekap extends Model
 {
-    protected $table = 'rekap';
+    protected $table = 'rekaps';
     protected $guarded = ['id'];
 }
