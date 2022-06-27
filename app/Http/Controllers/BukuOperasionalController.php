@@ -14,7 +14,8 @@ class BukuOperasionalController extends Controller
 {
     public function index()
     {
-        return view('pages.bukuoperasional.cari-operasional');
+        $data = DB::table('buku_kas')->join('masters', 'buku_kas.master_id', '=', 'masters.id')->where('masters.jenisKas', 'bukuoperasional')->get();
+        return view('pages.bukuoperasional.Operasional', compact('data'));
     }
     public function cari(Request $request)
     {
@@ -26,8 +27,8 @@ class BukuOperasionalController extends Controller
         $dari = date('Y-m-d', strtotime($request->dari));
         $sampai = date('Y-m-d', strtotime($request->sampai));
 
-        $data = BukuKas::whereBetween('tanggal', [$dari, $sampai])->where('jenisKas', 'bukuoperasional')->get();
-        $total = BukuKas::whereBetween('tanggal', [$dari, $sampai])->where('jenisKas', 'bukuoperasional')->sum('pengeluaran');
+        $data = BukuKas::join('masters', 'buku_kas.master_id', '=', 'masters.id')->whereBetween('tanggal', [$dari, $sampai])->where('masters.jenisKas', 'bukuoperasional')->get();
+        $total = BukuKas::join('masters', 'buku_kas.master_id', '=', 'masters.id')->whereBetween('tanggal', [$dari, $sampai])->where('masters.jenisKas', 'bukuoperasional')->sum('pengeluaran');
         return view('pages.bukuoperasional.bukuOperasional', compact('data', 'total', 'dari', 'sampai'));
     }
     public function export($dari, $sampai)

@@ -16,15 +16,14 @@ return new class extends Migration
         Schema::create('buku_kas', function (Blueprint $table) {
             $table->id();
 
-            $table->string('uraian', 191);
+            $table->foreignId('master_id');
             $table->integer('volume')->nullable();
             $table->string('satuan', 191)->nullable();
-            $table->string('jenisKas', 191)->nullable();
             $table->string('noBukti', 191);
-            $table->integer('penerimaan')->nullable();
             $table->integer('pengeluaran')->nullable();
             $table->integer('saldo')->nullable();
             $table->string('image')->nullable();
+            $table->foreignId('proyek_id');
             $table->date('tanggal');
             $table->timestamps();
         });

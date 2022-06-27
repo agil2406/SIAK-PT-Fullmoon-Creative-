@@ -9,4 +9,13 @@ class BukuKas extends Model
 {
     protected $table = 'buku_kas';
     protected $guarded = ['id'];
+
+    public function master()
+    {
+        return $this->belongsTo(Master::class);
+    }
+    public function proyek()
+    {
+        return $this->belongsTo(Proyek::class);
+    }
 }

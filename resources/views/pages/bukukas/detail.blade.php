@@ -25,9 +25,15 @@ Dashboard Admin Fullmoon
             @method('put')
             @csrf
             <div class="row mb-3">
+                <label for="uraian" class="col-sm-2 col-form-label">Proyek</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputText" name="proyek" value="{{$bukukas->proyek->nama_proyek}}" disabled>
+                </div>
+            </div>
+            <div class="row mb-3">
                 <label for="uraian" class="col-sm-2 col-form-label">Uraian</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputText" name="uraian" value="{{$bukukas->uraian}}" disabled>
+                    <input type="text" class="form-control" id="inputText" name="uraian" value="{{$bukukas->master->uraian}}" disabled>
                 </div>
             </div>
             <div class="row mb-3">
@@ -51,27 +57,12 @@ Dashboard Admin Fullmoon
                 </div>
             </div>
 
-            <div class="row g-2 mb-3">
-                <div class="col-md">
-                    <div class="form-floating">
-                        <select name="jenisKas" class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" value="{{$bukukas->jenisKas}}" disabled>
-                            <option selected>Pilih Jenis Kas</option>
-
-                            <option value="bukuaset " @if ($bukukas->jenisKas == "bukuaset") selected @endif > Buku Aset</option>
-                            <option value="bukumaterial" @if ($bukukas->jenisKas == "bukumaterial") selected @endif>Buku Material</option>
-                            <option value="bukuoperasional " @if ($bukukas->jenisKas == "bukuoperasional") selected @endif>Buku Operasional</option>
-                            <option value="bukuupah" @if ($bukukas->jenisKas == "bukuupah") selected @endif>Buku Upah</option>
-                        </select>
-                        <label for="floatingSelectGrid">Jenis Kas</label>
-                    </div>
-                </div>
-            </div>
 
             <div class="row g-2">
                 <div class="col-md">
                     <div class="form-floating">
                         <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" disabled>
-                            <option selected>Pilih Jenis Kas</option>
+                            <option selected>Pilih Jenis Uang</option>
 
                             <option value=" <?php $a = "penerimaan"; ?>" @if ($bukukas->penerimaan > 0) selected <?php $b = "penerimaan"; ?> @endif >Penerimaan</option>
                             <option value="<?php $a = "pengeluaran"; ?>" @if ($bukukas->pengeluaran > 0) selected <?php $b = "pengeluaran"; ?> @endif >Pengeluaran</option>

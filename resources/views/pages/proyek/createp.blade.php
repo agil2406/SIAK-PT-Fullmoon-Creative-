@@ -10,7 +10,7 @@ Tambah Data Buku Kas
     <h1>Tambah Data</h1>
     <nav>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ url('/bukukas') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">Home</a></li>
             <li class="breadcrumb-item">Buku Kas</li>
             <li class="breadcrumb-item active">Tambah Data</li>
         </ol>
@@ -22,29 +22,19 @@ Tambah Data Buku Kas
         <h5 class="card-title">Buku Kas</h5>
 
         <!-- Horizontal Form -->
-        <form action="{{url('/bukukas/save')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{url('/proyek/savep')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row g-2">
                 <div class="col-sm-12">
                     <label for="proyek_id" class="col-sm-2 col-form-label">Proyek</label>
-                    <select class="form-select" aria-label="Default select example" name="proyek_id">
-                        <option class="@error('proyek_id') is-invalid  @enderror">Pilih Proyek</option>
-                        @foreach ($proyek as $m)
-                        <option value="{{$m->id}}">{{$m->nama_proyek}}</option>
-                        @endforeach
+                    <select class="form-select" aria-label="Default select example" name="proyek_id" style="pointer-events: none;" onclick="return false;" onkeydown="return false;">
+                        <option value="{{$proyek->id}}" selected>{{$proyek->nama_proyek}}</option>
                     </select>
                 </div>
             </div>
 
             <div class="row g-2 mb-3">
                 <div class="col-sm-12">
-                    <label for="uraian1" class="form-label">Uraian</label>
-                    <input class="form-control" list="uraian1" id="uraian" placeholder="Uraian" name="master_id">
-                    <datalist id="uraian1">
-                        @foreach ($uraian as $m)
-                        <option value="{{$m->uraian}}">
-                            @endforeach
-                    </datalist>
                     <label for="master_id" class="col-sm-2 col-form-label">Uraian</label>
                     <select class="form-select" aria-label="Default select example" name="master_id">
                         <option class="col-sm-8">Pilih Jenis</option>
@@ -102,7 +92,7 @@ Tambah Data Buku Kas
 
             <div class="text-center mt-3">
                 <button type="submit" class="btn btn-primary">Tambah Data</button>
-                <a href="/bukukas" class="btn btn-secondary" type="reset">Batal</a>
+                <a href="{{url('/proyek')}}" class="btn btn-secondary" type="reset">Batal</a>
             </div>
         </form><!-- End Horizontal Form -->
 

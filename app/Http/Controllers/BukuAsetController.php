@@ -13,7 +13,8 @@ class BukuAsetController extends Controller
 {
     public function index()
     {
-        return view('pages.bukuaset.cari-aset');
+        $data = DB::table('buku_kas')->join('masters', 'buku_kas.master_id', '=', 'masters.id')->where('masters.jenisKas', 'bukuaset')->get();
+        return view('pages.bukuaset.Aset', compact('data'));
     }
     public function cari(Request $request)
     {
@@ -25,8 +26,8 @@ class BukuAsetController extends Controller
         $dari = date('Y-m-d', strtotime($request->dari));
         $sampai = date('Y-m-d', strtotime($request->sampai));
 
-        $data = BukuKas::whereBetween('tanggal', [$dari, $sampai])->where('jenisKas', 'bukuaset')->get();
-        $total = BukuKas::whereBetween('tanggal', [$dari, $sampai])->where('jenisKas', 'bukuaset')->sum('pengeluaran');
+        $data = BukuKas::join('masters', 'buku_kas.master_id', '=', 'masters.id')->whereBetween('tanggal', [$dari, $sampai])->where('masters.jenisKas', 'bukuaset')->get();
+        $total = BukuKas::join('masters', 'buku_kas.master_id', '=', 'masters.id')->whereBetween('tanggal', [$dari, $sampai])->where('masters.jenisKas', 'bukuaset')->sum('pengeluaran');
         return view('pages.bukuaset.bukuAset', compact('data', 'total', 'dari', 'sampai'));
     }
     public function export($dari, $sampai)

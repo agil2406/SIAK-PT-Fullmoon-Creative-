@@ -24,15 +24,35 @@ Dashboard Admin Fullmoon
         <form action="/bukukas/{{$bukukas->id}}" method="POST" enctype="multipart/form-data">
             @method('put')
             @csrf
-            <div class="row mb-3">
-                <label for="uraian" class="col-sm-2 col-form-label">Uraian</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control @error('uraian') is-invalid  @enderror" id="inputText" name="uraian" value="{{$bukukas->uraian}}">
-                    @error('uraian')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
+            <div class="row g-2">
+                <div class="form-floating">
+                    <select name="proyek_id" class="form-select " id="floatingSelectGrid" aria-label="Floating label select example">
+                        <option class="@error('master_id') is-invalid  @enderror">Pilih Proyek</option>
+                        @foreach ($proyek as $m)
+                        @if ($m->id == $bukukas->proyek_id)
+                        <option value="{{$m->id}}" selected>{{$m->nama_proyek}}</option>
+                        @else
+                        <option value="{{$m->id}}">{{$m->nama_proyek}}</option>
+                        @endif
+                        @endforeach
+                    </select>
+                    <label for="floatingSelectGrid">Proyek</label>
+                </div>
+            </div>
+
+            <div class="row g-2 mb-3">
+                <div class="col-sm-12">
+                    <label for="master_id" class="col-sm-2 col-form-label">Pilih Jenis</label>
+                    <select class="form-select" aria-label="Default select example" name="master_id">
+                        <option class="col-sm-8">Pilih Jenis</option>
+                        @foreach ($uraian as $m)
+                        @if ($m->id == $bukukas->master_id)
+                        <option value="{{$m->id}}" selected>{{$m->uraian}}</option>
+                        @else
+                        <option value="{{$m->id}}">{{$m->uraian}}</option>
+                        @endif
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="row mb-3">
@@ -66,32 +86,7 @@ Dashboard Admin Fullmoon
                 </div>
             </div>
 
-            <div class="row g-2 mb-3">
-                <div class="col-md">
-                    <div class="form-floating">
-                        <select name="jenisKas" class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" value="{{$bukukas->jenisKas}}">
-                            <option selected>Pilih Jenis Kas</option>
 
-                            <option value="bukuaset " @if ($bukukas->jenisKas == "bukuaset") selected @endif > Buku Aset</option>
-                            <option value="bukumaterial" @if ($bukukas->jenisKas == "bukumaterial") selected @endif>Buku Material</option>
-                            <option value="bukuoperasional " @if ($bukukas->jenisKas == "bukuoperasional") selected @endif>Buku Operasional</option>
-                            <option value="bukuupah" @if ($bukukas->jenisKas == "bukuupah") selected @endif>Buku Upah</option>
-                        </select>
-                        <label for="floatingSelectGrid">Jenis Kas</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <label for="penerimaan" class="col-sm-2 col-form-label">Penerimaan</label>
-                <div class="col-sm-4">
-                    <input type="number" class="form-control" name="penerimaan" value="{{$bukukas->penerimaan}}">
-                </div>
-                <label for="pengeluaran" class="col-sm-2 col-form-label">Pengeluaran</label>
-                <div class="col-sm-4">
-                    <input type="number" class="form-control" name="pengeluaran" value="{{$bukukas->pengeluaran}}">
-                </div>
-            </div>
             @if (!$bukukas->image)
             <div class="row mt-3">
                 <label for="image" class="col-sm-2 col-form-label">Bukti Kwitansi</label>

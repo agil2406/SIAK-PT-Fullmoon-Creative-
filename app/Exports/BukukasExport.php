@@ -14,7 +14,7 @@ class BukukasExport implements FromCollection, WithHeadings
      */
     public function collection()
     {
-        $data = DB::table('buku_kas')
+        $data = DB::table('buku_kas')->join('masters', 'buku_kas.master_id', '=', 'masters.id')
             ->select('uraian', 'tanggal', 'volume', 'satuan', 'penerimaan', 'pengeluaran')
             ->get();
         return $data;

@@ -27,8 +27,9 @@ class BukuasetExport implements FromQuery, WithHeadings
 
     public function query()
     {
-        $data = BukuKas::whereBetween('tanggal', [$this->dari, $this->sampai])
-            ->where('jenisKas', 'bukuaset')
+        $data = BukuKas::join('masters', 'buku_kas.master_id', '=', 'masters.id')
+            ->whereBetween('tanggal', [$this->dari, $this->sampai])
+            ->where('masters.jenisKas', 'bukuaset')
             ->select('uraian', 'tanggal', 'volume', 'satuan', 'penerimaan', 'pengeluaran');
 
         return $data;

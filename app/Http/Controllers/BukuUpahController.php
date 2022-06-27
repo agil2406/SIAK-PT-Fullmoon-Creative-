@@ -14,7 +14,8 @@ class BukuUpahController extends Controller
 {
     public function index()
     {
-        return view('pages.bukuupah.cari-upah');
+        $data = DB::table('buku_kas')->join('masters', 'buku_kas.master_id', '=', 'masters.id')->where('masters.jenisKas', 'bukuupah')->get();
+        return view('pages.bukuupah.Upah', compact('data'));
     }
     public function cari(Request $request)
     {
@@ -26,8 +27,8 @@ class BukuUpahController extends Controller
         $dari = date('Y-m-d', strtotime($request->dari));
         $sampai = date('Y-m-d', strtotime($request->sampai));
 
-        $data = BukuKas::whereBetween('tanggal', [$dari, $sampai])->where('jenisKas', 'bukuupah')->get();
-        $total = BukuKas::whereBetween('tanggal', [$dari, $sampai])->where('jenisKas', 'bukuupah')->sum('pengeluaran');
+        $data = BukuKas::join('masters', 'buku_kas.master_id', '=', 'masters.id')->whereBetween('tanggal', [$dari, $sampai])->where('masters.jenisKas', 'bukuupah')->get();
+        $total = BukuKas::join('masters', 'buku_kas.master_id', '=', 'masters.id')->whereBetween('tanggal', [$dari, $sampai])->where('masters.jenisKas', 'bukuupah')->sum('pengeluaran');
         return view('pages.bukuupah.bukuUpah', compact('data', 'total', 'dari', 'sampai'));
     }
     public function export($dari, $sampai)
