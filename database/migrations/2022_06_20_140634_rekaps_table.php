@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('in_cash')->nullable();
             $table->integer('trf_kppn')->nullable();
             $table->integer('bunga_bnk')->nullable();
-            $table->integer('total_aset');
+            $table->integer('total_aset')->nullable();
             $table->integer('total_material')->nullable();
             $table->integer('total_operasional')->nullable();
             $table->integer('total_upah')->nullable();

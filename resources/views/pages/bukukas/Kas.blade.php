@@ -31,7 +31,7 @@ Dashboard Admin Fullmoon
             <h5 class="card-title">Buku Kas </h5>
             <a href="/bukukas/create" class="btn btn-primary mb-3">Tambah Data</a>
             <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#basicModal">
-                Filter <i class="bx bxs-filter-alt"></i>
+                Filter Tanggal<i class="bx bxs-filter-alt"></i>
             </button>
             <div class="modal fade" id="basicModal" tabindex="-1">
                 <div class="modal-dialog">

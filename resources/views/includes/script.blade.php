@@ -29,6 +29,6 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('#datatables').DataTable();
-
+        $('#datatabless').DataTable();
     });
 </script>

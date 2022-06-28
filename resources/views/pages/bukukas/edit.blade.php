@@ -87,8 +87,12 @@ Dashboard Admin Fullmoon
             </div>
 
 
-            @if (!$bukukas->image)
             <div class="row mt-3">
+                <label for="pengeluaran" class="col-sm-2 col-form-label">Pengeluaran</label>
+                <div class="col-sm-4">
+                    <input type="number" class="form-control" name="pengeluaran" value="{{$bukukas->pengeluaran}}">
+                </div>
+                @if (!$bukukas->image)
                 <label for="image" class="col-sm-2 col-form-label">Bukti Kwitansi</label>
                 <div class="col-sm-10">
                     <input class="form-control @error('image') is-invalid  @enderror" type="file" id="image" name="image" accept="image/*">
@@ -98,8 +102,8 @@ Dashboard Admin Fullmoon
                     </div>
                     @enderror
                 </div>
+                @else
             </div>
-            @else
             <div class="row mt-3">
                 <div class="col-sm-8" style="max-width: 200px;">
                     <img src="{{asset('/storage/'.$bukukas->image)}}" alt="kwitansi" class=" img-fluid mt-2">

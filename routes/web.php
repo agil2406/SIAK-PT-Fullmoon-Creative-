@@ -87,6 +87,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/rekap/{id}/tolak', 'tolak');
         Route::get('/rekap/{id}/edit', 'edit');
         Route::put('/rekap/{id}', 'update');
+        Route::get('/rekap/{id}/pdf', 'printpdf');
     });
 
     #proyek
@@ -100,6 +101,9 @@ Route::middleware('auth')->group(function () {
         Route::delete('/proyek/{id}', 'destroy');
         Route::get('/proyek/{id}/createp',  'createp');
         Route::post('/proyek/savep', 'savep');
+        Route::get('/cariprogres', 'cari');
+        Route::get('/progres', 'progres');
+        Route::put('/progres/{id}', 'progresupdate');
     });
 
     #master

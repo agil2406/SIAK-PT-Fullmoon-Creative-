@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\BukuKas;
 use App\Models\Rekap;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class RekapController extends Controller
 {
@@ -117,5 +119,12 @@ class RekapController extends Controller
         );
 
         return redirect('/pengajuan')->with('success', 'Data berhasil di ubah');
+    }
+    public function printpdf($id)
+    {
+        setlocale(LC_ALL, 'id-ID', 'id_ID');
+        $rekap = Rekap::find($id);
+        $pdf = PDF::loadView('pages.pdf.pdf', compact(['rekap']));
+        return $pdf->download('invoice.pdf');
     }
 }

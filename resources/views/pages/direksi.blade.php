@@ -5,181 +5,258 @@ Dashboard Admin Fullmoon
 @endsection
 
 @section('content')
-
 <div class="pagetitle">
-    <h1>Detail Proyek</h1>
+    <h1>Dashboard</h1>
     <nav>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="">Home</a></li>
-            <li class="breadcrumb-item"><a href="">Proyek</a> </li>
-            <li class="breadcrumb-item active">Detail Proyek</li>
+            <li class="breadcrumb-item"><a href="{{url('dashboard')}}">Home</a></li>
+            <li class="breadcrumb-item active">Dashboard</li>
         </ol>
     </nav>
 </div><!-- End Page Title -->
 
 
-<div class="container">
-    <div class="card">
-        <div class="card-body">
-            <div class="row mt-3">
-                <div class="col-md-12">
-                    <h4> <b> Nama Proyek</b></h4>
-                    <span class="right"> <b> RAB : 1.000.000.000</b></span>
-                </div> 
+<section class="section dashboard">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card info-card sales-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Pengeluaran <span>| Minggu Ini</span></h5>
+
+                        <div class="d-flex align-items-center">
+                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                <i class="bi bi-currency-dollar"></i>
+                            </div>
+                            <div class="ps-3">
+                                <h6>Rp.{{number_format($pengeluaran_minggu)}}</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-            <hr class="mb-4">
-
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card info-card sales-card">
-                        <div class="card-body">
-                            <h5 class="card-title">Pemasukan <span>| Today</span></h5>
-
-                            <div class="d-flex align-items-center">
+            <div class="col-md-4">
+                <div class="card info-card revenue-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Pengeluaran <span>| Bulan Ini</span></h5>
+                        <div class="d-flex align-items-center">
                             <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                            <i class="fa fa-sign-in" aria-hidden="true"></i>
+                                <i class="bi bi-currency-dollar"></i>
                             </div>
                             <div class="ps-3">
-                                <h6>145</h6>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card info-card revenue-card">
-                        <div class="card-body">
-                            <h5 class="card-title">Pengeluaran <span>| This Month</span></h5>
-
-                            <div class="d-flex align-items-center">
-                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                            <i class="fa fa-arrow-up" aria-hidden="true"></i>
-                            
-                            </div>
-                            <div class="ps-3">
-                                <h6>$3,264</h6>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card info-card customers-card">
-                        <div class="card-body">
-                            <h5 class="card-title">Saldo <span>| This Year</span></h5>
-
-                            <div class="d-flex align-items-center">
-                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                            <i class="bi bi-currency-dollar"></i>
-                            </div>
-                            <div class="ps-3">
-                                <h6>1244</h6>
-                            </div>
+                                <h6>Rp.{{number_format($pengeluaran_bulan)}}</h6>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="col-md-4">
+                <div class="card info-card customers-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Proyek <span>| Sedang Berlangsung</span></h5>
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-body">
-                        <h5 class="card-title">On Progres</h5>
-                        <!-- Bar Chart -->
-                        <div id="barChart"></div>
-                        <script>
-                            document.addEventListener("DOMContentLoaded", () => {
-                            new ApexCharts(document.querySelector("#barChart"), {
-                                series: [{
-                                data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
-                                }],
-                                chart: {
-                                type: 'bar',
-                                height: 350
-                                },
-                                plotOptions: {
-                                bar: {
-                                    borderRadius: 4,
-                                    horizontal: true,
-                                }
-                                },
-                                dataLabels: {
-                                enabled: false
-                                },
-                                xaxis: {
-                                categories: ['South Korea', 'Canada', 'United Kingdom', 'Netherlands', 'Italy', 'France', 'Japan',
-                                    'United States', 'China', 'Germany'
-                                ],
-                                }
-                            }).render();
-                            });
-                        </script>
-                        <!-- End Bar Chart -->
-
+                        <div class="d-flex align-items-center">
+                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                <i class="bi bi-currency-dollar"></i>
+                            </div>
+                            <div class="ps-3">
+                                <h6>{{$proyek->count()}} Proyek</h6>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row mt-3">  
-                <div class="col-md-12">
-                    <table id="datatables" class="table table-striped table-hover table-bordered">
-                        <thead>
-                            <tr>
-                                <th> 
-                                    <div class="row justify-content-center">
-                                        NO 
-                                    </div>
-                                </th>
-                                <th> 
-                                    <div class="row justify-content-center">
-                                        Uraian
-                                    </div>
-                                </th>
-                                <th> 
-                                    <div class="row justify-content-center">
-                                        Volume
-                                    </div>
-                                </th>
-                                <th> 
-                                    <div class="row justify-content-center">
-                                        Pengeluaran
-                                    </div>
-                                </th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            <tr>
-                                <td> 
-                                    <div class="row justify-content-center">
-                                    
-                                    </div>
-                                </td>
-                                <td> 
-                                    <div class="row justify-content-center">
-                                        
-                                    </div> 
-                                </td>
-                                <td> 
-                                    <div class="row justify-content-center">
-                                    
-                                    </div>
-                                </td>
-                                <td> 
-                                    <div class="row justify-content-center">
-                                        
-                                    </div> 
-                                </td>    
-                            </tr> 
-                        </tbody>
-                        <th>Saldo</th>
-                    </table>
-                </div>      
             </div>
         </div>
     </div>
-</div>
 
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                @foreach ($proyek as $p)
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <h4> <b>
+                                        <a href="{{url('proyek').'/'.$p->id.'/detail'}}">
+                                            <center>{{$p->nama_proyek}}</center>
+                                        </a>
+                                    </b></h4>
+                                <span class=" m-auto"> <b> RAB : Rp.{{number_format($p->rab_proyek,0)}}</b></span>
+                            </div>
+                        </div>
+                        <?php $a = $p->rab_proyek;
+                        $b = $p->progres_proyek;
+                        $c = $p->buku_kas->sum('pengeluaran');
+                        $d = ($c / $a) * 100;
+                        ?>
+                        <span class=" m-auto"> <b> Penggunaan RAB Proyek ( Buku Kas ) : Rp.{{number_format($p->buku_kas->sum('pengeluaran'),0)}} </b></span>
+                        <div class="progress progress-striped active mt-3">
+                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="{{$d}}" aria-valuemax="100" style="width:{{$d}}%;">
+                                <span class="sr-only">{{$d}}%</span>
+                            </div>
+                        </div>
+                        <span class=" m-auto"> <b> Penggunaan RAB Proyek ( Lapangan )</b></span>
+                        <div class="progress progress-striped active mt-3">
+                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="{{$b}}" aria-valuemax="100" style="width:{{$b}}%;">
+                                <span class="sr-only">{{$b}}%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><a href="{{url('proyek')}}">Tabel Proyek</a></h5>
+                    <div class="col-md-12">
+                        <table id="datatables" class="table table-striped table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <div class="row justify-content-center">
+                                            NO
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="row justify-content-center">
+                                            Nama Proyek
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="row justify-content-center">
+                                            Status
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="row justify-content-center">
+                                            RAB
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach ($proyeks as $p)
+                                <tr>
+                                    <td>
+                                        <div class="row justify-content-center">
+                                            {{$loop->iteration}}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="row justify-content-center">
+                                            {{$p->nama_proyek}}
+                                        </div>
+                                    </td>
+                                    @if ($p->tgl_akhirproyek <= $hari ) <td>
+                                        <div class="d-flex justify-content-center mt-2">
+                                            <span class="badge bg-success">Selesai</span>
+                                        </div>
+                                        </td>
+                                        @else
+                                        <td>
+                                            <div class="d-flex justify-content-center mt-2">
+                                                <span class="badge bg-warning text-dark">Sedang Berlangsung</span>
+                                            </div>
+                                        </td>
+                                        @endif
+                                        <td>
+                                            <div class="row justify-content-center">
+                                                Rp.{{number_format($p->rab_proyek,0)}}
+                                            </div>
+                                        </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><a href="{{url('laporan')}}">Tabel Pengajuan</a></h5>
+                    <div class="col-md-12">
+                        <table id="datatabless" class="table table-striped table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <div class="row justify-content-center">
+                                            NO
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="row justify-content-center">
+                                            TANGGAL
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="row justify-content-center">
+                                            STATUS
+                                        </div>
+                                    </th>
+
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    @foreach ($pengajuan as $p)
+                                    <td>
+                                        <div class="row justify-content-center">
+                                            {{$loop->iteration}}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="row justify-content-center">
+                                            {{date('d M Y',strtotime($p->created_at))}}
+                                        </div>
+                                    </td>
+                                    @if ($p->status == 1 )
+                                    <td>
+                                        <div class="d-flex justify-content-center mt-2">
+                                            <span class="badge bg-warning text-dark">Sedang Proses</span>
+                                        </div>
+                                    </td>
+                                    @elseif ($p->status == 0)
+                                    <td>
+                                        <div class="d-flex justify-content-center mt-2">
+                                            <span class="badge bg-danger">Ditolak</span>
+                                        </div>
+                                    </td>
+                                    @else
+                                    <td>
+                                        <div class="d-flex justify-content-center mt-2">
+                                            <span class="badge bg-success">Diterima</span>
+                                        </div>
+                                    </td>
+                                    @endif
+                                    @endforeach
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
 
 @endsection

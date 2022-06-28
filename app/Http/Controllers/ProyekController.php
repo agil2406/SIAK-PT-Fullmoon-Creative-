@@ -42,7 +42,8 @@ class ProyekController extends Controller
     {
         $proyek = Proyek::find($id);
         $bukukas = BukuKas::where('proyek_id', $id)->get();
-        return view('pages.proyek.detail', compact('proyek', 'bukukas'));
+        $total = BukuKas::where('proyek_id', $id)->sum('pengeluaran');
+        return view('pages.proyek.detail', compact('proyek', 'bukukas', 'total'));
     }
     public function edit($id)
     {
@@ -103,5 +104,31 @@ class ProyekController extends Controller
             'tanggal' => $request->tanggal
         ]);
         return redirect('/proyek')->with('success', 'Data berhasil di tambahkan');
+    }
+    public function cari()
+    {
+        $hari = date('Y-m-d');
+        $proyek = Proyek::where('tgl_akhirproyek', '>', $hari)->get();
+        return view('pages.proyek.cari-progres', compact('proyek'));
+    }
+    public function progres(Request $request)
+    {
+        $this->validate($request, [
+            'proyek_id' => 'required'
+        ]);
+        $id = ($request->proyek_id);
+        $proyek = Proyek::find($id);
+        return view('pages.proyek.progres', compact('proyek'));
+    }
+    public function progresupdate($id, Request $request)
+    {
+        $validateData = $request->validate([
+            'progres_proyek' => 'required'
+        ]);
+        $proyek = Proyek::find($id);
+        $proyek->update([
+            'progres_proyek' => $request->progres_proyek
+        ]);
+        return redirect('/proyek')->with('success', 'Data berhasil di ubah');
     }
 }

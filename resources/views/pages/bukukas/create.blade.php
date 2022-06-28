@@ -38,13 +38,13 @@ Tambah Data Buku Kas
 
             <div class="row g-2 mb-3">
                 <div class="col-sm-12">
-                    <label for="uraian1" class="form-label">Uraian</label>
+                    <!-- <label for="uraian1" class="form-label">Uraian</label>
                     <input class="form-control" list="uraian1" id="uraian" placeholder="Uraian" name="master_id">
                     <datalist id="uraian1">
                         @foreach ($uraian as $m)
                         <option value="{{$m->uraian}}">
                             @endforeach
-                    </datalist>
+                    </datalist> -->
                     <label for="master_id" class="col-sm-2 col-form-label">Uraian</label>
                     <select class="form-select" aria-label="Default select example" name="master_id">
                         <option class="col-sm-8">Pilih Jenis</option>

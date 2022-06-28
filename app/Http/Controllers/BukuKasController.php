@@ -45,7 +45,7 @@ class BukuKasController extends Controller
 
         $hari = date('Y-m-d');
         $uraian = Master::groupBy('jenisKas')->get();
-        $proyek = Proyek::where('tgl_akhirproyek', $hari)->get();
+        $proyek = Proyek::where('tgl_akhirproyek', '>', $hari)->get();
         return view('pages.bukukas.create', compact('uraian', 'proyek'));
     }
     public function save(Request $request)

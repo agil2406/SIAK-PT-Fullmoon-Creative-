@@ -24,24 +24,24 @@ Dashboard Admin Fullmoon
             <table id="datatables" class="table table-striped table-hover table-bordered">
                 <thead>
                     <tr>
-                        <th> 
+                        <th>
                             <div class="row justify-content-center">
-                                 NO 
+                                NO
                             </div>
                         </th>
-                        <th> 
+                        <th>
                             <div class="row justify-content-center">
                                 TANGGAL
-                             </div>
-                        </th>
-                        <th> 
-                            <div class="row justify-content-center">
-                                 STATUS
                             </div>
                         </th>
-                        <th> 
+                        <th>
                             <div class="row justify-content-center">
-                                 AKSI
+                                STATUS
+                            </div>
+                        </th>
+                        <th>
+                            <div class="row justify-content-center">
+                                AKSI
                             </div>
                         </th>
                     </tr>
@@ -50,35 +50,36 @@ Dashboard Admin Fullmoon
                 <tbody>
                     @foreach ($data as $d )
                     <tr>
-                        <td> 
+                        <td>
                             <div class="row justify-content-center">
                                 {{$loop->iteration}}
                             </div>
                         </td>
-                        <td> 
+                        <td>
                             <div class="row justify-content-center">
                                 {{date('d M Y',strtotime($d->created_at))}}
-                            </div> 
+                            </div>
                         </td>
                         @if ($d->status == 1 )
-                        <td> 
+                        <td>
                             <div class="d-flex justify-content-center mt-2">
-                                 <span class="badge bg-warning text-dark">Sedang Proses</span> </td>
-                            </div>    
+                                <span class="badge bg-warning text-dark">Sedang Proses</span>
+                            </div>
+                        </td>
                         @elseif ($d->status == 0)
-                        <td> 
+                        <td>
                             <div class="d-flex justify-content-center mt-2">
-                                <span class="badge bg-danger">Ditolak</span> 
-                            </div>     
+                                <span class="badge bg-danger">Ditolak</span>
+                            </div>
                         </td>
                         @else
-                        <td> 
+                        <td>
                             <div class="d-flex justify-content-center mt-2">
-                                 <span class="badge bg-success">Diterima</span>
-                            </div> 
-                         </td>
+                                <span class="badge bg-success">Diterima</span>
+                            </div>
+                        </td>
                         @endif
-                        <td  class="align-items-center">
+                        <td class="align-items-center">
                             <div class="row justify-content-center">
                                 <div class="col-sm-2">
                                     <a href="{{url('rekap').'/'.$d->id.'/edit'}}" class="btn btn-warning"><i class="bi bi-arrow-repeat"></i></a>
@@ -87,15 +88,15 @@ Dashboard Admin Fullmoon
                                     <a href="{{url('rekap').'/'.$d->id.'/detail'}}" class="btn btn-success"><i class="bi bi-info-circle"></i></a>
                                 </div>
                                 <div class="col-sm-2">
-                                <form action="{{url('rekap').'/'.$d->id}}" method="POST">
-                                    @csrf
-                                    @method('delete')
-                                    <button class="btn btn-danger" type="submit" value="Delete" onclick="return confirm('Yakin ingin menghapus ?')"><i class="bx bxs-trash"></i></button>
-                                </form>
+                                    <form action="{{url('rekap').'/'.$d->id}}" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button class="btn btn-danger" type="submit" value="Delete" onclick="return confirm('Yakin ingin menghapus ?')"><i class="bx bxs-trash"></i></button>
+                                    </form>
                                 </div>
                             </div>
                             <div class="mt-2">
-                                
+
                             </div>
 
                         </td>

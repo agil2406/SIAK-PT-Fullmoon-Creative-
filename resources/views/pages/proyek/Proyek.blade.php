@@ -55,40 +55,39 @@ Dashboard Admin Fullmoon
                         <td> {{$loop->iteration}}</td>
                         <td> {{$d->nama_proyek}}</td>
                         <td> {{$d->alamat_proyek}}</td>
-                        @if ($d->tgl_akhirproyek == $hari )
-                        <td>
+                        @if ($d->tgl_akhirproyek <= $hari ) <td>
                             <div class="d-flex justify-content-center mt-2">
                                 <span class="badge bg-success">Selesai</span>
                             </div>
-                        </td>
-                        @else
-                        <td>
-                            <div class="d-flex justify-content-center mt-2">
-                                <span class="badge bg-warning text-dark">Sedang Berlangsung</span>
-                            </div>
-                        </td>
-                        @endif
-                        <td>Rp.{{number_format($d->rab_proyek,0)}}</td>
-                        <td>
-                            <div class="row">
-                                <div class="col-sm-4">
-
-                                    <a href="{{url('proyek').'/'.$d->id.'/edit'}}" class="btn btn-warning"><i class="bi bi-arrow-repeat"></i></a>
+                            </td>
+                            @else
+                            <td>
+                                <div class="d-flex justify-content-center mt-2">
+                                    <span class="badge bg-warning text-dark">Sedang Berlangsung</span>
                                 </div>
-                                <div class="col-sm-4 m-auto">
+                            </td>
+                            @endif
+                            <td>Rp.{{number_format($d->rab_proyek,0)}}</td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-sm-4">
 
-                                    <a href="{{url('proyek').'/'.$d->id.'/detail'}}" class="btn btn-success"><i class="bi bi-info-circle"></i></a>
+                                        <a href="{{url('proyek').'/'.$d->id.'/edit'}}" class="btn btn-warning"><i class="bi bi-arrow-repeat"></i></a>
+                                    </div>
+                                    <div class="col-sm-4 m-auto">
+
+                                        <a href="{{url('proyek').'/'.$d->id.'/detail'}}" class="btn btn-success"><i class="bi bi-info-circle"></i></a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="mt-2">
-                                <form action="{{url('proyek').'/'.$d->id}}" method="POST">
-                                    @csrf
-                                    @method('delete')
-                                    <button class="btn btn-danger" type="submit" value="Delete" onclick="return confirm('Yakin ingin menghapus ?')"><i class="bx bxs-trash"></i></button>
-                                </form>
-                            </div>
+                                <div class="mt-2">
+                                    <form action="{{url('proyek').'/'.$d->id}}" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button class="btn btn-danger" type="submit" value="Delete" onclick="return confirm('Yakin ingin menghapus ?')"><i class="bx bxs-trash"></i></button>
+                                    </form>
+                                </div>
 
-                        </td>
+                            </td>
                     </tr>
                     @endforeach
 

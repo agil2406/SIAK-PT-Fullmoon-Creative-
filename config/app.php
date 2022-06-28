@@ -183,6 +183,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        // Barryvdh\DomPDF\ServiceProiver::class,
+
 
         /*
          * Package Service Providers...
@@ -196,6 +198,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        // 'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 
