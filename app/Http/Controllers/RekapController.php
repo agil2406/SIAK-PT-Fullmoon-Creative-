@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\BukuKas;
 use App\Models\Rekap;
 use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade\Pdf;
 
 
 class RekapController extends Controller
@@ -124,7 +123,6 @@ class RekapController extends Controller
     {
         setlocale(LC_ALL, 'id-ID', 'id_ID');
         $rekap = Rekap::find($id);
-        $pdf = PDF::loadView('pages.pdf.pdf', compact(['rekap']));
-        return $pdf->download('invoice.pdf');
+        return view('pages.pdf.pdf', compact(['rekap']));
     }
 }
