@@ -38,5 +38,12 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => Carbon::now(),
             'level' => 'direksi',
         ]);
+        User::create([
+            'name' => 'Lalu Farid',
+            'email' => 'farid@gmail.com',
+            'password' => Hash::make('12345678'),
+            'email_verified_at' => Carbon::now(),
+            'level' => 'lapangan',
+        ]);
     }
 }

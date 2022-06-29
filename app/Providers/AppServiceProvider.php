@@ -34,5 +34,8 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('supervisor',function(User $user){
             return $user->level === 'supervisor';
         });
+        Gate::define('lapangan',function(User $user){
+            return $user->level === 'lapangan';
+        });
     }
 }

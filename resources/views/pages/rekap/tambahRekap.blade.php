@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('title')
-Tambah Data Buku Kas
+Tambah Rekap Proyek
+@endsection
 
 @section('content')
 

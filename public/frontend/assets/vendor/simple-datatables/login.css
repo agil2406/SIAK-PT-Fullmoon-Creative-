@@ -1,7 +1,3 @@
-.row h4 {
-    font-family: arkhip;
-    color: #124f99;
-}
 .verikal {
     width: 0px;
     height: 430px;
@@ -44,10 +40,6 @@
 }
 .right {
     text-align: right;
-}
-.row label {
-    font-family: arkhip;
-    color: #124f99;
 }
 .text {
     font-family: arkhip;

@@ -1,7 +1,7 @@
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
-      &copy; Copyright <strong><span>FullMoon</span></strong>. 2022
+      &copy; Copyright <strong><span>Bangun Bale</span></strong> 2022
     </div>
     <div class="credits">
       <!-- All the links in the footer should remain intact. -->

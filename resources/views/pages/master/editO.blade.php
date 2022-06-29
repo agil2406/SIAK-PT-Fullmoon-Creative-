@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('title')
-Dashboard Admin Fullmoon
+Edit Data Master Buku Operasional
+@endsection
 
 @section('content')
 

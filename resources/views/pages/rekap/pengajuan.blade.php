@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Dashboard Admin Fullmoon
+Pengajuan
 @endsection
 
 @section('content')
@@ -82,10 +82,10 @@ Dashboard Admin Fullmoon
                         <td class="align-items-center">
                             <div class="row justify-content-center">
                                 <div class="col-sm-2">
-                                    <a href="{{url('rekap').'/'.$d->id.'/edit'}}" class="btn btn-warning"><i class="bi bi-arrow-repeat"></i></a>
+                                    <a href="{{url('rekap').'/'.$d->id.'/edit'}}" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
                                 </div>
                                 <div class="col-sm-2">
-                                    <a href="{{url('rekap').'/'.$d->id.'/detail'}}" class="btn btn-success"><i class="bi bi-info-circle"></i></a>
+                                    <a href="{{url('rekap').'/'.$d->id.'/detail'}}" class="btn btn-success"><i class="bi bi-eye-fill"></i></a>
                                 </div>
                                 <div class="col-sm-2">
                                     <form action="{{url('rekap').'/'.$d->id}}" method="POST">

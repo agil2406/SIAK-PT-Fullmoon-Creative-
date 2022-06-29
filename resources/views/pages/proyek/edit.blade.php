@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Dashboard Admin Fullmoon
+Edit data proyek
 
 @section('content')
 

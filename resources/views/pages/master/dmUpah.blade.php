@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Dashboard Admin Fullmoon
+Tambah Data Master Buku Upah
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@ Dashboard Admin Fullmoon
     <h1>Data Master</h1>
     <nav>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{url('dashboard')}}">Home</a></li>
             <li class="breadcrumb-item">Data Master</li>
         </ol>
     </nav>
@@ -111,10 +111,10 @@ Dashboard Admin Fullmoon
                         <td class="align-items-center">
                             <div class="row justify-content-center">
                                 <div class="col-sm-2">
-                                    <a href="{{url('masterU').'/'.$d->id.'/edit'}}" class="btn btn-warning"><i class="bi bi-arrow-repeat"></i></a>
+                                    <a href="{{url('masterU').'/'.$d->id.'/edit'}}" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
                                 </div>
                                 <div class="col-sm-2">
-                                    <a href="{{url('master').'/'.$d->id.'/detail'}}" class="btn btn-success"><i class="bi bi-info-circle"></i></a>
+                                    <a href="{{url('master').'/'.$d->id.'/detail'}}" class="btn btn-success"><i class="bi bi-eye-fill"></i></a>
                                 </div>
                                 <div class="col-sm-2">
                                     <form action="{{url('masterU').'/'.$d->id}}" method="POST">

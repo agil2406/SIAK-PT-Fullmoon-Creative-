@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Dashboard Admin Fullmoon
+Data Proyek
 @endsection
 
 @section('content')
@@ -72,11 +72,11 @@ Dashboard Admin Fullmoon
                                 <div class="row">
                                     <div class="col-sm-4">
 
-                                        <a href="{{url('proyek').'/'.$d->id.'/edit'}}" class="btn btn-warning"><i class="bi bi-arrow-repeat"></i></a>
+                                        <a href="{{url('proyek').'/'.$d->id.'/edit'}}" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
                                     </div>
                                     <div class="col-sm-4 m-auto">
 
-                                        <a href="{{url('proyek').'/'.$d->id.'/detail'}}" class="btn btn-success"><i class="bi bi-info-circle"></i></a>
+                                        <a href="{{url('proyek').'/'.$d->id.'/detail'}}" class="btn btn-success"><i class="bi bi-eye-fill"></i></a>
                                     </div>
                                 </div>
                                 <div class="mt-2">
