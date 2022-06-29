@@ -73,10 +73,10 @@
 
               </div>
             </div>
-            <div class="col-lg-8 d-flex align-items-center gradient-custom-2 ">
+            <div class="col-lg-8 d-flex align-items-center jumbotron ">
               <div class="text-white px-3 py-4 p-md-5 mx-md-4">
                 <h4 class="mb-4">We are more than just a company</h4>
-                <p class="small mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                <p class=" mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                   tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                   exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
               </div>
