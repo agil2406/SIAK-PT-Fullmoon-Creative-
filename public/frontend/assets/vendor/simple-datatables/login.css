@@ -1,10 +1,52 @@
+.pdf {
+    position: absolute;
+}
 .verikal {
     width: 0px;
     height: 430px;
     border: 0.1 solid gray;
 }
-.mb-10 {
-    margin-bottom: -3px;
+.head {
+    margin-left: 60px;
+    margin-top: -100px;
+    text-align: center;
+}
+.container {
+    padding: 20px;
+}
+.container img {
+    text-align: center;
+    align-items: center;
+    display: inline;
+}
+.admin {
+    margin-left: -470px;
+    text-align: center;
+}
+.direksi {
+    margin-left: 0px;
+    margin-top: -175px;
+    text-align: center;
+}
+.bendahara {
+    margin-left: 450px;
+    margin-top: -175px;
+    text-align: center;
+}
+.font-table {
+    font-size: 12px;
+    font-family: "Times New Roman", Times, serif;
+}
+.font-ttd {
+    font-size: 14px;
+    font-family: "Times New Roman", Times, serif;
+}
+.posisi {
+    position: absolute;
+}
+
+.mb {
+    margin-bottom: -1px;
 }
 .mt {
     margin-top: 12px;
