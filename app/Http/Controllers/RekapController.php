@@ -123,6 +123,7 @@ class RekapController extends Controller
     {
         setlocale(LC_ALL, 'id-ID', 'id_ID');
         $rekap = Rekap::find($id);
-        return view('pages.pdf.pdf', compact(['rekap']));
+        $hari = date('Y-m-d');
+        return view('pages.pdf.pdf', compact(['rekap', 'hari']));
     }
 }

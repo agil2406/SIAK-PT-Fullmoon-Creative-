@@ -132,13 +132,24 @@
                             <tr>
                                 <td></td>
                                 <td>
-                                    <center>Saldo Bank Bulan Lalu </center>
+                                    <center>Jumlah Pemasukan </center>
                                 </td>
                                 <td></td>
                                 <?php
                                 $b = $rekap->trf_kppn + $rekap->bunga_bnk + $rekap->in_cash;
                                 ?>
                                 <td>Rp.{{number_format($b,0)}}</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <center>Jumlah Saldo </center>
+                                </td>
+                                <td></td>
+                                <?php
+                                $o = $b + $a;
+                                ?>
+                                <td>Rp.{{number_format($o,0)}}</td>
                             </tr>
                             <tr>
                                 <td>
@@ -224,17 +235,6 @@
                                 <td></td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td>
-                                    <center> Jumlah Saldo Akhir </center>
-                                </td>
-                                <?php
-                                $d = $rekap->sk_bi + $rekap->sb_bi;
-                                ?>
-                                <td></td>
-                                <td>Rp.{{number_format($d,0)}}</td>
-                            </tr>
-                            <tr>
                                 <td>
                                     <div class="row center">
                                         <b>E</b>
@@ -244,31 +244,34 @@
                                     <b>Kontrol</b>
                                 </td>
                                 <?php
-                                $z = $rekap->sk_bi + $rekap->sb_bi + $rekap->total_aset + $rekap->total_material + $rekap->total_operasional + $rekap->total_upah + $rekap->pph + $rekap->admin_bank + $rekap->trf_kppn + $rekap->bunga_bnk + $rekap->in_cash + $rekap->sk_bl + $rekap->sb_bl;
+                                $q = ($rekap->sk_bi + $rekap->sb_bi);
+                                $z = ($rekap->trf_kppn + $rekap->bunga_bnk + $rekap->in_cash + $rekap->sk_bl + $rekap->sb_bl) - ($rekap->total_aset + $rekap->total_material + $rekap->total_operasional + $rekap->total_upah + $rekap->pph + $rekap->admin_bank);
                                 ?>
                                 <td><b> Rp.{{number_format($z,0)}} </b></td>
-                                <td><b> Rp.{{number_format($a+$b+$c+$d,0)}} </b></td>
+                                <td><b> Rp.{{number_format($o-$c,0)}} </b></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
+            <div class="row">
+                <p class="center"><b>Mataram, {{strftime("%d %B %Y", strtotime($rekap->created_at))}}</b></p>
+            </div>
             <div class="row center mt-3">
                 <div class="col-md-4">
-                    <p class="mb-10"><b>Diperiksa</b></p>
-                    <p><b>Admin</b><br></p>
-                    <p class="mt-70"><b> Agil Trieanto</b></p>
+                    <p class=""><b>Diperiksa</b></p>
+                    <p class=""><b>Admin</b><br></p>
+                    <p class="mt-5 pt-5"><b> Agil Trieanto</b></p>
                 </div>
                 <div class="col-md-4">
-                    <p class="mb-10"><b>Disetujui</b></p>
+                    <p class=""><b>Disetujui</b></p>
                     <p><b>Admin</b></p>
-                    <p class="mt-70"><b>Noor Alamsyah</b></p>
+                    <p class="mt-5 pt-5"><b>Noor Alamsyah</b></p>
                 </div>
                 <div class="col-md-4">
-                    <p class="mb-10"><b>Mataram, 10 Juni 2022</b></p>
-                    <p class="mb-10"><b>Dibuat Oleh</b></p>
+                    <p class=""><b>Dibuat Oleh</b></p>
                     <p><b>Bendahara KSM</b></p>
-                    <p class="mt-50"><b style="margin-top: 50px;">Haidar Rahman</b></p>
+                    <p class="mt-5 pt-5"><b>Haidar Rahman</b></p>
                 </div>
             </div>
         </div>

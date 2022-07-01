@@ -52,7 +52,7 @@ Tambah Data Buku Kas
                 </div>
                 <label for="tgl_akhirproyek" class="col-sm-2 col-form-label">Tanggal Berakhir</label>
                 <div class="col-sm-4">
-                    <input type="date" class="form-control" name="tgl_akhirproyek" value="{{ old('tgl_akhirproyek')}}">
+                    <input type="datetime" class="form-control" name="tgl_akhirproyek" value="{{ old('tgl_akhirproyek')}}">
                 </div>
             </div>
             <div class="row mt-3">
