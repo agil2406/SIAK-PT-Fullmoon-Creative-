@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Dashboard Admin Fullmoon
+Detail Proyek
 @endsection
 
 @section('content')
@@ -32,7 +32,8 @@ Dashboard Admin Fullmoon
             <div class="row right">
                 <span> <b>RAB PROYEK : Rp.{{number_format($proyek->rab_proyek,0)}}</b></span>
             </div>
-            <a href="{{url('proyek').'/'.$proyek->id.'/createp'}}" class="btn btn-primary mb-3 mt-2">Tambah Data</a>
+            <a href="{{url('proyek').'/'.$proyek->id.'/createp'}}" class="btn btn-danger mb-3 mt-2">Tambah Pengeluaran</a>
+            <a href="{{url('proyek').'/'.$proyek->id.'/createpe'}}" class="btn btn-primary mb-3 mt-2">Tambah Pengeluaran</a>
             <div class="row mt-3">
                 <div class="col-md-12">
                     <table id="datatables" class="table table-striped table-hover table-bordered">
@@ -55,12 +56,24 @@ Dashboard Admin Fullmoon
                                 </th>
                                 <th>
                                     <div class="row justify-content-center">
+                                        Penerimaan
+                                    </div>
+                                </th>
+                                <th>
+                                    <div class="row justify-content-center">
                                         Pengeluaran
+                                    </div>
+                                </th>
+                                <th>
+                                    <div class="row justify-content-center">
+                                        Saldo
                                     </div>
                                 </th>
                             </tr>
                         </thead>
-
+                        <?php
+                        $saldo = 0;
+                        ?>
                         <tbody>
                             @foreach ($bukukas as $p)
                             <tr>
@@ -71,17 +84,30 @@ Dashboard Admin Fullmoon
                                 </td>
                                 <td>
                                     <div class="row justify-content-center">
-                                        {{$p->master->uraian}}
+                                        {{$p->uraian}}
                                     </div>
                                 </td>
                                 <td>
                                     <div class="row justify-content-center">
-                                        {{$p->volume}}
+                                        {{number_format($p->volume)}}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="row justify-content-center">
+                                        Rp.{{number_format($p->penerimaan,0)}}
                                     </div>
                                 </td>
                                 <td>
                                     <div class="row justify-content-center">
                                         Rp.{{number_format($p->pengeluaran,0)}}
+                                    </div>
+                                </td>
+                                <?php
+                                $saldo =  $saldo + ($p->penerimaan - $p->pengeluaran);
+                                ?>
+                                <td>
+                                    <div class="row justify-content-center">
+                                        Rp.{{number_format($saldo,0)}}
                                     </div>
                                 </td>
                             </tr>
@@ -91,7 +117,15 @@ Dashboard Admin Fullmoon
                         <th></th>
                         <th></th>
                         <th>
-                            <div class="row justify-content-center">Rp.{{number_format($total,0)}}
+                            <div class="row justify-content-center">Rp.{{number_format($total_penerimaan,0)}}
+                            </div>
+                        </th>
+                        <th>
+                            <div class="row justify-content-center">Rp.{{number_format($total_pengeluaran,0)}}
+                            </div>
+                        </th>
+                        <th>
+                            <div class="row justify-content-center">Rp.{{number_format($total_penerimaan-$total_pengeluaran,0)}}
                             </div>
                         </th>
                     </table>

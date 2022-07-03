@@ -9,10 +9,18 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="{{ url('frontend/assets/vendor/simple-datatables/login.css') }}" rel="stylesheet">
-    <title>Login</title>
+    <title>Download PDF</title>
 </head>
 
 <body>
+    <div class="container">
+        <img src="{{ url('frontend/assets/vendor/simple-datatables/image.jpg') }}" alt="logo" width="100px" class="rounded-circle">
+        <div class="head">
+            <p class="mb"><b>Perusahaan Bangun Bale</b></p>
+            <p class="small">jl.Gomong Sakura no/10 Mataram, Lombok Barat<br></p>
+            <p class=""><b> 01023423414</b></p>
+        </div>
+    </div>
 
 
     <div class="card">
@@ -32,12 +40,12 @@
             <div class="row center">
                 <div class="col-md-12">
                     <h1>REKAP KEUANGAN BANGUN BALE</h1>
-                    <h2 style="text-transform:uppercase;"> BULAN : <span>{{strftime("%B %Y", strtotime($rekap->created_at))}}</span> </h2>
+                    <h2 style="text-transform:uppercase;"> BULAN <span>{{strftime("%B %Y", strtotime($rekap->created_at))}}</span> </h2>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <table id="datatables" class="table table-striped table-hover table-bordered">
+                    <table id="datatables" class="table table-striped table-hover table-bordered font-table">
                         <thead>
                             <tr>
                                 <th>
@@ -257,19 +265,19 @@
             <div class="row">
                 <p class="center"><b>Mataram, {{strftime("%d %B %Y", strtotime($rekap->created_at))}}</b></p>
             </div>
-            <div class="row center mt-3">
-                <div class="col-md-4">
-                    <p class=""><b>Diperiksa</b></p>
+            <div class="row font-ttd mt-3">
+                <div class="admin">
+                    <p class="mb"><b>Diperiksa</b></p>
                     <p class=""><b>Admin</b><br></p>
                     <p class="mt-5 pt-5"><b> Agil Trieanto</b></p>
                 </div>
-                <div class="col-md-4">
-                    <p class=""><b>Disetujui</b></p>
+                <div class="direksi">
+                    <p class="mb"><b>Disetujui</b></p>
                     <p><b>Admin</b></p>
                     <p class="mt-5 pt-5"><b>Noor Alamsyah</b></p>
                 </div>
-                <div class="col-md-4">
-                    <p class=""><b>Dibuat Oleh</b></p>
+                <div class="bendahara">
+                    <p class="mb"><b>Dibuat Oleh</b></p>
                     <p><b>Bendahara KSM</b></p>
                     <p class="mt-5 pt-5"><b>Haidar Rahman</b></p>
                 </div>

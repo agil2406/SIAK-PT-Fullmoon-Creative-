@@ -43,6 +43,6 @@ class HomeController extends Controller
         $proyeks = Proyek::where('tgl_akhirproyek', '>', $hari)->limit(5)->get();
         $pengajuan = Rekap::where('status', '1')->limit(5)->get();
 
-        return view('pages.direksi', compact('proyek', 'proyeks', 'pengeluaran_bulan', 'pengeluaran_minggu', 'hari', 'pengajuan'));
+        return view('pages.dashboard', compact('proyek', 'proyeks', 'pengeluaran_bulan', 'pengeluaran_minggu', 'hari', 'pengajuan'));
     }
 }

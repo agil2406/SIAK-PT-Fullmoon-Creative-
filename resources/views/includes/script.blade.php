@@ -32,3 +32,13 @@
         $('#datatabless').DataTable();
     });
 </script>
+<script type="text/javascript">
+    function sum() {
+        var volume = document.getElementById('volume').value;
+        var harga = document.getElementById('harga').value;
+        var result = parseInt(volume) * parseInt(harga);
+        if (!isNaN(result)) {
+            document.getElementById('pengeluaran').value = result;
+        }
+    }
+</script>

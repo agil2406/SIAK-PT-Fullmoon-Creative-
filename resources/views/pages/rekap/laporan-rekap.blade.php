@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Dashboard Admin Fullmoon
+Laporan
 @endsection
 
 @section('content')
@@ -24,30 +24,30 @@ Dashboard Admin Fullmoon
             <table id="datatables" class="table table-striped table-hover table-bordered">
                 <thead>
                     <tr>
-                        <th> 
+                        <th>
                             <div class="row justify-content-center">
-                                 NO 
+                                NO
                             </div>
                         </th>
-                        <th> 
+                        <th>
                             <div class="row justify-content-center">
-                                TANGGAL
-                            </div>    
-                        </th>
-                        <th> 
-                            <div class="row justify-content-center">
-                                 STATUS
+                                TANGGAL PENGAJUAN
                             </div>
                         </th>
-                        <th> 
+                        <th>
                             <div class="row justify-content-center">
-                                TINDAKAN 
-                            </div>    
+                                STATUS
+                            </div>
                         </th>
-                        <th> 
+                        <th>
                             <div class="row justify-content-center">
-                                 AKSI 
-                            </div>    
+                                TINDAKAN
+                            </div>
+                        </th>
+                        <th>
+                            <div class="row justify-content-center">
+                                AKSI
+                            </div>
                         </th>
                     </tr>
                 </thead>
@@ -55,68 +55,83 @@ Dashboard Admin Fullmoon
                 <tbody>
                     @foreach ($data as $d )
                     <tr>
-                        <td> 
+                        <td>
                             <div class="row justify-content-center">
                                 {{$loop->iteration}}
-                            </div>  
+                            </div>
                         </td>
-                        <td> 
+                        <td>
                             <div class="row justify-content-center">
-                                 {{date('d M Y',strtotime($d->created_at))}} 
-                            </div>  
+                                {{date('d M Y',strtotime($d->created_at))}}
+                            </div>
                         </td>
                         @if ($d->status == 1 )
-                        <td> 
+                        <td>
                             <div class="d-flex justify-content-center mt-2">
                                 <span class="badge rounded-pill bg-warning text-dark">Sedang Proses</span>
-                            </div>      
+                            </div>
                         </td>
                         @elseif ($d->status == 0)
-                        <td> 
+                        <td>
                             <div class="d-flex justify-content-center mt-2">
-                                <span class="badge rounded-pill bg-danger">Ditolak</span> 
-                            </div>    
+                                <span class="badge rounded-pill bg-danger">Ditolak</span>
+                            </div>
                         </td>
                         @else
-                        <td> 
+                        <td>
                             <div class="d-flex justify-content-center mt-2">
-                                <span class="badge rounded-pill bg-success">Diterima</span> 
-                            </div>    
+                                <span class="badge rounded-pill bg-success">Diterima</span>
+                            </div>
                         </td>
                         @endif
-                        <td>       
+                        @if($d->status != 1)
+                        <td>
                             <div class="d-flex justify-content-center mt-1">
                                 <div class="col-sm-4">
-                                <a class="badge bg-success" href="{{url('rekap').'/'.$d->id.'/setuju'}}"> Setuju </a>
+                                    <p> - </p>
+                                </div>
+
+                            </div>
+
+                        </td>
+                        @else
+                        <td>
+                            <div class="d-flex justify-content-center mt-1">
+                                <div class="col-sm-4">
+                                    <a class="badge bg-success" href="{{url('rekap').'/'.$d->id.'/setuju'}}"> Setuju </a>
                                 </div>
                                 <div class="col-sm-4">
-                                <a class="badge bg-danger" href="{{url('rekap').'/'.$d->id.'/tolak'}}"> Tolak </a>
+                                    <a class="badge bg-danger" href="{{url('pesan').'/'.$d->id}}"> Tolak </a>
                                 </div>
-                            </div>       
-                                          
+                            </div>
+
                         </td>
-                        <td  class="">
+                        @endif
+                        <td class="">
                             <div class="row justify-content-center">
                                 <div class="col-sm-2">
                                     <a href="{{url('rekap').'/'.$d->id.'/edit'}}" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
                                 </div>
                                 <div class="col-sm-2">
-                                    <a href="{{url('rekap').'/'.$d->id.'/detail'}}" class="btn btn-success"><i class="bi bi-eye-fill"></i></a>
+                                    <a href="{{url('rekap').'/'.$d->id.'/pdf'}}" class="btn btn-success"><i class="bi bi-eye-fill"></i></a>
                                 </div>
                                 <div class="col-sm-2">
-                                <form action="{{url('rekap').'/'.$d->id}}" method="POST">
-                                    @csrf
-                                    @method('delete')
-                                    <button class="btn btn-danger" type="submit" value="Delete" onclick="return confirm('Yakin ingin menghapus ?')"><i class="bx bxs-trash"></i></button>
-                                </form>
+                                    <form action="{{url('rekap').'/'.$d->id}}" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button class="btn btn-danger" type="submit" value="Delete" onclick="return confirm('Yakin ingin menghapus ?')"><i class="bx bxs-trash"></i></button>
+                                    </form>
                                 </div>
                             </div>
                             <div class="mt-2">
-                                
+
                             </div>
 
                         </td>
                     </tr>
+
+
+
                     @endforeach
                 </tbody>
 
@@ -125,4 +140,7 @@ Dashboard Admin Fullmoon
         </div>
     </div>
 </div>
+
+
+
 @endsection

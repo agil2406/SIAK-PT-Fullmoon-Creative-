@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
 
             $table->string('uraian', 191)->nullable();
+            $table->integer('harga')->nullable();
             $table->integer('volume')->nullable();
             $table->string('satuan', 191)->nullable();
             $table->string('noBukti', 191);

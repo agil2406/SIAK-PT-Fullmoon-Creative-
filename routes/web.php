@@ -38,14 +38,17 @@ Route::get('/dashboard', [HomeController::class, 'dashboard']);
 Route::middleware('auth')->group(function () {
     Route::controller(BukuKasController::class)->group(function () {
         Route::get('/bukukas',  'index');
-        Route::get('/bukukas/export', 'export');
+        Route::get('/bukukas/export{dari}/{sampai}', 'export');
         Route::get('/bukukas/create',  'create');
+        Route::get('/bukukas/createpenerimaan',  'createpenerimaan');
         Route::post('/bukukas/save', 'save');
+        Route::post('/bukukas/savepenerimaan', 'savepenerimaan');
         Route::get('/bukukas/{id}/edit', 'edit');
         Route::get('/bukukas/{id}/detail', 'detail');
         Route::put('/bukukas/{id}', 'update');
         Route::delete('/bukukas/{id}', 'destroy');
         Route::get('/carikas', 'cari');
+        Route::get('/bukukas/export/{dari}/{sampai}', 'export');
     });
 
     #buku operasional
@@ -88,26 +91,31 @@ Route::middleware('auth')->group(function () {
         Route::get('/rekap/{id}/edit', 'edit');
         Route::put('/rekap/{id}', 'update');
         Route::get('/rekap/{id}/pdf', 'printpdf');
+        Route::get('/pesan/{id}', 'pesan');
+        Route::get('/pesan/{id}/detail', 'detailpesan');
+        Route::post('/pesan/save', 'savepesan');
     });
 
     #proyek
     Route::controller(ProyekController::class)->group(function () {
-        Route::get('/proyek', 'index');
-        Route::get('/buatproyek', 'create');
-        Route::post('/proyek/save', 'save');
-        Route::get('/proyek/{id}/edit', 'edit');
-        Route::get('/proyek/{id}/detail', 'detail');
-        Route::put('/proyek/{id}', 'update');
-        Route::delete('/proyek/{id}', 'destroy');
-        Route::get('/proyek/{id}/createp',  'createp');
-        Route::post('/proyek/savep', 'savep');
-        Route::get('/cariprogres', 'cari');
-        Route::get('/progres', 'progres');
-        Route::put('/progres/{id}', 'progresupdate');
+        Route::get('/proyek', 'index')->middleware('level');
+        Route::get('/buatproyek', 'create')->middleware('level');
+        Route::post('/proyek/save', 'save')->middleware('level');
+        Route::get('/proyek/{id}/edit', 'edit')->middleware('level');
+        Route::get('/proyek/{id}/detail', 'detail')->middleware('level');
+        Route::put('/proyek/{id}', 'update')->middleware('level');
+        Route::delete('/proyek/{id}', 'destroy')->middleware('level');
+        Route::get('/proyek/{id}/createp',  'createp')->middleware('level');
+        Route::get('/proyek/{id}/createpe',  'createpenerimaan')->middleware('level');
+        Route::post('/proyek/savep', 'savep')->middleware('level');
+        Route::post('/proyek/savepe', 'savepenerimaan')->middleware('level');
+        Route::get('/cariprogres', 'cari')->middleware('lapangan');
+        Route::get('/progres', 'progres')->middleware('lapangan');
+        Route::put('/progres/{id}', 'progresupdate')->middleware('lapangan');
     });
 
     #master
-    Route::controller(MasterController::class)->group(function () {
+    Route::controller(MasterController::class)->middleware('level')->group(function () {
         Route::post('/master/saveA', 'saveAset');
         Route::post('/master/saveM', 'saveMaterial');
         Route::post('/master/saveO', 'saveOperasional');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BukuKas;
+use App\Models\Pesan;
 use App\Models\Rekap;
 use Illuminate\Http\Request;
 
@@ -23,12 +24,14 @@ class RekapController extends Controller
         $dari = date('Y-m-d', strtotime($request->dari));
         $sampai = date('Y-m-d', strtotime($request->sampai));
 
-
+        $sk_bl = BukuKas::whereBetween('tanggal', [$dari, $sampai])->where('uraian', 'like', '%bulan lalu')->first();
         $total_aset = BukuKas::join('masters', 'buku_kas.master_id', '=', 'masters.id')->whereBetween('tanggal', [$dari, $sampai])->where('masters.jenisKas', 'bukuaset')->sum('pengeluaran');
         $total_material = BukuKas::join('masters', 'buku_kas.master_id', '=', 'masters.id')->whereBetween('tanggal', [$dari, $sampai])->where('masters.jenisKas', 'bukumaterial')->sum('pengeluaran');
         $total_operasional = BukuKas::join('masters', 'buku_kas.master_id', '=', 'masters.id')->whereBetween('tanggal', [$dari, $sampai])->where('masters.jenisKas', 'bukuoperasional')->sum('pengeluaran');
         $total_upah = BukuKas::join('masters', 'buku_kas.master_id', '=', 'masters.id')->whereBetween('tanggal', [$dari, $sampai])->where('masters.jenisKas', 'bukuupah')->sum('pengeluaran');
-        return view('pages.rekap.tambahRekap', compact('total_aset', 'total_material', 'total_upah', 'total_operasional', 'dari', 'sampai'));
+        $total_pengeluaran = BukuKas::whereBetween('tanggal', [$dari, $sampai])->sum('pengeluaran');
+        $total_penerimaan = BukuKas::whereBetween('tanggal', [$dari, $sampai])->sum('penerimaan');
+        return view('pages.rekap.tambahRekap', compact('total_aset', 'total_material', 'total_upah', 'total_operasional', 'total_penerimaan', 'total_pengeluaran', 'sk_bl'));
     }
 
     public function save(Request $request)
@@ -38,9 +41,7 @@ class RekapController extends Controller
             'sk_bl' => 'required',
             'sb_bl' => 'required',
             'in_cash' => 'required',
-            'trf_kppn' => 'required',
             'bunga_bnk' => 'required',
-            'pph' => 'required',
             'admin_bank' => 'required',
             'sk_bi' => 'required',
             'sb_bi' => 'required'
@@ -125,5 +126,27 @@ class RekapController extends Controller
         $rekap = Rekap::find($id);
         $hari = date('Y-m-d');
         return view('pages.pdf.pdf', compact(['rekap', 'hari']));
+    }
+    public function pesan($id)
+    {
+        return view('pages.rekap.pesan', compact('id'));
+    }
+    public function detailpesan($id)
+    {
+        $data = Pesan::where('rekap_id', $id)->first();
+        return view('pages.rekap.detail-pesan', compact('id', 'data'));
+    }
+    public function savepesan(Request $request)
+    {
+        $validateData = $request->validate([
+            'pesan' => 'required'
+        ]);
+        Pesan::create([
+            'pesan' => $request->pesan,
+            'rekap_id' => $request->rekap_id
+        ]);
+        $rekap = Rekap::find($request->rekap_id);
+        $rekap->update(['status' => 0]);
+        return redirect('/laporan')->with('success', 'Data berhasil di tambahkan');
     }
 }

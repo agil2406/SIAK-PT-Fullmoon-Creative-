@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Dashboard Admin Fullmoon
+Rekap Proyek
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@ Dashboard Admin Fullmoon
     <h1>Buku Rekap</h1>
     <nav>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{url('dashboard')}}">Home</a></li>
             <li class="breadcrumb-item">Buku Rekap</li>
         </ol>
     </nav>

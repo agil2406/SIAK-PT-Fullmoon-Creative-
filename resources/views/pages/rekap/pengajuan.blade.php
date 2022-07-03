@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Dashboard Admin Fullmoon
+Pengajuan
 @endsection
 
 @section('content')
@@ -79,13 +79,14 @@ Dashboard Admin Fullmoon
                             </div>
                         </td>
                         @endif
+                        @if($d->status == 1)
                         <td class="align-items-center">
                             <div class="row justify-content-center">
                                 <div class="col-sm-2">
-                                    <a href="{{url('rekap').'/'.$d->id.'/edit'}}" class="btn btn-warning"><i class="bi bi-arrow-repeat"></i></a>
+                                    <a href="{{url('rekap').'/'.$d->id.'/edit'}}" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
                                 </div>
                                 <div class="col-sm-2">
-                                    <a href="{{url('rekap').'/'.$d->id.'/detail'}}" class="btn btn-success"><i class="bi bi-info-circle"></i></a>
+                                    <a href="{{url('rekap').'/'.$d->id.'/detail'}}" class="btn btn-success"><i class="bi bi-eye-fill"></i></a>
                                 </div>
                                 <div class="col-sm-2">
                                     <form action="{{url('rekap').'/'.$d->id}}" method="POST">
@@ -95,17 +96,29 @@ Dashboard Admin Fullmoon
                                     </form>
                                 </div>
                             </div>
-                            <div class="mt-2">
-
-                            </div>
-
                         </td>
+                        @elseif($d->status==0)
+                        <td class="align-items-center">
+                            <div class="row justify-content-center">
+                                <div class="col-sm-5">
+                                    <a class="badge bg-danger" href="{{url('pesan').'/'.$d->id.'/detail'}}"> Pesan </a>
+                                </div>
+                            </div>
+                        </td>
+                        @else
+                        <td class="align-items-center">
+                            <div class="row justify-content-center">
+                                <div class="col-sm-5">
+                                    <a href="{{url('rekap').'/'.$d->id.'/'.'pdf'}}" target="_blank" class="btn btn-danger mb-3">Print PDF</a>
+                                </div>
+                            </div>
+                        </td>
+                        @endif
                     </tr>
                     @endforeach
                 </tbody>
 
             </table>
-
         </div>
     </div>
 </div>

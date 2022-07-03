@@ -35,25 +35,30 @@ Tambah Data Buku Kas
                     </select>
                 </div>
             </div>
-
-            <div class="row g-2 mb-3">
-                <div class="col-sm-12">
-                    <!-- <label for="uraian1" class="form-label">Uraian</label>
-                    <input class="form-control" list="uraian1" id="uraian" placeholder="Uraian" name="master_id">
-                    <datalist id="uraian1">
-                        @foreach ($uraian as $m)
-                        <option value="{{$m->uraian}}">
-                            @endforeach
-                    </datalist> -->
-                    <label for="master_id" class="col-sm-2 col-form-label">Uraian</label>
+            <div class="row mt-3">
+                <label for="uraian" class="col-sm-2 col-form-label">Uraian</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputText" name="uraian" value="{{ old('uraian')}}">
+                </div>
+            </div>
+            <div class="row mt-3 mb-3">
+                <div class="col-sm-6">
                     <select class="form-select" aria-label="Default select example" name="master_id">
-                        <option class="col-sm-8">Pilih Jenis</option>
+                        <option class="col-sm-2">Pilih Barang</option>
                         @foreach ($uraian as $m)
-                        <option value="{{$m->id}}">{{$m->uraian}}</option>
+                        <option value="{{$m->id}}">{{$m->barang}}</option>
                         @endforeach
                     </select>
                 </div>
+                <label for="harga" class="col-sm-2 col-form-label">Harga Satuan</label>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <span class="input-group-text">Rp.</span>
+                        <input type="number" class="form-control" id="harga" name="harga" value="{{ old('harga')}}" onkeyup="sum();">
+                    </div>
+                </div>
             </div>
+
             <div class="row mb-3">
                 <label for="tanggal" class="col-sm-2 col-form-label">Tanggal</label>
                 <div class="col-sm-4">
@@ -66,7 +71,7 @@ Tambah Data Buku Kas
                 </div>
                 <label for="volume" class="col-sm-2 col-form-label">Volume</label>
                 <div class="col-sm-4">
-                    <input type="number" class="form-control" id="inputText" name="volume" value="{{ old('volume')}}">
+                    <input type="number" class="form-control" id="volume" name="volume" value="{{ old('volume')}}" onkeyup="sum();">
                 </div>
             </div>
             <div class="row mb-3">
@@ -87,7 +92,10 @@ Tambah Data Buku Kas
             <div class="row mb-3">
                 <label for="pengeluaran" class="col-sm-2 col-form-label">Pengeluaran</label>
                 <div class="col-sm-4">
-                    <input type="number" class="form-control" name="pengeluaran" value="{{ old('pengeluaran')}}">
+                    <div class="input-group">
+                        <span class="input-group-text">Rp.</span>
+                        <input type="number" class="form-control" name="pengeluaran" id="pengeluaran" onkeyup="sum();" value="" readonly>
+                    </div>
                 </div>
                 <label for="image" class="col-sm-2 col-form-label">Bukti Kwitansi</label>
                 <div class="col-sm-4">
@@ -108,6 +116,5 @@ Tambah Data Buku Kas
 
     </div>
 </div>
-
 
 @endsection

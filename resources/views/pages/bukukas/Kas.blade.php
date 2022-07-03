@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Dashboard Admin Fullmoon
+Buku Kas
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@ Dashboard Admin Fullmoon
     <h1>Buku Kas Umum</h1>
     <nav>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{url('dashboard')}}">Home</a></li>
             <li class="breadcrumb-item">Buku Kas Umum</li>
         </ol>
     </nav>
@@ -29,9 +29,10 @@ Dashboard Admin Fullmoon
         <div class="container">
 
             <h5 class="card-title">Buku Kas </h5>
-            <a href="/bukukas/create" class="btn btn-primary mb-3">Tambah Data</a>
-            <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#basicModal">
-                Filter Tanggal<i class="bx bxs-filter-alt"></i>
+            <a href="/bukukas/create" class="btn btn-danger mb-3">Tambah Pengeluaran</a>
+            <a href="/bukukas/createpenerimaan" class="btn btn-primary mb-3">Tambah Penerimaan</a>
+            <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#basicModal">
+                Filter Tanggal <i class="bx bxs-filter-alt"></i>
             </button>
             <div class="modal fade" id="basicModal" tabindex="-1">
                 <div class="modal-dialog">
@@ -67,9 +68,9 @@ Dashboard Admin Fullmoon
                     <tr>
                         <th> NO </th>
                         <th> URAIAN </th>
-                        <th> NO BUKTI </th>
                         <th> VOLUME </th>
                         <th> TANGGAL </th>
+                        <th> PENERIMAAN </th>
                         <th> PENGELUARAN </th>
                         <th> AKSI </th>
 
@@ -82,20 +83,20 @@ Dashboard Admin Fullmoon
                     @foreach ($data as $d )
                     <tr>
                         <td> {{$loop->iteration}}</td>
-                        <td> {{$d->master->uraian}}</td>
-                        <td> {{$d->noBukti}}</td>
-                        <td> {{$d->volume}}</td>
+                        <td> {{$d->uraian}}</td>
+                        <td> {{number_format($d->volume,0)}}</td>
                         <td> {{date('d M Y',strtotime($d->tanggal))}}</td>
+                        <td> Rp.{{number_format($d->penerimaan,0)}}</td>
                         <td> Rp.{{number_format($d->pengeluaran,0)}}</td>
                         <td>
                             <div class="row">
                                 <div class="col-sm-4">
 
-                                    <a href="/bukukas/{{$d->id}}/edit" class="btn btn-warning"><i class="bi bi-arrow-repeat"></i></a>
+                                    <a href="/bukukas/{{$d->id}}/edit" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
                                 </div>
                                 <div class="col-sm-4 m-auto">
 
-                                    <a href="/bukukas/{{$d->id}}/detail" class="btn btn-success"><i class="bi bi-info-circle"></i></a>
+                                    <a href="/bukukas/{{$d->id}}/detail" class="btn btn-success"><i class="bi bi-eye-fill"></i></a>
                                 </div>
                             </div>
                             <div class="mt-2">

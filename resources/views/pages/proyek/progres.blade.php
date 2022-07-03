@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('title')
-Tambah Data Buku Kas
-
+Tambah Data Progres
+@endsection
 @section('content')
 
 <div class="pagetitle">

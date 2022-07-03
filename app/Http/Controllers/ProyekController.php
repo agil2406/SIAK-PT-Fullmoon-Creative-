@@ -5,15 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\BukuKas;
 use App\Models\Master;
 use App\Models\Proyek;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ProyekController extends Controller
 {
     public function index()
     {
+        $time = Carbon::now('GMT+8');
+        $waktu = Carbon::createFromTimeString('23:59');
         $hari = date('Y-m-d');
         $data = Proyek::all();
-        return view('pages.proyek.Proyek', compact('data', 'hari'));
+        return view('pages.proyek.Proyek', compact('data', 'hari', 'time', 'waktu'));
     }
     public function create()
     {
@@ -42,8 +45,9 @@ class ProyekController extends Controller
     {
         $proyek = Proyek::find($id);
         $bukukas = BukuKas::where('proyek_id', $id)->get();
-        $total = BukuKas::where('proyek_id', $id)->sum('pengeluaran');
-        return view('pages.proyek.detail', compact('proyek', 'bukukas', 'total'));
+        $total_pengeluaran = BukuKas::where('proyek_id', $id)->sum('pengeluaran');
+        $total_penerimaan = BukuKas::where('proyek_id', $id)->sum('penerimaan');
+        return view('pages.proyek.detail', compact('proyek', 'bukukas', 'total_pengeluaran', 'total_penerimaan'));
     }
     public function edit($id)
     {
@@ -78,13 +82,24 @@ class ProyekController extends Controller
     {
 
         $hari = date('Y-m-d');
-        $uraian = Master::groupBy('jenisKas')->get();
+        $uraian = Master::where('jenisKas', 'bukuaset')->orWhere('jenisKas', 'bukumaterial')->orWhere('jenisKas', 'bukuoperasional')->orWhere('jenisKas', 'bukuupah')->orderBy('jenisKas')->get();
         $proyek = proyek::find($id);
         return view('pages.proyek.createp', compact('uraian', 'proyek'));
+    }
+    public function createpenerimaan($id)
+    {
+
+        $hari = date('Y-m-d');
+        $uraian = Master::where('jenisKas', 'bukuaset')->orWhere('jenisKas', 'bukumaterial')->orWhere('jenisKas', 'bukuoperasional')->orWhere('jenisKas', 'bukuupah')->orderBy('jenisKas')->get();
+        $proyek = proyek::find($id);
+        return view('pages.proyek.createpe', compact('uraian', 'proyek'));
     }
     public function saveP(Request $request)
     {
         $validateData = $request->validate([
+            'uraian' => 'required',
+            'harga' => 'required',
+            'volume' => 'required',
             'master_id' => 'required',
             'tanggal' => 'required',
             'proyek_id' => 'required',
@@ -94,12 +109,37 @@ class ProyekController extends Controller
         $file_name = $request->image->getClientOriginalName();
         $image = $request->image->storeAs('kwitansi', $file_name);
         BukuKas::create([
+            'uraian' => $request->uraian,
+            'harga' => $request->harga,
             'master_id' => $request->master_id,
             'image' => $image,
             'noBukti' => $request->noBukti,
             'satuan' => $request->satuan,
             'volume' => $request->volume,
             'pengeluaran' => $request->pengeluaran,
+            'proyek_id' => $request->proyek_id,
+            'tanggal' => $request->tanggal
+        ]);
+        return redirect('/proyek')->with('success', 'Data berhasil di tambahkan');
+    }
+    public function savepenerimaan(Request $request)
+    {
+        $validateData = $request->validate([
+            'uraian' => 'required',
+            'master_id' => 'required',
+            'tanggal' => 'required',
+            'proyek_id' => 'required',
+            'image' => 'required|image|file|max:2048',
+            'noBukti' => 'required'
+        ]);
+        $file_name = $request->image->getClientOriginalName();
+        $image = $request->image->storeAs('kwitansi', $file_name);
+        BukuKas::create([
+            'uraian' => $request->uraian,
+            'master_id' => $request->master_id,
+            'image' => $image,
+            'noBukti' => $request->noBukti,
+            'penerimaan' => $request->penerimaan,
             'proyek_id' => $request->proyek_id,
             'tanggal' => $request->tanggal
         ]);

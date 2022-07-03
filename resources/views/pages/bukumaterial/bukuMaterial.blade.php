@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Dashboard Admin Fullmoon
+Buku Material
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@ Dashboard Admin Fullmoon
   <h1>Buku Material</h1>
   <nav>
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+      <li class="breadcrumb-item"><a href="{{url('dashboard')}}">Home</a></li>
       <li class="breadcrumb-item">Buku Material</li>
     </ol>
   </nav>
@@ -28,7 +28,7 @@ Dashboard Admin Fullmoon
             <th> URAIAN </th>
             <th> TANGGAL </th>
             <th> VOLUME </th>
-            <th> NO BUKTI </th>
+            <th> HARGA </th>
             <th> PENGELUARAN </th>
             <th> AKSI </th>
 
@@ -42,17 +42,17 @@ Dashboard Admin Fullmoon
             <td> {{$d->uraian}}</td>
             <td> {{date('d M Y',strtotime($d->tanggal))}}</td>
             <td> {{$d->volume}}</td>
-            <td> {{$d->noBukti}}</td>
+            <td> Rp.{{number_format($d->harga,0)}}</td>
             <td> Rp.{{number_format($d->pengeluaran,0)}}</td>
             <td>
               <div class="row">
                 <div class="col-sm-4">
 
-                  <a href="{{url('bukukas').'/'.$d->id.'/edit'}}" class="btn btn-warning"><i class="bi bi-arrow-repeat"></i></a>
+                  <a href="{{url('bukukas').'/'.$d->id.'/edit'}}" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
                 </div>
                 <div class="col-sm-4 m-auto">
 
-                  <a href="{{url('bukukas').'/'.$d->id.'/detail'}}" class="btn btn-success"><i class="bi bi-info-circle"></i></a>
+                  <a href="{{url('bukukas').'/'.$d->id.'/detail'}}" class="btn btn-success"><i class="bi bi-eye-fill"></i></a>
                 </div>
               </div>
               <div class="mt-2">
