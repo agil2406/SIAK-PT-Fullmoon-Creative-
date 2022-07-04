@@ -29,9 +29,10 @@ Buku Kas
         <div class="container">
 
             <h5 class="card-title">Buku Kas </h5>
-            <a href="/bukukas/create" class="btn btn-primary mb-3">Tambah Data</a>
-            <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#basicModal">
-                Filter Tanggal<i class="bx bxs-filter-alt"></i>
+            <a href="/bukukas/create" class="btn btn-danger mb-3">Tambah Pengeluaran</a>
+            <a href="/bukukas/createpenerimaan" class="btn btn-primary mb-3">Tambah Penerimaan</a>
+            <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#basicModal">
+                Filter Tanggal <i class="bx bxs-filter-alt"></i>
             </button>
             <div class="modal fade" id="basicModal" tabindex="-1">
                 <div class="modal-dialog">
@@ -67,9 +68,9 @@ Buku Kas
                     <tr>
                         <th> NO </th>
                         <th> URAIAN </th>
-                        <th> NO BUKTI </th>
                         <th> VOLUME </th>
                         <th> TANGGAL </th>
+                        <th> PENERIMAAN </th>
                         <th> PENGELUARAN </th>
                         <th> AKSI </th>
 
@@ -82,10 +83,10 @@ Buku Kas
                     @foreach ($data as $d )
                     <tr>
                         <td> {{$loop->iteration}}</td>
-                        <td> {{$d->master->uraian}}</td>
-                        <td> {{$d->noBukti}}</td>
-                        <td> {{$d->volume}}</td>
+                        <td> {{$d->uraian}}</td>
+                        <td> {{number_format($d->volume,0)}}</td>
                         <td> {{date('d M Y',strtotime($d->tanggal))}}</td>
+                        <td> Rp.{{number_format($d->penerimaan,0)}}</td>
                         <td> Rp.{{number_format($d->pengeluaran,0)}}</td>
                         <td>
                             <div class="row">

@@ -45,35 +45,28 @@ Tambah Data Master Buku Operasional
                         <div class="container">
                             <form action="{{url('master/saveO')}}" method="POST">
                                 @csrf
-                                <label for="uraian" class="col-sm-2 col-form-label ml-auto">Uraian</label>
+                                <label for="barang" class="col-sm-4 col-form-label ml-auto">Nama Barang</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control @error('uraian') is-invalid  @enderror" id="inputText" name="uraian" required autofocus value="{{ old('uraian')}}">
-                                    @error('uraian')
+                                    <input type="text" class="form-control @error('barang') is-invalid  @enderror" id="inputText" name="barang" required autofocus value="{{ old('barang')}}">
+                                    @error('barang')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                     @enderror
                                 </div>
 
-                                <label for="kode_uraian" class="col-sm-2 col-form-label ml-auto">Kode</label>
+                                <label for="kode_barang" class="col-sm-2 col-form-label ml-auto">Kode</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control @error('kode_uraian') is-invalid  @enderror" id="inputText" name="kode_uraian" required value="{{ 'OP/'.$kd}}" readonly>
-                                    @error('kode_uraian')
+                                    <input type="text" class="form-control @error('kode_barang') is-invalid  @enderror" id="inputText" name="kode_barang" required value="{{ 'OP/'.$kd}}" readonly>
+                                    @error('kode_barang')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                     @enderror
                                 </div>
                                 <label for="sampai" class="col-sm-2 col-form-label">Jenis Kas</label>
-                                <div class="form">
-                                    <select class="form-select" aria-label="Default select example" name="jenisKas">
-                                        <option class="@error('jenisKas') is-invalid  @enderror">Pilih Jenis Kas</option>
-
-                                        <option value="bukuaset">Aset</option>
-                                        <option value="bukumaterial">Material</option>
-                                        <option value="bukuoperasional" selected>Operasional</option>
-                                        <option value="bukuupah">Upah</option>
-                                    </select>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control @error('jenisKas') is-invalid  @enderror" id="inputText" name="jenisKas" required value="bukuoperasional" readonly>
                                 </div>
                                 <div class=" modal-footer">
                                     <button class="btn btn-primary" type="submit">Tambah Data</button>
@@ -94,7 +87,7 @@ Tambah Data Master Buku Operasional
                 <thead>
                     <tr>
                         <th> NO </th>
-                        <th> URAIAN </th>
+                        <th> BARANG </th>
                         <th> KODE </th>
                         <th> AKSI </th>
 
@@ -106,8 +99,8 @@ Tambah Data Master Buku Operasional
                     @foreach ($data as $d )
                     <tr>
                         <td> {{$loop->iteration}}</td>
-                        <td> {{$d->uraian}}</td>
-                        <td> {{$d->kode_uraian}}</td>
+                        <td> {{$d->barang}}</td>
+                        <td> {{$d->kode_barang}}</td>
                         <td class="align-items-center">
                             <div class="row justify-content-center">
                                 <div class="col-sm-2">

@@ -55,7 +55,7 @@ Data Proyek
                         <td> {{$loop->iteration}}</td>
                         <td> {{$d->nama_proyek}}</td>
                         <td> {{$d->alamat_proyek}}</td>
-                        @if ($d->tgl_akhirproyek <= $hari ) <td>
+                        @if ($d->tgl_akhirproyek <= $hari && $time==$waktu ) <td>
                             <div class="d-flex justify-content-center mt-2">
                                 <span class="badge bg-success">Selesai</span>
                             </div>

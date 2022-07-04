@@ -24,39 +24,48 @@ Edit Data Master Buku Material
             <form action="{{url('masterM').'/'.$master->id}}" method="POST">
                 @method('put')
                 @csrf
-                <label for="uraian" class="col-sm-2 col-form-label ml-auto">Uraian</label>
+                <label for="barang" class="col-sm-4 col-form-label ml-auto">Nama Barang</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control @error('uraian') is-invalid  @enderror" id="inputText" name="uraian" value="{{ $master->uraian}}">
-                    @error('uraian')
+                    <input type="text" class="form-control @error('barang') is-invalid  @enderror" id="inputText" name="barang" value="{{ $master->barang}}">
+                    @error('barang')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                     @enderror
                 </div>
 
-                <label for="kode_uraian" class="col-sm-2 col-form-label ml-auto">Kode</label>
+                <label for="kode_barang" class="col-sm-2 col-form-label ml-auto">Kode</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control @error('kode_uraian') is-invalid  @enderror" id="inputText" name="kode_uraian" required value="{{ $master->kode_uraian}}" readonly>
-                    @error('kode_uraian')
+                    <input type="text" class="form-control @error('kode_barang') is-invalid  @enderror" id="inputText" name="kode_barang" required value="{{ $master->kode_barang}}" readonly>
+                    @error('kode_barang')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                     @enderror
                 </div>
                 <label for="sampai" class="col-sm-2 col-form-label">Jenis Kas</label>
-                <div class="form">
-                    <select class="form-select" aria-label="Default select example" name="jenisKas">
-                        <option class="@error('jenisKas') is-invalid  @enderror">Pilih Jenis Kas</option>
-
-                        <option value="bukuaset">Aset</option>
-                        <option value="bukumaterial" selected>Material</option>
-                        <option value="bukuoperasional">Operasional</option>
-                        <option value="bukuupah">Upah</option>
-                    </select>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control @error('jenisKas') is-invalid  @enderror" id="inputText" name="jenisKas" required value="{{$master->jenisKas}}" readonly>
+                </div>
+                <div class="row g-2">
+                    <div class="col-sm-10 mb-2">
+                        <label for="jenismaterial" class="col-sm-4 col-form-label">Jenis Material</label>
+                        <select class="form-select" aria-label="Default select example" name="jenismaterial">
+                            <option class="col-sm-6 @error('jenismaterial') is-invalid  @enderror">Pilih Jenis</option>
+                            <option value="Material Alam" @if ($master->jenismaterial == 'Material Alam') selected @endif>Material Alam</option>
+                            <option value="Material Pabrik" @if ($master->jenismaterial == 'Material Pabrik') selected @endif>Material Pabrik</option>
+                            <option value="MEP" @if ($master->jenismaterial == 'MEP') selected @endif>MEP</option>
+                        </select>
+                        @error('jenismaterial')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
                 </div>
                 <div class=" modal-footer">
                     <button type="submit" class="btn btn-primary">Simpan Data</button>
-                    <a href="{{url('dmbukumaterial')}}" class="btn btn-primary" type="reset">Kembali</a>
+                    <a href="{{url('/dmbukumaterial')}}" class="btn btn-primary" type="reset">Kembali</a>
                 </div>
             </form>
 

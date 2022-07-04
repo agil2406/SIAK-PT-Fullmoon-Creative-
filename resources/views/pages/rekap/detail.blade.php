@@ -20,7 +20,7 @@ Detail Rekapan
 <div class="card">
     <div class="card-body">
         <h5 class="card-title">Detail Rekap</h5>
-        <a href="{{url('rekap').'/'.$rekap->id.'/'.'pdf'}}" target="_blank" class="btn btn-danger mb-3">Print PDF</a>
+
 
         <!-- Horizontal Form -->
         <form action="{{url('buatrekap/save')}}" method="POST">

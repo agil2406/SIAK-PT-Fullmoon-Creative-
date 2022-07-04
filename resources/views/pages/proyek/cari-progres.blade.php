@@ -28,8 +28,8 @@ Progres Proyek
             <form action="{{url('progres')}}" method="get">
                 @csrf
                 <label for="proyek_id" class="col-sm-2 col-form-label">Proyek</label>
-                <select class="form-select" aria-label="Default select example" name="proyek_id">
-                    <option class="@error('proyek_id') is-invalid  @enderror">Pilih Proyek</option>
+                <select class="form-select  @error('proyek_id') is-invalid  @enderror" aria-label="Default select example" name="proyek_id">
+                    <option class="">Pilih Proyek</option>
                     @foreach ($proyek as $m)
                     <option value="{{$m->id}}">{{$m->nama_proyek}}</option>
                     @endforeach

@@ -38,14 +38,17 @@ Route::get('/dashboard', [HomeController::class, 'dashboard']);
 Route::middleware('auth')->group(function () {
     Route::controller(BukuKasController::class)->group(function () {
         Route::get('/bukukas',  'index');
-        Route::get('/bukukas/export', 'export');
+        Route::get('/bukukas/export{dari}/{sampai}', 'export');
         Route::get('/bukukas/create',  'create');
+        Route::get('/bukukas/createpenerimaan',  'createpenerimaan');
         Route::post('/bukukas/save', 'save');
+        Route::post('/bukukas/savepenerimaan', 'savepenerimaan');
         Route::get('/bukukas/{id}/edit', 'edit');
         Route::get('/bukukas/{id}/detail', 'detail');
         Route::put('/bukukas/{id}', 'update');
         Route::delete('/bukukas/{id}', 'destroy');
         Route::get('/carikas', 'cari');
+        Route::get('/bukukas/export/{dari}/{sampai}', 'export');
     });
 
     #buku operasional
@@ -88,6 +91,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/rekap/{id}/edit', 'edit');
         Route::put('/rekap/{id}', 'update');
         Route::get('/rekap/{id}/pdf', 'printpdf');
+        Route::get('/pesan/{id}', 'pesan');
+        Route::get('/pesan/{id}/detail', 'detailpesan');
+        Route::post('/pesan/save', 'savepesan');
     });
 
     #proyek
@@ -100,7 +106,9 @@ Route::middleware('auth')->group(function () {
         Route::put('/proyek/{id}', 'update')->middleware('level');
         Route::delete('/proyek/{id}', 'destroy')->middleware('level');
         Route::get('/proyek/{id}/createp',  'createp')->middleware('level');
+        Route::get('/proyek/{id}/createpe',  'createpenerimaan')->middleware('level');
         Route::post('/proyek/savep', 'savep')->middleware('level');
+        Route::post('/proyek/savepe', 'savepenerimaan')->middleware('level');
         Route::get('/cariprogres', 'cari')->middleware('lapangan');
         Route::get('/progres', 'progres')->middleware('lapangan');
         Route::put('/progres/{id}', 'progresupdate')->middleware('lapangan');

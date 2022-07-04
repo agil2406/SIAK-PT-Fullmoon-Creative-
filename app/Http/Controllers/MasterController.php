@@ -15,7 +15,7 @@ class MasterController extends Controller
     }
     public function aset()
     {
-        $qr = DB::table('masters')->where('jenisKas', 'bukuaset')->select(DB::raw('MAX(RIGHT(kode_uraian,4))as kode'));
+        $qr = DB::table('masters')->where('jenisKas', 'bukuaset')->select(DB::raw('MAX(RIGHT(kode_barang,4))as kode'));
         $kd = "";
         if ($qr->count() > 0) {
             foreach ($qr->get() as $k) {
@@ -30,7 +30,7 @@ class MasterController extends Controller
     }
     public function material()
     {
-        $qr = DB::table('masters')->where('jenisKas', 'bukumaterial')->select(DB::raw('MAX(RIGHT(kode_uraian,4))as kode'));
+        $qr = DB::table('masters')->where('jenisKas', 'bukumaterial')->select(DB::raw('MAX(RIGHT(kode_barang,4))as kode'));
         $kd = "";
         if ($qr->count() > 0) {
             foreach ($qr->get() as $k) {
@@ -45,7 +45,7 @@ class MasterController extends Controller
     }
     public function operasional()
     {
-        $qr = DB::table('masters')->where('jenisKas', 'bukuoperasional')->select(DB::raw('MAX(RIGHT(kode_uraian,4))as kode'));
+        $qr = DB::table('masters')->where('jenisKas', 'bukuoperasional')->select(DB::raw('MAX(RIGHT(kode_barang,4))as kode'));
         $kd = "";
         if ($qr->count() > 0) {
             foreach ($qr->get() as $k) {
@@ -60,7 +60,7 @@ class MasterController extends Controller
     }
     public function upah()
     {
-        $qr = DB::table('masters')->where('jenisKas', 'bukuupah')->select(DB::raw('MAX(RIGHT(kode_uraian,4))as kode'));
+        $qr = DB::table('masters')->where('jenisKas', 'bukuupah')->select(DB::raw('MAX(RIGHT(kode_barang,4))as kode'));
         $kd = "";
         if ($qr->count() > 0) {
             foreach ($qr->get() as $k) {
@@ -76,7 +76,7 @@ class MasterController extends Controller
     public function saveAset(Request $request)
     {
         $validateData = $request->validate([
-            'uraian' => 'required',
+            'barang' => 'required',
             'jenisKas' => 'required'
 
         ]);
@@ -87,7 +87,8 @@ class MasterController extends Controller
     public function saveMaterial(Request $request)
     {
         $validateData = $request->validate([
-            'uraian' => 'required',
+            'barang' => 'required',
+            'jenismaterial' => 'required',
             'jenisKas' => 'required'
 
         ]);
@@ -98,7 +99,7 @@ class MasterController extends Controller
     public function saveOperasional(Request $request)
     {
         $validateData = $request->validate([
-            'uraian' => 'required',
+            'barang' => 'required',
             'jenisKas' => 'required'
 
         ]);
@@ -109,7 +110,7 @@ class MasterController extends Controller
     public function saveUpah(Request $request)
     {
         $validateData = $request->validate([
-            'uraian' => 'required',
+            'barang' => 'required',
             'jenisKas' => 'required'
 
         ]);
@@ -169,7 +170,7 @@ class MasterController extends Controller
     public function updateA($id, Request $request)
     {
         $validateData = $request->validate([
-            'uraian' => 'required',
+            'barang' => 'required',
             'jenisKas' => 'required'
         ]);
 
@@ -177,7 +178,7 @@ class MasterController extends Controller
         $master = master::find($id);
         $master->update(
             [
-                'uraian' => $request->uraian,
+                'barang' => $request->barang,
                 'jenisKas' => $request->jenisKas
             ]
         );
@@ -187,7 +188,8 @@ class MasterController extends Controller
     public function updateM($id, Request $request)
     {
         $validateData = $request->validate([
-            'uraian' => 'required',
+            'barang' => 'required',
+            'jenismaterial' => 'required',
             'jenisKas' => 'required'
         ]);
 
@@ -195,7 +197,8 @@ class MasterController extends Controller
         $master = master::find($id);
         $master->update(
             [
-                'uraian' => $request->uraian,
+                'barang' => $request->barang,
+                'jenismaterial' => $request->jenismaterial,
                 'jenisKas' => $request->jenisKas
             ]
         );
@@ -205,7 +208,7 @@ class MasterController extends Controller
     public function updateO($id, Request $request)
     {
         $validateData = $request->validate([
-            'uraian' => 'required',
+            'barang' => 'required',
             'jenisKas' => 'required'
         ]);
 
@@ -213,7 +216,7 @@ class MasterController extends Controller
         $master = master::find($id);
         $master->update(
             [
-                'uraian' => $request->uraian,
+                'barang' => $request->barang,
                 'jenisKas' => $request->jenisKas
             ]
         );
@@ -223,7 +226,7 @@ class MasterController extends Controller
     public function updateU($id, Request $request)
     {
         $validateData = $request->validate([
-            'uraian' => 'required',
+            'barang' => 'required',
             'jenisKas' => 'required'
         ]);
 
@@ -231,7 +234,7 @@ class MasterController extends Controller
         $master = master::find($id);
         $master->update(
             [
-                'uraian' => $request->uraian,
+                'barang' => $request->barang,
                 'jenisKas' => $request->jenisKas
             ]
         );

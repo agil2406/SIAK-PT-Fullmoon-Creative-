@@ -28,7 +28,7 @@ Buku Material
             <th> URAIAN </th>
             <th> TANGGAL </th>
             <th> VOLUME </th>
-            <th> NO BUKTI </th>
+            <th> HARGA </th>
             <th> PENGELUARAN </th>
             <th> AKSI </th>
 
@@ -42,7 +42,7 @@ Buku Material
             <td> {{$d->uraian}}</td>
             <td> {{date('d M Y',strtotime($d->tanggal))}}</td>
             <td> {{$d->volume}}</td>
-            <td> {{$d->noBukti}}</td>
+            <td> Rp.{{number_format($d->harga,0)}}</td>
             <td> Rp.{{number_format($d->pengeluaran,0)}}</td>
             <td>
               <div class="row">

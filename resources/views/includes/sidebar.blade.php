@@ -35,51 +35,51 @@
           <span>Buku Kas</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-        <li class="nav-item ">
-        <a class="nav-link collapsed" href="{{url('/bukukas')}}">
-          <i class="bi bi-menu-button-wide"></i>
-          <span>Buku Kas Umum</span>
-        </a>
-        </li>
-        <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#jenis-kas" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-menu-button-wide"></i><span>Jenis Kas</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="jenis-kas" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="{{url('/bukumaterial')}}">
-              <i class="bi bi-circle"></i><span>Buku Material</span>
+          <li class="nav-item ">
+            <a class="nav-link collapsed" href="{{url('/bukukas')}}">
+              <i class="bi bi-menu-button-wide"></i>
+              <span>Buku Kas Umum</span>
             </a>
           </li>
-          <li>
-            <a href="{{url('/bukuoperasional')}}">
-              <i class="bi bi-circle"></i><span>Buku Operasional</span>
+          <li class="nav-item">
+            <a class="nav-link collapse" data-bs-target="#jenis-kas" data-bs-toggle="collapse" href="#jenis-kas">
+              <i class="bi bi-menu-button-wide"></i><span>Jenis Kas</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="jenis-kas" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+              <li>
+                <a href="{{url('/bukumaterial')}}">
+                  <i class="bi bi-circle"></i><span>Buku Material</span>
+                </a>
+              </li>
+              <li>
+                <a href="{{url('/bukuoperasional')}}">
+                  <i class="bi bi-circle"></i><span>Buku Operasional</span>
+                </a>
+              </li>
+              <li>
+                <a href="{{url('/bukuaset')}}">
+                  <i class="bi bi-circle"></i><span>Buku Aset</span>
+                </a>
+              </li>
+              <li>
+                <a href="{{url('/bukuupah')}}">
+                  <i class="bi bi-circle"></i><span>Buku Upah</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link collapsed" href="{{url('/rekap')}}">
+              <i class="bi bi-menu-button-wide"></i>
+              <span>Rekap Buku Kas</span>
             </a>
           </li>
-          <li>
-            <a href="{{url('/bukuaset')}}">
-              <i class="bi bi-circle"></i><span>Buku Aset</span>
+          <li class="nav-item ">
+            <a class="nav-link collapsed" href="{{url('/pengajuan')}}">
+              <i class="bi bi-menu-button-wide"></i>
+              <span>Laporan Pengajuan</span>
             </a>
           </li>
-          <li>
-            <a href="{{url('/bukuupah')}}">
-              <i class="bi bi-circle"></i><span>Buku Upah</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-      <li class="nav-item ">
-        <a class="nav-link collapsed" href="{{url('/rekap')}}">
-          <i class="bi bi-menu-button-wide"></i>
-          <span>Rekap Buku Kas</span>
-        </a>
-      </li>
-      <li class="nav-item ">
-        <a class="nav-link collapsed" href="{{url('/pengajuan')}}">
-          <i class="bi bi-menu-button-wide"></i>
-          <span>Laporan Pengajuan</span>
-        </a>
-      </li>
         </ul>
       </li>
 
@@ -108,6 +108,7 @@
               <i class="bi bi-circle"></i><span>Buku Upah</span>
             </a>
           </li>
+
         </ul>
       </li>
       @endcan
@@ -119,39 +120,39 @@
           <span>Buku Kas</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="components-na2" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-        <li class="nav-item ">
-        <a class="nav-link collapsed" href="{{url('/bukukas')}}">
-          <i class="bi bi-menu-button-wide"></i>
-          <span>Buku Kas Umum</span>
-        </a>
-        </li>
-        <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav3" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-menu-button-wide"></i><span>Jenis Kas</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="components-nav3" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="{{url('/bukumaterial')}}">
-              <i class="bi bi-circle"></i><span>Buku Material</span>
+          <li class="nav-item ">
+            <a class="nav-link collapsed" href="{{url('/bukukas')}}">
+              <i class="bi bi-menu-button-wide"></i>
+              <span>Buku Kas Umum</span>
             </a>
           </li>
-          <li>
-            <a href="{{url('/bukuoperasional')}}">
-              <i class="bi bi-circle"></i><span>Buku Operasional</span>
+          <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#components-nav3" data-bs-toggle="collapse" href="#">
+              <i class="bi bi-menu-button-wide"></i><span>Jenis Kas</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
+            <ul id="components-nav3" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+              <li>
+                <a href="{{url('/bukumaterial')}}">
+                  <i class="bi bi-circle"></i><span>Buku Material</span>
+                </a>
+              </li>
+              <li>
+                <a href="{{url('/bukuoperasional')}}">
+                  <i class="bi bi-circle"></i><span>Buku Operasional</span>
+                </a>
+              </li>
+              <li>
+                <a href="{{url('/bukuaset')}}">
+                  <i class="bi bi-circle"></i><span>Buku Aset</span>
+                </a>
+              </li>
+              <li>
+                <a href="{{url('/bukuupah')}}">
+                  <i class="bi bi-circle"></i><span>Buku Upah</span>
+                </a>
+              </li>
+            </ul>
           </li>
-          <li>
-            <a href="{{url('/bukuaset')}}">
-              <i class="bi bi-circle"></i><span>Buku Aset</span>
-            </a>
-          </li>
-          <li>
-            <a href="{{url('/bukuupah')}}">
-              <i class="bi bi-circle"></i><span>Buku Upah</span>
-            </a>
-          </li>
-        </ul>
-      </li>
         </ul>
       <li class="nav-item ">
         <a class="nav-link collapsed" href="{{url('/laporan')}}">
@@ -174,8 +175,8 @@
         <form action="/logout" method="POST">
           @csrf
           <button type="submit" class="nav-link collapsed" style="border: none ;">
-                    <i class=" bi bi-box-arrow-right"></i>Sign Out
-                </button> 
+            <i class=" bi bi-box-arrow-right"></i>Sign Out
+          </button>
         </form>
       </li>
       @else

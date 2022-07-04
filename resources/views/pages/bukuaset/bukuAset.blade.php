@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Tambah Data Buku aset
+Buku aset
 @endsection
 
 @section('content')

@@ -3,26 +3,37 @@
 namespace App\Exports;
 
 use App\Models\BukuKas;
-use Illuminate\Support\Facades\DB;
-use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\WithHeadings;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Concerns\WithColumnWidths;
 
-class BukukasExport implements FromCollection, WithHeadings
+class BukukasExport implements FromView, WithColumnWidths
 {
-    /**
-     * @return \Illuminate\Support\Collection
-     */
-    public function collection()
+    public function __construct($dari, $sampai)
     {
-        $data = DB::table('buku_kas')->join('masters', 'buku_kas.master_id', '=', 'masters.id')
-            ->select('uraian', 'tanggal', 'volume', 'satuan', 'penerimaan', 'pengeluaran')
-            ->get();
-        return $data;
+        $this->dari = $dari;
+        $this->sampai = $sampai;
     }
-    public function headings(): array
+    public function columnWidths(): array
     {
-
-
-        return ["Uraian", "Tanggal", "Volume", "Satuan", "Penerimaan", "Pengeluaran"];
+        return [
+            'A' => 4,
+            'B' => 10,
+            'C' => 23,
+            'D' => 8,
+            'E' => 9,
+            'F' => 14,
+            'G' => 14,
+            'H' => 14,
+        ];
+    }
+    public function view(): View
+    {
+        $total_pengeluaran = BukuKas::join('masters', 'buku_kas.master_id', '=', 'masters.id')->whereBetween('tanggal', [$this->dari, $this->sampai])->sum('pengeluaran');
+        $total_penerimaan = BukuKas::join('masters', 'buku_kas.master_id', '=', 'masters.id')->whereBetween('tanggal', [$this->dari, $this->sampai])->sum('penerimaan');
+        $tanggal = $this->dari;
+        $data = BukuKas::join('masters', 'buku_kas.master_id', '=', 'masters.id')
+            ->whereBetween('tanggal', [$this->dari, $this->sampai])->orderBy('tanggal', 'asc')->get();
+        return view('exports.bukukas', compact('data', 'tanggal', 'total_pengeluaran', 'total_penerimaan'));
     }
 }

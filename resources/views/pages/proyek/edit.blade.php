@@ -59,7 +59,10 @@ Edit data proyek
             <div class="row mt-3">
                 <label for="rab_proyek" class="col-sm-2 col-form-label">RAB Proyek</label>
                 <div class="col-sm-4">
-                    <input type="number" class="form-control" name="rab_proyek" value="{{$proyek->rab_proyek}}">
+                    <div class="input-group">
+                        <span class="input-group-text">Rp.</span>
+                        <input type="number" class="form-control" name="rab_proyek" value="{{$proyek->rab_proyek}}">
+                    </div>
                 </div>
             </div>
 

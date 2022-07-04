@@ -16,9 +16,9 @@
     <div class="container">
         <img src="{{ url('frontend/assets/vendor/simple-datatables/image.jpg') }}" alt="logo" width="100px" class="rounded-circle">
         <div class="head">
-                <p class="mb"><b>Perusahaan Bangun Bale</b></p>
-                <p class="small">jl.Gomong Sakura no/10 Mataram, Lombok Barat<br></p>
-                <p class=""><b> 01023423414</b></p>
+            <p class="mb"><b>Perusahaan Bangun Bale</b></p>
+            <p class="small">jl.Gomong Sakura no/10 Mataram, Lombok Barat<br></p>
+            <p class=""><b> 01023423414</b></p>
         </div>
     </div>
 
@@ -40,7 +40,7 @@
             <div class="row center">
                 <div class="col-md-12">
                     <h1>REKAP KEUANGAN BANGUN BALE</h1>
-                    <h2 style="text-transform:uppercase;"> BULAN : <span>{{strftime("%B %Y", strtotime($rekap->created_at))}}</span> </h2>
+                    <h2 style="text-transform:uppercase;"> BULAN <span>{{strftime("%B %Y", strtotime($rekap->created_at))}}</span> </h2>
                 </div>
             </div>
             <div class="row">

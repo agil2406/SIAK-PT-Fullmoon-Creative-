@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Master;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
@@ -44,6 +45,13 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('12345678'),
             'email_verified_at' => Carbon::now(),
             'level' => 'lapangan',
+        ]);
+        Master::create([
+            'barang' => 'penerimaan',
+            'kode_barang' => 'PE/001',
+            'jenisKas' => 'penerimaan',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
         ]);
     }
 }

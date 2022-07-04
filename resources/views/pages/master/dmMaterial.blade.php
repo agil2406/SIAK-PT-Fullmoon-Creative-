@@ -45,97 +45,110 @@ Tambah Data Master Buku Material
                         <div class="container">
                             <form action="{{url('master/saveM')}}" method="POST">
                                 @csrf
-                                <label for="uraian" class="col-sm-2 col-form-label ml-auto">Uraian</label>
+                                <label for="barang" class="col-sm-4 col-form-label ml-auto">Nama Barang</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control @error('uraian') is-invalid  @enderror" id="inputText" name="uraian" required autofocus value="{{ old('uraian')}}">
-                                    @error('uraian')
+                                    <input type="text" class="form-control @error('barang') is-invalid  @enderror" id="inputText" name="barang" required autofocus value="{{ old('barang')}}">
+                                    @error('barang')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                     @enderror
                                 </div>
 
-                                <label for="kode_uraian" class="col-sm-2 col-form-label ml-auto">Kode</label>
+                                <label for="kode_barang" class="col-sm-2 col-form-label ml-auto">Kode</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control @error('kode_uraian') is-invalid  @enderror" id="inputText" name="kode_uraian" required value="{{ 'MA/'.$kd}}" readonly>
-                                    @error('kode_uraian')
+                                    <input type="text" class="form-control @error('kode_barang') is-invalid  @enderror" id="inputText" name="kode_barang" required value="{{ 'MA/'.$kd}}" readonly>
+                                    @error('kode_barang')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                     @enderror
                                 </div>
                                 <label for="sampai" class="col-sm-2 col-form-label">Jenis Kas</label>
-                                <div class="form">
-                                    <select class="form-select" aria-label="Default select example" name="jenisKas">
-                                        <option class="@error('jenisKas') is-invalid  @enderror">Pilih Jenis Kas</option>
-
-                                        <option value="bukuaset">Aset</option>
-                                        <option value="bukumaterial" selected>Material</option>
-                                        <option value="bukuoperasional">Operasional</option>
-                                        <option value="bukuupah">Upah</option>
-                                    </select>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control @error('jenisKas') is-invalid  @enderror" id="inputText" name="jenisKas" required value="bukumaterial" readonly>
                                 </div>
-                                <div class=" modal-footer">
-                                    <button class="btn btn-primary" type="submit">Tambah Data</button>
+                                <div class="row g-2">
+                                    <div class="col-sm-10 mb-2">
+                                        <label for="jenismaterial" class="col-sm-4 col-form-label">Jenis Material</label>
+                                        <select class="form-select" aria-label="Default select example" name="jenismaterial">
+                                            <option class="col-sm-6 @error('jenismaterial') is-invalid  @enderror">Pilih Jenis</option>
+                                            <option value="Material Alam">Material Alam</option>
+                                            <option value="Material Pabrik">Material Pabrik</option>
+                                            <option value="MEP">MEP</option>
+                                        </select>
+                                        @error('jenismaterial')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
                                 </div>
-                            </form>
-
-
                         </div>
+                        <div class=" modal-footer">
+                            <button class="btn btn-primary" type="submit">Tambah Data</button>
+                        </div>
+
+                        </form>
+
+
                     </div>
                 </div>
             </div>
-
-
-
-
-
-            <table id="datatables" class="table table-striped table-hover table-bordered">
-                <thead>
-                    <tr>
-                        <th> NO </th>
-                        <th> URAIAN </th>
-                        <th> KODE </th>
-                        <th> AKSI </th>
-
-
-                    </tr>
-                </thead>
-
-                <tbody>
-                    @foreach ($data as $d )
-                    <tr>
-                        <td> {{$loop->iteration}}</td>
-                        <td> {{$d->uraian}}</td>
-                        <td> {{$d->kode_uraian}}</td>
-                        <td class="align-items-center">
-                            <div class="row justify-content-center">
-                                <div class="col-sm-2">
-                                    <a href="{{url('masterM').'/'.$d->id.'/edit'}}" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
-                                </div>
-                                <div class="col-sm-2">
-                                    <a href="{{url('master').'/'.$d->id.'/detail'}}" class="btn btn-success"><i class="bi bi-eye-fill"></i></a>
-                                </div>
-                                <div class="col-sm-2">
-                                    <form action="{{url('masterM').'/'.$d->id}}" method="POST">
-                                        @csrf
-                                        @method('delete')
-                                        <button class="btn btn-danger" type="submit" value="Delete" onclick="return confirm('Yakin ingin menghapus ?')"><i class="bx bxs-trash"></i></button>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="mt-2">
-
-                            </div>
-
-                        </td>
-                    </tr>
-                    @endforeach
-
-                </tbody>
-            </table>
         </div>
+
+
+
+
+
+        <table id="datatables" class="table table-striped table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th> NO </th>
+                    <th> BARANG </th>
+                    <th> KODE </th>
+                    <th> JENIS </th>
+                    <th> AKSI </th>
+
+
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach ($data as $d )
+                <tr>
+                    <td> {{$loop->iteration}}</td>
+                    <td> {{$d->barang}}</td>
+                    <td> {{$d->kode_barang}}</td>
+                    <td> {{$d->jenismaterial}}</td>
+                    <td class="align-items-center">
+                        <div class="row justify-content-center">
+                            <div class="col-sm-2">
+                                <a href="{{url('masterM').'/'.$d->id.'/edit'}}" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
+                            </div>
+                            <div class="col-sm-2">
+                                <a href="{{url('master').'/'.$d->id.'/detail'}}" class="btn btn-success"><i class="bi bi-eye-fill"></i></a>
+                            </div>
+                            <div class="col-sm-2">
+                                <form action="{{url('masterM').'/'.$d->id}}" method="POST">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="btn btn-danger" type="submit" value="Delete" onclick="return confirm('Yakin ingin menghapus ?')"><i class="bx bxs-trash"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="mt-2">
+
+                        </div>
+
+                    </td>
+                </tr>
+                @endforeach
+
+            </tbody>
+        </table>
     </div>
+</div>
 </div>
 
 

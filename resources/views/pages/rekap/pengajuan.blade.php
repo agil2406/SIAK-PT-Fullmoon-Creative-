@@ -79,6 +79,7 @@ Pengajuan
                             </div>
                         </td>
                         @endif
+                        @if($d->status == 1)
                         <td class="align-items-center">
                             <div class="row justify-content-center">
                                 <div class="col-sm-2">
@@ -95,17 +96,29 @@ Pengajuan
                                     </form>
                                 </div>
                             </div>
-                            <div class="mt-2">
-
-                            </div>
-
                         </td>
+                        @elseif($d->status==0)
+                        <td class="align-items-center">
+                            <div class="row justify-content-center">
+                                <div class="col-sm-5">
+                                    <a class="badge bg-danger" href="{{url('pesan').'/'.$d->id.'/detail'}}"> Pesan </a>
+                                </div>
+                            </div>
+                        </td>
+                        @else
+                        <td class="align-items-center">
+                            <div class="row justify-content-center">
+                                <div class="col-sm-5">
+                                    <a href="{{url('rekap').'/'.$d->id.'/'.'pdf'}}" target="_blank" class="btn btn-danger mb-3">Print PDF</a>
+                                </div>
+                            </div>
+                        </td>
+                        @endif
                     </tr>
                     @endforeach
                 </tbody>
 
             </table>
-
         </div>
     </div>
 </div>
