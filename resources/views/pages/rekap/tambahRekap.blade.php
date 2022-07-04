@@ -32,10 +32,10 @@ $saldo = $total_penerimaan - $total_pengeluaran;
             <div class="row mb-3">
                 <label for="sk_bl" class="col-sm-2 col-form-label">Saldo Kas Bulan Lalu</label>
                 <div class="col-sm-4">
-                    @if($sk_bl->penerimaan)
+                    @if($sk_bl == NULL)
                     <div class="input-group">
                         <span class="input-group-text">Rp.</span>
-                        <input type="number" class="form-control @error('sk_bl') is-invalid  @enderror" name="sk_bl" value="{{$sk_bl->penerimaan}}" readonly>
+                        <input type="number" class="form-control @error('sk_bl') is-invalid  @enderror" name="sk_bl" value="{{ old('sk_bl')}}">
                         @error('sk_bl')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -45,7 +45,7 @@ $saldo = $total_penerimaan - $total_pengeluaran;
                     @else
                     <div class="input-group">
                         <span class="input-group-text">Rp.</span>
-                        <input type="number" class="form-control @error('sk_bl') is-invalid  @enderror" name="sk_bl" value="{{ old('sk_bl')}}">
+                        <input type="number" class="form-control @error('sk_bl') is-invalid  @enderror" name="sk_bl" value="{{$sk_bl}}" readonly>
                         @error('sk_bl')
                         <div class="invalid-feedback">
                             {{ $message }}

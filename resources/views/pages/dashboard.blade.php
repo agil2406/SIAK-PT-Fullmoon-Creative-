@@ -92,12 +92,13 @@ Dashboard
                         $b = $p->progres_proyek;
                         $c = $p->buku_kas->sum('pengeluaran');
                         $d = ($c / $a) * 100;
-                        $saldo = $p->buku_kas->sum('penerimaan') - $p->buku_kas->sum('pengeluaran')
+                        $saldo = $p->buku_kas->sum('penerimaan') - $p->buku_kas->sum('pengeluaran');
+                        $hasil = ($saldo / $a) * 100;
                         ?>
                         <span class=" m-auto"> <b> Saldo Proyek ( Buku Kas ) : Rp.{{number_format($saldo,0)}} </b></span>
                         <div class="progress progress-striped active mt-3">
                             <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="0" aria-valuenow="{{$saldo}}" aria-valuemax="100" style="width:{{$d}}%;">
-                                <span class="sr-only">{{$saldo}}%</span>
+                                <span class="sr-only">{{$hasil}}%</span>
                             </div>
                         </div>
                         <span class=" m-auto"> <b> Penggunaan RAB Proyek ( Lapangan )</b></span>
@@ -191,11 +192,13 @@ Dashboard
                         $b = $p->progres_proyek;
                         $c = $p->buku_kas->sum('pengeluaran');
                         $d = ($c / $a) * 100;
+                        $saldo = $p->buku_kas->sum('penerimaan') - $p->buku_kas->sum('pengeluaran');
+                        $hasil = ($saldo / $a) * 100;
                         ?>
-                        <span class=" m-auto"> <b> Penggunaan RAB Proyek ( Buku Kas ) : Rp.{{number_format($p->buku_kas->sum('pengeluaran'),0)}} </b></span>
+                        <span class=" m-auto"> <b> Saldo Proyek ( Buku Kas ) : Rp.{{number_format($saldo,0)}} </b></span>
                         <div class="progress progress-striped active mt-3">
-                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="{{$d}}" aria-valuemax="100" style="width:{{$d}}%;">
-                                <span class="sr-only">{{$d}}%</span>
+                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="0" aria-valuenow="{{$saldo}}" aria-valuemax="100" style="width:{{$d}}%;">
+                                <span class="sr-only">{{$hasil}}%</span>
                             </div>
                         </div>
                         <span class=" m-auto"> <b> Penggunaan RAB Proyek ( Lapangan )</b></span>
@@ -291,11 +294,13 @@ Dashboard
                         $b = $p->progres_proyek;
                         $c = $p->buku_kas->sum('pengeluaran');
                         $d = ($c / $a) * 100;
+                        $saldo = $p->buku_kas->sum('penerimaan') - $p->buku_kas->sum('pengeluaran');
+                        $hasil = ($saldo / $a) * 100;
                         ?>
-                        <span class=" m-auto"> <b> Penggunaan RAB Proyek ( Buku Kas ) : Rp.{{number_format($p->buku_kas->sum('pengeluaran'),0)}} </b></span>
+                        <span class=" m-auto"> <b> Saldo Proyek ( Buku Kas ) : Rp.{{number_format($saldo,0)}} </b></span>
                         <div class="progress progress-striped active mt-3">
-                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="{{$d}}" aria-valuemax="100" style="width:{{$d}}%;">
-                                <span class="sr-only">{{$d}}%</span>
+                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="0" aria-valuenow="{{$saldo}}" aria-valuemax="100" style="width:{{$d}}%;">
+                                <span class="sr-only">{{$hasil}}%</span>
                             </div>
                         </div>
                         <span class=" m-auto"> <b> Penggunaan RAB Proyek ( Lapangan )</b></span>
@@ -316,7 +321,7 @@ Dashboard
         <div class="row mt-3">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title"><a href="{{url('proyek')}}">Tabel Proyek</a></h5>
+                    <h5 class="card-title">Tabel Proyek</h5>
                     <div class="col-md-12">
                         <table id="datatables" class="table table-striped table-hover table-bordered">
                             <thead>
@@ -533,11 +538,13 @@ Dashboard
                         $b = $p->progres_proyek;
                         $c = $p->buku_kas->sum('pengeluaran');
                         $d = ($c / $a) * 100;
+                        $saldo = $p->buku_kas->sum('penerimaan') - $p->buku_kas->sum('pengeluaran');
+                        $hasil = ($saldo / $a) * 100;
                         ?>
-                        <span class=" m-auto"> <b> Penggunaan RAB Proyek ( Buku Kas ) : Rp.{{number_format($p->buku_kas->sum('pengeluaran'),0)}} </b></span>
+                        <span class=" m-auto"> <b> Saldo Proyek ( Buku Kas ) : Rp.{{number_format($saldo,0)}} </b></span>
                         <div class="progress progress-striped active mt-3">
-                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="{{$d}}" aria-valuemax="100" style="width:{{$d}}%;">
-                                <span class="sr-only">{{$d}}%</span>
+                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="0" aria-valuenow="{{$saldo}}" aria-valuemax="100" style="width:{{$d}}%;">
+                                <span class="sr-only">{{$hasil}}%</span>
                             </div>
                         </div>
                         <span class=" m-auto"> <b> Penggunaan RAB Proyek ( Lapangan )</b></span>
@@ -558,7 +565,7 @@ Dashboard
         <div class="row mt-3">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title"><a href="{{url('proyek')}}">Tabel Proyek</a></h5>
+                    <h5 class="card-title">Tabel Proyek</h5>
                     <div class="col-md-12">
                         <table id="datatables" class="table table-striped table-hover table-bordered">
                             <thead>
@@ -616,6 +623,7 @@ Dashboard
                                                 Rp.{{number_format($p->rab_proyek,0)}}
                                             </div>
                                         </td>
+
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -648,6 +656,11 @@ Dashboard
                                     <th>
                                         <div class="row justify-content-center">
                                             STATUS
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="row justify-content-center">
+                                            AKSI
                                         </div>
                                     </th>
 
@@ -686,6 +699,13 @@ Dashboard
                                         </div>
                                     </td>
                                     @endif
+                                    <td class="">
+                                        <div class="row justify-content-center">
+                                            <div class="col-sm-4">
+                                                <a href="{{url('rekap').'/'.$p->id.'/pdf'}}" class="btn btn-success"><i class="bi bi-eye-fill"></i></a>
+                                            </div>
+                                        </div>
+                                    </td>
                                     @endforeach
                                 </tr>
                             </tbody>

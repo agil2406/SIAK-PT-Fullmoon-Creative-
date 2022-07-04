@@ -93,7 +93,12 @@ class MasterController extends Controller
 
         ]);
 
-        Master::create($request->all());
+        Master::create([
+            'jenismaterial' => $request->jenismaterial,
+            'jenisKas' => $request->jenisKas,
+            'kode_barang' => $request->kode_barang,
+            'barang' => $request->barang
+        ]);
         return redirect('/dmbukumaterial')->with('success', 'Data berhasil di tambahkan');
     }
     public function saveOperasional(Request $request)

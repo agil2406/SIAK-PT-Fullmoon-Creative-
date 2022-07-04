@@ -21,10 +21,13 @@ class RekapController extends Controller
             'sampai' => 'required'
         ]);
 
+        $bulanawal = date('Y-m-d', strtotime('- 1 month', strtotime($request->dari)));
+        $bulanakhir = date('Y-m-d', strtotime('- 1 month', strtotime($request->sampai)));
         $dari = date('Y-m-d', strtotime($request->dari));
         $sampai = date('Y-m-d', strtotime($request->sampai));
-
-        $sk_bl = BukuKas::whereBetween('tanggal', [$dari, $sampai])->where('uraian', 'like', '%bulan lalu')->first();
+        $pengeluaran_bl = BukuKas::whereBetween('tanggal', [$bulanawal, $bulanakhir])->sum('pengeluaran');
+        $penerimaan_bl = BukuKas::whereBetween('tanggal', [$bulanawal, $bulanakhir])->sum('penerimaan');
+        $sk_bl = $penerimaan_bl - $pengeluaran_bl;
         $total_aset = BukuKas::join('masters', 'buku_kas.master_id', '=', 'masters.id')->whereBetween('tanggal', [$dari, $sampai])->where('masters.jenisKas', 'bukuaset')->sum('pengeluaran');
         $total_material = BukuKas::join('masters', 'buku_kas.master_id', '=', 'masters.id')->whereBetween('tanggal', [$dari, $sampai])->where('masters.jenisKas', 'bukumaterial')->sum('pengeluaran');
         $total_operasional = BukuKas::join('masters', 'buku_kas.master_id', '=', 'masters.id')->whereBetween('tanggal', [$dari, $sampai])->where('masters.jenisKas', 'bukuoperasional')->sum('pengeluaran');
@@ -94,7 +97,6 @@ class RekapController extends Controller
             'sk_bl' => 'required',
             'sb_bl' => 'required',
             'in_cash' => 'required',
-            'trf_kppn' => 'required',
             'bunga_bnk' => 'required',
             'pph' => 'required',
             'admin_bank' => 'required',

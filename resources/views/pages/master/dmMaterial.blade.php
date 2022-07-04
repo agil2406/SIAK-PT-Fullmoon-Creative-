@@ -70,10 +70,9 @@ Tambah Data Master Buku Material
                                 </div>
                                 <div class="row g-2">
                                     <div class="col-sm-10 mb-2">
-                                        <label for="jenismaterial" class="col-sm-4 col-form-label">Jenis Material</label>
-                                        <select class="form-select" aria-label="Default select example" name="jenismaterial">
-                                            <option class="col-sm-6 @error('jenismaterial') is-invalid  @enderror">Pilih Jenis</option>
-                                            <option value="Material Alam">Material Alam</option>
+                                        <label for="jenismaterial" class="col-sm-5 col-form-label">Pilih Jenis Material</label>
+                                        <select class="form-select  @error('jenismaterial') is-invalid  @enderror" aria-label="Default select example" name="jenismaterial" required>
+                                            <option value="Material Alam" selected>Material Alam</option>
                                             <option value="Material Pabrik">Material Pabrik</option>
                                             <option value="MEP">MEP</option>
                                         </select>
