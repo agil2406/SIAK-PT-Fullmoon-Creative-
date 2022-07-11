@@ -20,7 +20,8 @@ class RekapController extends Controller
             'dari' => 'required',
             'sampai' => 'required'
         ]);
-
+        $dari = $request->dari;
+        $sampai = $request->sampai;
         $bulanawal = date('Y-m-d', strtotime('- 1 month', strtotime($request->dari)));
         $bulanakhir = date('Y-m-d', strtotime('- 1 month', strtotime($request->sampai)));
         $dari = date('Y-m-d', strtotime($request->dari));
@@ -34,7 +35,7 @@ class RekapController extends Controller
         $total_upah = BukuKas::join('masters', 'buku_kas.master_id', '=', 'masters.id')->whereBetween('tanggal', [$dari, $sampai])->where('masters.jenisKas', 'bukuupah')->sum('pengeluaran');
         $total_pengeluaran = BukuKas::whereBetween('tanggal', [$dari, $sampai])->sum('pengeluaran');
         $total_penerimaan = BukuKas::whereBetween('tanggal', [$dari, $sampai])->sum('penerimaan');
-        return view('pages.rekap.tambahRekap', compact('total_aset', 'total_material', 'total_upah', 'total_operasional', 'total_penerimaan', 'total_pengeluaran', 'sk_bl'));
+        return view('pages.rekap.tambahRekap', compact('total_aset', 'total_material', 'total_upah', 'total_operasional', 'total_penerimaan', 'total_pengeluaran', 'sk_bl', 'dari', 'sampai'));
     }
 
     public function save(Request $request)
@@ -101,6 +102,7 @@ class RekapController extends Controller
             'pph' => 'required',
             'admin_bank' => 'required',
             'sk_bi' => 'required',
+            'status' => 'required',
             'sb_bi' => 'required'
         ]);
 
@@ -115,6 +117,7 @@ class RekapController extends Controller
                 'bunga_bnk' => $request->bunga_bnk,
                 'pph' => $request->pph,
                 'admin_bank' => $request->admin_bank,
+                'status' => $request->status,
                 'sk_bi' => $request->sk_bi,
                 'sb_bi' => $request->sb_bi
             ]
@@ -150,5 +153,15 @@ class RekapController extends Controller
         $rekap = Rekap::find($request->rekap_id);
         $rekap->update(['status' => 0]);
         return redirect('/laporan')->with('success', 'Data berhasil di tambahkan');
+    }
+    public function datarekap($dari, $sampai)
+    {
+        $this->dari = $dari;
+        $this->sampai = $sampai;
+        $total_pengeluaran = BukuKas::join('masters', 'buku_kas.master_id', '=', 'masters.id')->whereBetween('tanggal', [$this->dari, $this->sampai])->sum('pengeluaran');
+        $total_penerimaan = BukuKas::join('masters', 'buku_kas.master_id', '=', 'masters.id')->whereBetween('tanggal', [$this->dari, $this->sampai])->sum('penerimaan');
+        $data = BukuKas::join('masters', 'buku_kas.master_id', '=', 'masters.id')
+            ->whereBetween('tanggal', [$this->dari, $this->sampai])->orderBy('tanggal', 'asc')->get();
+        return view('pages.pdf.data-rekap', compact('data', 'total_penerimaan', 'total_pengeluaran'));
     }
 }

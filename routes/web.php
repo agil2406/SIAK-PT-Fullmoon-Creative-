@@ -94,6 +94,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/pesan/{id}', 'pesan');
         Route::get('/pesan/{id}/detail', 'detailpesan');
         Route::post('/pesan/save', 'savepesan');
+        Route::get('/rekap/{dari}/{sampai}', 'datarekap');
     });
 
     #proyek

@@ -24,7 +24,9 @@ $saldo = $total_penerimaan - $total_pengeluaran;
 <div class="card">
     <div class="card-body">
         <h5 class="card-title">Rekap Buku Kas</h5>
-
+        <div class="col-sm-5">
+            <a href="{{url('rekap').'/'.$dari.'/'.$sampai }}" target="_blank" class="btn btn-danger mb-3">Data Rekap</a>
+        </div>
         <!-- Horizontal Form -->
         <form action="{{url('buatrekap/save')}}" method="POST">
             @csrf

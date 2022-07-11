@@ -56,7 +56,7 @@
         </ul>
       </li>
       <li class="nav-item">
-        <a class="nav-link collapse" data-bs-target="#jenis-kas" data-bs-toggle="collapse" href="#jenis-kas">
+        <a class="nav-link collapsed" data-bs-target="#jenis-kas" data-bs-toggle="collapse" href="#jenis-kas">
           <i class="bi bi-menu-button-wide"></i><span>Jenis Kas</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="jenis-kas" class="nav-content collapse" data-bs-parent="#sidebar-nav">
