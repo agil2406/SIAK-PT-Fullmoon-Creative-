@@ -121,6 +121,10 @@ Edit Rekap
                 </div>
             </div>
 
+            <div class="row mb-3">
+                <input type="number" name="status" value="1" hidden>
+            </div>
+
 
             <div class="text-center mt-3">
                 <button type="submit" class="btn btn-primary">Simpan Data</button>

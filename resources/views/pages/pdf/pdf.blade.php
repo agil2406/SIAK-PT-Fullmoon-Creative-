@@ -255,7 +255,7 @@
                                 $q = ($rekap->sk_bi + $rekap->sb_bi);
                                 $z = ($rekap->trf_kppn + $rekap->bunga_bnk + $rekap->in_cash + $rekap->sk_bl + $rekap->sb_bl) - ($rekap->total_aset + $rekap->total_material + $rekap->total_operasional + $rekap->total_upah + $rekap->pph + $rekap->admin_bank);
                                 ?>
-                                <td><b> Rp.{{number_format($z,0)}} </b></td>
+                                <td><b> Rp.{{number_format($q,0)}} </b></td>
                                 <td><b> Rp.{{number_format($o-$c,0)}} </b></td>
                             </tr>
                         </tbody>

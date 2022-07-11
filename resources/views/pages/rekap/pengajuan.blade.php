@@ -100,8 +100,11 @@ Pengajuan
                         @elseif($d->status==0)
                         <td class="align-items-center">
                             <div class="row justify-content-center">
-                                <div class="col-sm-5">
+                                <div class="col-sm-2">
                                     <a class="badge bg-danger" href="{{url('pesan').'/'.$d->id.'/detail'}}"> Pesan </a>
+                                </div>
+                                <div class="col-sm-2">
+                                    <a href="{{url('rekap').'/'.$d->id.'/edit'}}" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
                                 </div>
                             </div>
                         </td>

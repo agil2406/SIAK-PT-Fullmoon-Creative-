@@ -24,7 +24,9 @@ $saldo = $total_penerimaan - $total_pengeluaran;
 <div class="card">
     <div class="card-body">
         <h5 class="card-title">Rekap Buku Kas</h5>
-
+        <div class="col-sm-5">
+            <a href="{{url('rekap').'/'.$dari.'/'.$sampai }}" target="_blank" class="btn btn-danger mb-3">Data Rekap</a>
+        </div>
         <!-- Horizontal Form -->
         <form action="{{url('buatrekap/save')}}" method="POST">
             @csrf
@@ -32,10 +34,10 @@ $saldo = $total_penerimaan - $total_pengeluaran;
             <div class="row mb-3">
                 <label for="sk_bl" class="col-sm-2 col-form-label">Saldo Kas Bulan Lalu</label>
                 <div class="col-sm-4">
-                    @if($sk_bl->penerimaan)
+                    @if($sk_bl == NULL)
                     <div class="input-group">
                         <span class="input-group-text">Rp.</span>
-                        <input type="number" class="form-control @error('sk_bl') is-invalid  @enderror" name="sk_bl" value="{{$sk_bl->penerimaan}}" readonly>
+                        <input type="number" class="form-control @error('sk_bl') is-invalid  @enderror" name="sk_bl" value="{{ old('sk_bl')}}">
                         @error('sk_bl')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -45,7 +47,7 @@ $saldo = $total_penerimaan - $total_pengeluaran;
                     @else
                     <div class="input-group">
                         <span class="input-group-text">Rp.</span>
-                        <input type="number" class="form-control @error('sk_bl') is-invalid  @enderror" name="sk_bl" value="{{ old('sk_bl')}}">
+                        <input type="number" class="form-control @error('sk_bl') is-invalid  @enderror" name="sk_bl" id="sk_bl" value="{{$sk_bl}}" readonly onkeyup="sum();">
                         @error('sk_bl')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -58,7 +60,19 @@ $saldo = $total_penerimaan - $total_pengeluaran;
                 <div class="col-sm-4">
                     <div class="input-group">
                         <span class="input-group-text">Rp.</span>
-                        <input type="number" class="form-control @error('sb_bl') is-invalid  @enderror" name="sb_bl" value="{{ old('sb_bl')}}">
+                        <input type="number" class="form-control @error('sb_bl') is-invalid  @enderror" name="sb_bl" id="sb_bl" value="{{ old('sb_bl')}}" onkeyup="sum();">
+                        @error('sb_bl')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                </div>
+                <label for="sb_bl" class="col-sm-2 col-form-label">Jumlah Saldo Awal</label>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <span class="input-group-text">Rp.</span>
+                        <input type="number" class="form-control @error('sb_bl') is-invalid  @enderror" id="jml_saldo" value="" onkeyup="sum();" readonly>
                         @error('sb_bl')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -73,7 +87,7 @@ $saldo = $total_penerimaan - $total_pengeluaran;
                 <div class="col-sm-4">
                     <div class="input-group">
                         <span class="input-group-text">Rp.</span>
-                        <input type="number" class="form-control @error('in_cash') is-invalid  @enderror" name="in_cash" value="{{ old('in_cash')}}">
+                        <input type="number" class="form-control @error('in_cash') is-invalid  @enderror" name="in_cash" id="in_cash" value="{{ old('in_cash')}}" onkeyup="sum();">
                         @error('in_cash')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -85,7 +99,7 @@ $saldo = $total_penerimaan - $total_pengeluaran;
                 <div class="col-sm-4">
                     <div class="input-group">
                         <span class="input-group-text">Rp.</span>
-                        <input type="number" class="form-control" name="trf_kppn" value="{{ old('trf_kppn')}}">
+                        <input type="number" class="form-control" name="trf_kppn" value="{{ old('trf_kppn')}}" onkeyup="sum();" id="trf_kppn">
                     </div>
                 </div>
             </div>
@@ -94,7 +108,21 @@ $saldo = $total_penerimaan - $total_pengeluaran;
                 <div class="col-sm-4">
                     <div class="input-group">
                         <span class="input-group-text">Rp.</span>
-                        <input type="number" class="form-control @error('bunga_bnk') is-invalid  @enderror" name="bunga_bnk" value="{{ old('bunga_bnk')}}">
+                        <input type="number" class="form-control @error('bunga_bnk') is-invalid  @enderror" name="bunga_bnk" value="{{ old('bunga_bnk')}}" onkeyup="sum();" id="bunga_bnk">
+                        @error('bunga_bnk')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="bunga_bnk" class="col-sm-2 col-form-label">Jumlah Pemasukan</label>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <span class="input-group-text">Rp.</span>
+                        <input type="number" class="form-control @error('bunga_bnk') is-invalid  @enderror" id="jml_pemasukan" value="" onkeyup="sum();" readonly>
                         @error('bunga_bnk')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -109,14 +137,14 @@ $saldo = $total_penerimaan - $total_pengeluaran;
                 <div class="col-sm-4">
                     <div class="input-group">
                         <span class="input-group-text">Rp.</span>
-                        <input type="number" class="form-control" name="total_material" value="{{$total_material}}" readonly>
+                        <input type="number" class="form-control" name="total_material" value="{{$total_material}}" id="material" onkeyup="sum();" readonly>
                     </div>
                 </div>
                 <label for="total_upah" class="col-sm-2 col-form-label">Total Biaya Upah Kerja</label>
                 <div class="col-sm-4">
                     <div class="input-group">
                         <span class="input-group-text">Rp.</span>
-                        <input type="number" class="form-control" name="total_upah" value="{{$total_upah}}" readonly>
+                        <input type="number" class="form-control" name="total_upah" value="{{$total_upah}}" id="upah" onkeyup="sum();" readonly>
                     </div>
                 </div>
             </div>
@@ -125,14 +153,14 @@ $saldo = $total_penerimaan - $total_pengeluaran;
                 <div class="col-sm-4">
                     <div class="input-group">
                         <span class="input-group-text">Rp.</span>
-                        <input type="number" class="form-control" name="total_aset" value="{{$total_aset}}" readonly>
+                        <input type="number" class="form-control" name="total_aset" value="{{$total_aset}}" onkeyup="sum();" id="aset" readonly>
                     </div>
                 </div>
                 <label for="total_operasional" class="col-sm-2 col-form-label">Total Biaya Operasional</label>
                 <div class="col-sm-4">
                     <div class="input-group">
                         <span class="input-group-text">Rp.</span>
-                        <input type="number" class="form-control" name="total_operasional" value="{{$total_operasional}}" readonly>
+                        <input type="number" class="form-control" name="total_operasional" value="{{$total_operasional}}" onkeyup="sum();" id="operasional" readonly>
                     </div>
                 </div>
             </div>
@@ -141,14 +169,23 @@ $saldo = $total_penerimaan - $total_pengeluaran;
                 <div class="col-sm-4">
                     <div class="input-group">
                         <span class="input-group-text">Rp.</span>
-                        <input type="number" class="form-control" name="pph">
+                        <input type="number" class="form-control" name="pph" value="" id="pph" onkeyup="sum();">
                     </div>
                 </div>
                 <label for="admin_bank" class="col-sm-2 col-form-label">Administrasi Bank</label>
                 <div class="col-sm-4">
                     <div class="input-group">
                         <span class="input-group-text">Rp.</span>
-                        <input type="number" class="form-control" name="admin_bank">
+                        <input type="number" class="form-control" name="admin_bank" id="admn" value="" onkeyup="sum();">
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="pph" class="col-sm-2 col-form-label">Jumlah Pengeluaran</label>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <span class="input-group-text">Rp.</span>
+                        <input type="number" class="form-control" id="jml_pengeluaran" value="" readonly>
                     </div>
                 </div>
             </div>

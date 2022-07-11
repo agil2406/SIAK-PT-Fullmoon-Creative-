@@ -11,7 +11,7 @@ class MasterController extends Controller
     public function index()
     {
 
-        return view('pages.master.dmaset', compact('data'));
+        return view('pages.master.dmAset', compact('data'));
     }
     public function aset()
     {
@@ -26,7 +26,7 @@ class MasterController extends Controller
             $kd = "0001";
         }
         $data = Master::where('jenisKas', 'bukuaset')->get();
-        return view('pages.master.dmaset', compact('data', 'kd'));
+        return view('pages.master.dmAset', compact('data', 'kd'));
     }
     public function material()
     {
@@ -41,7 +41,7 @@ class MasterController extends Controller
             $kd = "0001";
         }
         $data = Master::where('jenisKas', 'bukumaterial')->get();
-        return view('pages.master.dmmaterial', compact('data', 'kd'));
+        return view('pages.master.dmMaterial', compact('data', 'kd'));
     }
     public function operasional()
     {
@@ -56,7 +56,7 @@ class MasterController extends Controller
             $kd = "0001";
         }
         $data = Master::where('jenisKas', 'bukuoperasional')->get();
-        return view('pages.master.dmoperasional', compact('data', 'kd'));
+        return view('pages.master.dmOperasional', compact('data', 'kd'));
     }
     public function upah()
     {
@@ -71,7 +71,7 @@ class MasterController extends Controller
             $kd = "0001";
         }
         $data = Master::where('jenisKas', 'bukuupah')->get();
-        return view('pages.master.dmupah', compact('data', 'kd'));
+        return view('pages.master.dmUpah', compact('data', 'kd'));
     }
     public function saveAset(Request $request)
     {
@@ -93,7 +93,12 @@ class MasterController extends Controller
 
         ]);
 
-        Master::create($request->all());
+        Master::create([
+            'jenismaterial' => $request->jenismaterial,
+            'jenisKas' => $request->jenisKas,
+            'kode_barang' => $request->kode_barang,
+            'barang' => $request->barang
+        ]);
         return redirect('/dmbukumaterial')->with('success', 'Data berhasil di tambahkan');
     }
     public function saveOperasional(Request $request)

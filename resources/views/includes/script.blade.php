@@ -35,10 +35,43 @@
 <script type="text/javascript">
     function sum() {
         var volume = document.getElementById('volume').value;
-        var harga = document.getElementById('harga').value;
-        var result = parseInt(volume) * parseInt(harga);
+        var sb_bl = document.getElementById('harga').value;
+        var result = parseFloat(volume) * parseInt(harga);
         if (!isNaN(result)) {
             document.getElementById('pengeluaran').value = result;
+        }
+    }
+</script>
+<script type="text/javascript">
+    function sum() {
+        var sk_bl = document.getElementById('sk_bl').value;
+        var sb_bl = document.getElementById('sb_bl').value;
+        var jml_saldo = parseInt(sk_bl) + parseInt(sb_bl);
+        if (!isNaN(jml_saldo)) {
+            document.getElementById('jml_saldo').value = jml_saldo;
+        }
+    }
+
+    function sum() {
+        var cash = document.getElementById('in_cash').value;
+        var trf = document.getElementById('trf_kppn').value;
+        var bunga = document.getElementById('bunga_bnk').value;
+        var jml_pemasukan = parseInt(cash) + parseInt(trf) + parseInt(bunga);
+        if (!isNaN(jml_pemasukan)) {
+            document.getElementById('jml_pemasukan').value = jml_pemasukan;
+        }
+    }
+
+    function sum() {
+        var aset = document.getElementById('aset').value;
+        var upah = document.getElementById('upah').value;
+        var material = document.getElementById('material').value;
+        var operasional = document.getElementById('operasional').value;
+        var pph = document.getElementById('pph').value;
+        var adm = document.getElementById('admn').value;
+        var jml_pengeluaran = parseInt(aset) + parseInt(upah) + parseInt(material) + parseInt(operasional) + parseInt(pph) + parseInt(adm);
+        if (!isNaN(jml_pengeluaran)) {
+            document.getElementById('jml_pengeluaran').value = jml_pengeluaran;
         }
     }
 </script>

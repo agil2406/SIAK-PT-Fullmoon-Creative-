@@ -138,8 +138,7 @@ class BukuKasController extends Controller
             'master_id' => 'required',
             'tanggal' => 'required',
             'proyek_id' => 'required',
-            'image' => 'required|image|file|max:2048',
-            'noBukti' => 'required'
+            'image' => 'required|image|file|max:2048'
         ]);
         $file_name = $request->image->getClientOriginalName();
         $image = $request->image->storeAs('kwitansi', $file_name);
