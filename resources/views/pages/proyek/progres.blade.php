@@ -63,7 +63,7 @@ Tambah Data Progres
 
             <div class="text-center mt-3">
                 <button type="submit" class="btn btn-primary">Simpan Progress</button>
-                <a href="{{url('/proyek')}}" class="btn btn-secondary" type="reset">Batal</a>
+                <a href="{{url('/cariprogres')}}" class="btn btn-secondary" type="reset">Batal</a>
             </div>
         </form><!-- End Horizontal Form -->
     </div>

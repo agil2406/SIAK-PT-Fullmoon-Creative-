@@ -169,6 +169,6 @@ class ProyekController extends Controller
         $proyek->update([
             'progres_proyek' => $request->progres_proyek
         ]);
-        return redirect('/proyek')->with('success', 'Data berhasil di ubah');
+        return redirect('/dashboard')->with('success', 'Data berhasil di ubah');
     }
 }

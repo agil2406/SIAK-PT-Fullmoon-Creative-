@@ -71,7 +71,7 @@ Tambah Data Buku Kas
                 </div>
                 <label for="volume" class="col-sm-2 col-form-label">Volume</label>
                 <div class="col-sm-4">
-                    <input type="number" class="form-control" id="volume" name="volume" value="{{ old('volume')}}" onkeyup="sum();">
+                    <input type="number" step="0.5" class="form-control" id="volume" name="volume" value="{{ old('volume')}}" onkeyup="sum();" placeholder="1 / 1.5 ">
                 </div>
             </div>
             <div class="row mb-3">
