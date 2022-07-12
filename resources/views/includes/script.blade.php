@@ -35,7 +35,7 @@
 <script type="text/javascript">
     function sum() {
         var volume = document.getElementById('volume').value;
-        var sb_bl = document.getElementById('harga').value;
+        var harga = document.getElementById('harga').value;
         var result = parseFloat(volume) * parseInt(harga);
         if (!isNaN(result)) {
             document.getElementById('pengeluaran').value = result;
@@ -43,7 +43,7 @@
     }
 </script>
 <script type="text/javascript">
-    function sum() {
+    function sum1() {
         var sk_bl = document.getElementById('sk_bl').value;
         var sb_bl = document.getElementById('sb_bl').value;
         var jml_saldo = parseInt(sk_bl) + parseInt(sb_bl);
@@ -52,7 +52,7 @@
         }
     }
 
-    function sum() {
+    function sum2() {
         var cash = document.getElementById('in_cash').value;
         var trf = document.getElementById('trf_kppn').value;
         var bunga = document.getElementById('bunga_bnk').value;
@@ -62,7 +62,7 @@
         }
     }
 
-    function sum() {
+    function sum3() {
         var aset = document.getElementById('aset').value;
         var upah = document.getElementById('upah').value;
         var material = document.getElementById('material').value;

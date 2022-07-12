@@ -30,7 +30,11 @@ Tambah Data Buku Kas
                     <select class="form-select" aria-label="Default select example" name="proyek_id">
                         <option class="@error('proyek_id') is-invalid  @enderror">Pilih Proyek</option>
                         @foreach ($proyek as $m)
+                        @if(old('proyek_id') == $m->id)
+                        <option value="{{$m->id}}" selected>{{$m->nama_proyek}}</option>
+                        @else
                         <option value="{{$m->id}}">{{$m->nama_proyek}}</option>
+                        @endif
                         @endforeach
                     </select>
                 </div>
@@ -38,8 +42,13 @@ Tambah Data Buku Kas
             <div class="row mt-3 mb-3">
                 <label for="uraian" class="col-sm-2 col-form-label">Uraian</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputText" name="uraian" value="{{ old('uraian')}}">
+                    <input type="text" class="form-control @error('uraian') is-invalid  @enderror" id="inputText" name="uraian" value="{{ old('uraian')}}">
                 </div>
+                @error('uraian')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
 
             <div class="row mb-3">

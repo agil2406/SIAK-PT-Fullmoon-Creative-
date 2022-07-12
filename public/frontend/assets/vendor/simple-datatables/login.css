@@ -1,6 +1,9 @@
 .pdf {
     position: absolute;
 }
+.pdf-text {
+    font-family: "Times New Roman", Times, serif;
+}
 .verikal {
     width: 0px;
     height: 430px;

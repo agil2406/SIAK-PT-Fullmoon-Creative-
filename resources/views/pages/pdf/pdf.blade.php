@@ -15,7 +15,7 @@
 <body>
     <div class="container">
         <img src="{{ url('frontend/assets/vendor/simple-datatables/image.jpg') }}" alt="logo" width="100px" class="rounded-circle">
-        <div class="head">
+        <div class="head pdf-text">
             <p class="mb"><b>Perusahaan Bangun Bale</b></p>
             <p class="small">jl.Gomong Sakura no/10 Mataram, Lombok Barat<br></p>
             <p class=""><b> 01023423414</b></p>
@@ -25,20 +25,8 @@
 
     <div class="card">
         <div class="card-body">
-            <!-- <div class="row mt-3">
-                <div class="col-md-2">
-                    <h3>Logo Bangun Bale</h3>
-                </div>
-                <div class="col-md-8 center">
-                    <h5>Nama Perusahaan</h5>
-                    <p>Gomong Sakura</p>
-                    <span>08775047012</span>
-                </div>
-                <div class="col-md-2"></div>
-            </div>
-            <hr class=""> -->
             <div class="row center">
-                <div class="col-md-12">
+                <div class="col-md-12 pdf-text">
                     <h1>REKAP KEUANGAN BANGUN BALE</h1>
                     <h2 style="text-transform:uppercase;"> BULAN <span>{{strftime("%B %Y", strtotime($rekap->created_at))}}</span> </h2>
                 </div>
