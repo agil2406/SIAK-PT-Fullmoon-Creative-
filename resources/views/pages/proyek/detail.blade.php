@@ -33,7 +33,7 @@ Detail Proyek
                 <span> <b>RAB PROYEK : Rp.{{number_format($proyek->rab_proyek,0)}}</b></span>
             </div>
             <a href="{{url('proyek').'/'.$proyek->id.'/createp'}}" class="btn btn-danger mb-3 mt-2">Tambah Pengeluaran</a>
-            <a href="{{url('proyek').'/'.$proyek->id.'/createpe'}}" class="btn btn-primary mb-3 mt-2">Tambah Pengeluaran</a>
+            <a href="{{url('proyek').'/'.$proyek->id.'/createpe'}}" class="btn btn-primary mb-3 mt-2">Tambah Penerimaan</a>
             <div class="row mt-3">
                 <div class="col-md-12">
                     <table id="datatables" class="table table-striped table-hover table-bordered">

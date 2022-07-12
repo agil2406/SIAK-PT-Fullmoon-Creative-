@@ -34,15 +34,24 @@ Tambah Data Buku Kas
             <div class="row mt-3">
                 <label for="uraian" class="col-sm-2 col-form-label">Uraian</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputText" name="uraian" value="{{ old('uraian')}}">
+                    <input type="text" class="form-control form-control @error('uraian') is-invalid  @enderror" id="inputText" name="uraian" value="{{ old('uraian')}}">
                 </div>
+                @error('uraian')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
             <div class="row mt-3 mb-3">
                 <div class="col-sm-6">
                     <select class="form-select" aria-label="Default select example" name="master_id">
                         <option class="col-sm-2">Pilih Barang</option>
                         @foreach ($uraian as $m)
+                        @if(old('master_id') == $m->id)
+                        <option value="{{$m->id}}" selected>{{$m->barang}}</option>
+                        @else
                         <option value="{{$m->id}}">{{$m->barang}}</option>
+                        @endif
                         @endforeach
                     </select>
                 </div>
@@ -90,7 +99,7 @@ Tambah Data Buku Kas
                 <div class="col-sm-4">
                     <div class="input-group">
                         <span class="input-group-text">Rp.</span>
-                        <input type="number" class="form-control" name="pengeluaran" id="pengeluaran" onkeyup="sum();" value="" readonly>
+                        <input type="number" class="form-control" name="pengeluaran" id="pengeluaran" onkeyup="sum();" value="{{old('pengeluaran')}}" readonly>
                     </div>
                 </div>
                 <label for="image" class="col-sm-2 col-form-label">Bukti Kwitansi</label>

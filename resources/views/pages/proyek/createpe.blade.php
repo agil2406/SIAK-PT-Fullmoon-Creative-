@@ -34,8 +34,13 @@ Tambah Data Buku Kas
             <div class="row mt-3 mb-3">
                 <label for="uraian" class="col-sm-2 col-form-label">Uraian</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputText" name="uraian" value="{{ old('uraian')}}">
+                    <input type="text" class="form-control @error('uraian') is-invalid  @enderror" id="inputText" name="uraian" value="{{ old('uraian')}}">
                 </div>
+                @error('uraian')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
 
             <div class="row mb-3">
