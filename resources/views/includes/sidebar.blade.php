@@ -23,6 +23,7 @@
       @endcan
 
       @can('admin')
+      
       <li class="nav-item ">
         <a class="nav-link collapsed" href="{{url('/proyek')}}">
           <i class="bi bi-building"></i>

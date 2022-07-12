@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('pesans', function (Blueprint $table) {
             $table->id();
             $table->string('pesan')->nullable();
-            $table->integer('rekap_id')->nullable(();)
+            $table->integer('rekap_id')->nullable();
             $table->timestamps();
         });
     }

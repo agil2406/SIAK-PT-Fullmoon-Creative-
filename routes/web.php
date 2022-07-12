@@ -10,6 +10,8 @@ use App\Http\Controllers\RekapController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MasterController;
 use App\Http\Controllers\ProyekController;
+use App\Http\Controllers\UpdatePasswordController;
+use App\Http\Controllers\UpdateProfileController;
 use App\Models\BukuKas;
 use Illuminate\Support\Facades\Route;
 
@@ -28,7 +30,7 @@ Route::get('/', function () {
     return view('pages.login');
 });
 
-Route::view('/profile', 'pages.profile');
+
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login')->middleware('guest');;
 Route::post('/logout', [LoginController::class, 'logout']);
@@ -36,6 +38,17 @@ Route::get('/dashboard', [HomeController::class, 'dashboard']);
 
 
 Route::middleware('auth')->group(function () {
+
+    Route::get('/profile', [UpdatePasswordController::class, 'edit'])->name('profile');
+    Route::put('/profile', [UpdatePasswordController::class, 'update']);
+
+    Route::get('/profileUpdate', [UpdateProfileController::class, 'edit'])->name('profileUpdate');
+    Route::put('/profileUpdate', [UpdateProfileController::class, 'update']);
+   
+
+
+
+
     Route::controller(BukuKasController::class)->group(function () {
         Route::get('/bukukas',  'index');
         Route::get('/bukukas/export{dari}/{sampai}', 'export');
