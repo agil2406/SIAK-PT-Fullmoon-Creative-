@@ -47,7 +47,7 @@ $saldo = $total_penerimaan - $total_pengeluaran;
                     @else
                     <div class="input-group">
                         <span class="input-group-text">Rp.</span>
-                        <input type="number" class="form-control @error('sk_bl') is-invalid  @enderror" name="sk_bl" id="sk_bl" value="{{$sk_bl}}" readonly onkeyup="sum1();">
+                        <input type="number" class="form-control @error('sk_bl') is-invalid  @enderror" name="sk_bl" id="sk_bl" value="{{$sk_bl}}" onkeyup="sum1();">
                         @error('sk_bl')
                         <div class="invalid-feedback">
                             {{ $message }}

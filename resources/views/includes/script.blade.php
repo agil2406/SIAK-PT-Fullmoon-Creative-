@@ -30,6 +30,10 @@
     $(document).ready(function() {
         $('#datatables').DataTable();
         $('#datatabless').DataTable();
+        $('#kas').dataTable({
+            "bFilter": false
+        });
+
     });
 </script>
 <script type="text/javascript">

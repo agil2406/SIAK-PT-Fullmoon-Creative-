@@ -26,7 +26,6 @@ class BukuKasController extends Controller
             'dari' => 'required',
             'sampai' => 'required'
         ]);
-
         $dari = date('Y-m-d', strtotime($request->dari));
         $sampai = date('Y-m-d', strtotime($request->sampai));
 
@@ -34,8 +33,20 @@ class BukuKasController extends Controller
         $total_pengeluaran = BukuKas::whereBetween('tanggal', [$dari, $sampai])->sum('pengeluaran');
         $total_penerimaan = BukuKas::whereBetween('tanggal', [$dari, $sampai])->sum('penerimaan');
 
+        if ($request->search) {
+            $dari = date('Y-m-d', strtotime($request->dari));
+            $sampai = date('Y-m-d', strtotime($request->sampai));
+            $search = $request->search;
+            $data = BukuKas::whereBetween('tanggal', [$dari, $sampai])->Where('uraian', 'like', '%' . $search . '%')->get();
+            $total_pengeluaran = BukuKas::whereBetween('tanggal', [$dari, $sampai])->Where('uraian', 'like', '%' . $search . '%')->sum('pengeluaran');
+            $total_penerimaan = BukuKas::whereBetween('tanggal', [$dari, $sampai])->Where('uraian', 'like', '%' . $search . '%')->sum('penerimaan');
+        }
+
+
         return view('pages.bukukas.bukuKas', compact('data', 'total_pengeluaran', 'dari', 'sampai', 'total_penerimaan'));
     }
+
+
     public function export($dari, $sampai)
     {
         return Excel::download(new BukukasExport($dari, $sampai), 'bukukasumum.xlsx');

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('harga')->nullable();
             $table->float('volume')->nullable();
             $table->string('satuan', 191)->nullable();
-            $table->string('noBukti', 191);
+            $table->string('noBukti', 191)->nullable();
             $table->integer('penerimaan')->nullable();
             $table->integer('pengeluaran')->nullable();
             $table->integer('saldo')->nullable();

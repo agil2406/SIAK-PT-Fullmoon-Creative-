@@ -44,7 +44,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/profileUpdate', [UpdateProfileController::class, 'edit'])->name('profileUpdate');
     Route::put('/profileUpdate', [UpdateProfileController::class, 'update']);
-   
+
 
 
 

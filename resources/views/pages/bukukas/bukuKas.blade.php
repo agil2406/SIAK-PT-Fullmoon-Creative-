@@ -22,8 +22,20 @@ Buku Kas Umum
       <a href="{{url('bukukas/create')}}" class="btn btn-danger mb-3 mt-2">Tambah Pengeluaran</a>
       <a href="{{url('bukukas/createpenerimaan')}}" class="btn btn-primary mb-3 mt-2">Tambah Penerimaan</a>
       <a href="{{url('bukukas/export').'/'.$dari.'/'.$sampai}}" class="btn btn-success mb-3 mt-2">Export Excel</a>
-
-      <table id="datatables" class="table table-striped table-hover table-bordered">
+      <a href="{{url('rekap').'/'.$dari.'/'.$sampai }}" target="_blank" class="btn btn-danger mb-3 mt-2">Export PDF</a>
+      <div class="row justify-content-end">
+        <div class="col-md-4 mb-3">
+          <form action="{{url('/carikas')}}">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search..." name="search">
+              <input type="text" class="form-control" placeholder="Search..." name="dari" value="{{$dari}}" hidden>
+              <input type="text" class="form-control" placeholder="Search..." name="sampai" value="{{$sampai}}" hidden>
+              <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <table id="kas" class="table table-striped table-hover table-bordered">
         <thead>
           <tr>
             <th> NO </th>
