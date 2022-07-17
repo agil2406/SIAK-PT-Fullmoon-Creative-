@@ -260,17 +260,17 @@
                 <div class="admin">
                     <p class="mb"><b>Disetujui</b></p>
                     <p class=""><b>SuperVisor</b><br></p>
-                    <p class="mt-5 pt-5"><b>{{$user[1]['name']}}</b></p>
+                    <p class="mt-5 pt-5" style="text-transform:uppercase;"><b>{{$user[1]['name']}}</b></p>
                 </div>
                 <div class="direksi">
                     <p class="mb"><b>Diperiksa</b></p>
                     <p><b>Direksi</b></p>
-                    <p class="mt-5 pt-5"><b>{{$user[2]['name']}}</b></p>
+                    <p class="mt-5 pt-5" style="text-transform:uppercase;"><b>{{$user[2]['name']}}</b></p>
                 </div>
                 <div class="bendahara">
                     <p class="mb"><b>Dibuat Oleh</b></p>
                     <p><b>Akuntan</b></p>
-                    <p class="mt-5 pt-5"><b>{{$user[0]['name']}}</b></p>
+                    <p class="mt-5 pt-5" style="text-transform:uppercase;"><b>{{$user[0]['name']}}</b></p>
                 </div>
             </div>
         </div>

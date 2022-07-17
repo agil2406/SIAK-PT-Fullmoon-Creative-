@@ -27,12 +27,16 @@ Progres Proyek
         <div class="container">
             <form action="{{url('progres')}}" method="get">
                 @csrf
-                <label for="proyek_id" class="col-sm-2 col-form-label">Proyek</label>
+                <label for="proyek_id" class="col-sm-2 col-form-label">Silahkan Pilih Proyek</label>
                 <select class="form-select  @error('proyek_id') is-invalid  @enderror" aria-label="Default select example" name="proyek_id">
-                    <option class="">Pilih Proyek</option>
                     @foreach ($proyek as $m)
                     <option value="{{$m->id}}">{{$m->nama_proyek}}</option>
                     @endforeach
+                    @error('proyek_id')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </select>
                 <div class=" mt-4">
                     <button class="btn btn-primary" type="submit">Tambah Progress</button>
