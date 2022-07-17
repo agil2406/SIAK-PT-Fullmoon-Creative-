@@ -65,7 +65,7 @@ Edit Buku kas
                 <div class="col-sm-4">
                     <div class="input-group">
                         <span class="input-group-text">Rp.</span>
-                        <input type="number" class="form-control" id="harga" name="harga" value="{{ old('harga')}}" onkeyup="sum();">
+                        <input type="number" class="form-control" id="harga" name="harga" value="{{ $bukukas->harga}}" onkeyup="sum();">
                     </div>
                 </div>
                 @else
@@ -86,7 +86,7 @@ Edit Buku kas
                 @if($bukukas->volume)
                 <label for="volume" class="col-sm-2 col-form-label">Volume</label>
                 <div class="col-sm-4">
-                    <input type="number" class="form-control" id="inputText" name="volume" value="{{$bukukas->volume}}">
+                    <input type="number" step="0.5" class="form-control" id="volume" name="volume" value="{{ $bukukas->volume}}" onkeyup="sum();" placeholder="1 / 1.5 ">
                 </div>
                 @else
                 <label for="volume" class="col-sm-2 col-form-label">Volume</label>
@@ -99,7 +99,7 @@ Edit Buku kas
                 @if($bukukas->satuan)
                 <label for="satuan" class="col-sm-2 col-form-label">Satuan</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" id="inputText" name="satuan" value="{{$bukukas->satuan}}">
+                    <input type="text" class="form-control" id="satuan" name="satuan" value="{{$bukukas->satuan}}">
                 </div>
                 @else
                 <label for="satuan" class="col-sm-2 col-form-label">Satuan</label>
@@ -125,7 +125,7 @@ Edit Buku kas
                 <div class="col-sm-4">
                     <div class="input-group">
                         <span class="input-group-text">Rp.</span>
-                        <input type="number" class="form-control" name="pengeluaran" value="{{$bukukas->pengeluaran}}">
+                        <input type="number" class="form-control" name="pengeluaran" value="{{$bukukas->pengeluaran}}" onkeyup="sum();" id="pengeluaran" readonly>
                     </div>
                 </div>
                 @else

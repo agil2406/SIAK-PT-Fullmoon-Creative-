@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\BukuKas;
 use App\Models\Pesan;
 use App\Models\Rekap;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 
@@ -130,7 +131,8 @@ class RekapController extends Controller
         setlocale(LC_ALL, 'id-ID', 'id_ID');
         $rekap = Rekap::find($id);
         $hari = date('Y-m-d');
-        return view('pages.pdf.pdf', compact(['rekap', 'hari']));
+        $user = User::all();
+        return view('pages.pdf.pdf', compact(['rekap', 'hari', 'user']));
     }
     public function pesan($id)
     {

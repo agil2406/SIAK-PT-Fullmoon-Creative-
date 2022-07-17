@@ -97,7 +97,7 @@ Dashboard
                         ?>
                         <span class=" m-auto"> <b> Saldo Proyek ( Buku Kas ) : Rp.{{number_format($saldo,0)}} </b></span>
                         <div class="progress progress-striped active mt-3">
-                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="0" aria-valuenow="{{$saldo}}" aria-valuemax="100" style="width:{{$d}}%;">
+                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="0" aria-valuenow="{{$saldo}}" aria-valuemax="100" style="width:{{$hasil}}%;">
                                 <span class="sr-only">{{$hasil}}%</span>
                             </div>
                         </div>
@@ -197,7 +197,7 @@ Dashboard
                         ?>
                         <span class=" m-auto"> <b> Saldo Proyek ( Buku Kas ) : Rp.{{number_format($saldo,0)}} </b></span>
                         <div class="progress progress-striped active mt-3">
-                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="0" aria-valuenow="{{$saldo}}" aria-valuemax="100" style="width:{{$d}}%;">
+                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="0" aria-valuenow="{{$saldo}}" aria-valuemax="100" style="width:{{$hasil}}%;">
                                 <span class="sr-only">{{$hasil}}%</span>
                             </div>
                         </div>
@@ -299,7 +299,7 @@ Dashboard
                         ?>
                         <span class=" m-auto"> <b> Saldo Proyek ( Buku Kas ) : Rp.{{number_format($saldo,0)}} </b></span>
                         <div class="progress progress-striped active mt-3">
-                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="0" aria-valuenow="{{$saldo}}" aria-valuemax="100" style="width:{{$d}}%;">
+                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="0" aria-valuenow="{{$saldo}}" aria-valuemax="100" style="width:{{$hasil}}%;">
                                 <span class="sr-only">{{$hasil}}%</span>
                             </div>
                         </div>
@@ -543,7 +543,7 @@ Dashboard
                         ?>
                         <span class=" m-auto"> <b> Saldo Proyek ( Buku Kas ) : Rp.{{number_format($saldo,0)}} </b></span>
                         <div class="progress progress-striped active mt-3">
-                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="0" aria-valuenow="{{$saldo}}" aria-valuemax="100" style="width:{{$d}}%;">
+                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="0" aria-valuenow="{{$saldo}}" aria-valuemax="100" style="width:{{$hasil}}%;">
                                 <span class="sr-only">{{$hasil}}%</span>
                             </div>
                         </div>

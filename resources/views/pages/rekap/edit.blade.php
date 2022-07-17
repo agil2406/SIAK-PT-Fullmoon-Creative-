@@ -7,19 +7,24 @@ Edit Rekap
 @section('content')
 
 <div class="pagetitle">
-    <h1>Detail Data</h1>
+    <h1>Ubah Data</h1>
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">Home</a></li>
             <li class="breadcrumb-item">Rekap Buku Kas</li>
-            <li class="breadcrumb-item active">Detail Rekap</li>
+            <li class="breadcrumb-item active">Ubah Rekap</li>
         </ol>
     </nav>
 </div><!-- End Page Title -->
 
 <div class="card">
     <div class="card-body">
-        <h5 class="card-title">Detail Rekap</h5>
+        <h5 class="card-title">Ubah Rekap</h5>
+        <div class="col-sm-5">
+            <a href="{{url('rekap').'/'.$rekap->id.'/'.'pdf'}}" target="_blank" class="btn btn-danger mb-3">
+                Data Rekap
+            </a>
+        </div>
 
         <!-- Horizontal Form -->
         <form action="/rekap/{{$rekap->id}}" method="POST">

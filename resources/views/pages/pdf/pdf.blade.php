@@ -13,12 +13,15 @@
 </head>
 
 <body>
-    <div class="container">
-        <img src="{{ url('frontend/assets/vendor/simple-datatables/image.jpg') }}" alt="logo" width="100px" class="rounded-circle">
+    <div class="container justify-content-center">
+        <img src="{{ url('frontend/assets/img/fullmoon.png') }}" alt="logo" width="100px" class="rounded-circle mb-5">
         <div class="head pdf-text">
-            <p class="mb"><b>Perusahaan Bangun Bale</b></p>
-            <p class="small">jl.Gomong Sakura no/10 Mataram, Lombok Barat<br></p>
-            <p class=""><b> 01023423414</b></p>
+            <p class=""><b>PT FULLMOON CREATIVE</b></p>
+            <p class="small">Jl. Dewi Sartika No.18, Monjok Bar., Kec. Selaparang, Kota Mataram, Nusa Tenggara Bar. 83122
+                <br>
+            </p>
+            <p class=""><b>0818-0577-4797
+                </b></p>
         </div>
     </div>
 
@@ -27,7 +30,7 @@
         <div class="card-body">
             <div class="row center">
                 <div class="col-md-12 pdf-text">
-                    <h1>REKAP KEUANGAN BANGUN BALE</h1>
+                    <h1>REKAP KEUANGAN FULLMOON CREATIVE</h1>
                     <h2 style="text-transform:uppercase;"> BULAN <span>{{strftime("%B %Y", strtotime($rekap->created_at))}}</span> </h2>
                 </div>
             </div>
@@ -255,19 +258,19 @@
             </div>
             <div class="row font-ttd mt-3">
                 <div class="admin">
-                    <p class="mb"><b>Diperiksa</b></p>
-                    <p class=""><b>Admin</b><br></p>
-                    <p class="mt-5 pt-5"><b> Agil Trieanto</b></p>
+                    <p class="mb"><b>Disetujui</b></p>
+                    <p class=""><b>SuperVisor</b><br></p>
+                    <p class="mt-5 pt-5"><b>{{$user[1]['name']}}</b></p>
                 </div>
                 <div class="direksi">
-                    <p class="mb"><b>Disetujui</b></p>
-                    <p><b>Admin</b></p>
-                    <p class="mt-5 pt-5"><b>Noor Alamsyah</b></p>
+                    <p class="mb"><b>Diperiksa</b></p>
+                    <p><b>Direksi</b></p>
+                    <p class="mt-5 pt-5"><b>{{$user[2]['name']}}</b></p>
                 </div>
                 <div class="bendahara">
                     <p class="mb"><b>Dibuat Oleh</b></p>
-                    <p><b>Bendahara KSM</b></p>
-                    <p class="mt-5 pt-5"><b>Haidar Rahman</b></p>
+                    <p><b>Akuntan</b></p>
+                    <p class="mt-5 pt-5"><b>{{$user[0]['name']}}</b></p>
                 </div>
             </div>
         </div>

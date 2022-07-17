@@ -117,6 +117,7 @@ class BukuKasController extends Controller
                 'uraian' => $request->uraian,
                 'master_id' => $request->master_id,
                 'noBukti' => $request->noBukti,
+                'harga' => $request->harga,
                 'volume' => $request->volume,
                 'satuan' => $request->satuan,
                 'pengeluaran' => $request->pengeluaran,

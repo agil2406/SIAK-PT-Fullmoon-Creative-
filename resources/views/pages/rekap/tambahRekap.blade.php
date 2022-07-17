@@ -68,12 +68,14 @@ $saldo = $total_penerimaan - $total_pengeluaran;
                         @enderror
                     </div>
                 </div>
-                <label for="sb_bl" class="col-sm-2 col-form-label">Jumlah Saldo Awal</label>
+            </div>
+            <div class="row mb-3">
+                <label for="jml" class="col-sm-2 col-form-label">Jumlah Saldo Awal</label>
                 <div class="col-sm-4">
                     <div class="input-group">
                         <span class="input-group-text">Rp.</span>
-                        <input type="number" class="form-control @error('sb_bl') is-invalid  @enderror" id="jml_saldo" value="" onkeyup="sum1();" readonly>
-                        @error('sb_bl')
+                        <input type="number" class="form-control @error('jml') is-invalid  @enderror" id="jml_saldo" value="" onkeyup="sum1();" readonly>
+                        @error('jml')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
