@@ -3,8 +3,8 @@
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
-      <li class="nav-item ">
-        <a class="nav-link collapsed" href="{{('/dashboard')}}">
+      <li class="nav-item">
+        <a class="nav-link {{Request::is('dashboard') ? '' : 'collapsed'}}" href="{{('/dashboard')}}">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -15,7 +15,7 @@
       <!-- End Components Nav -->
       @can('lapangan')
       <li class="nav-item ">
-        <a class="nav-link collapsed" href="{{url('/cariprogres')}}">
+        <a class="nav-link {{Request::is('cariprogres') ? '' : 'collapsed'}}" href="{{url('/cariprogres')}}">
           <i class="bi bi-menu-button-wide"></i>
           <span>Progres Proyek</span>
         </a>
@@ -23,33 +23,33 @@
       @endcan
 
       @can('admin')
-      
+
       <li class="nav-item ">
-        <a class="nav-link collapsed" href="{{url('/proyek')}}">
+        <a class="nav-link {{Request::is('proyek') ? '' : 'collapsed'}}" href="{{url('/proyek')}}">
           <i class="bi bi-building"></i>
           <span>Proyek</span>
         </a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="{{url('/bukukas')}}">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="{{url('/kas')}}">
           <i class="bi bi-menu-button-wide"></i>
           <span>Buku Kas</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul id="components-nav" class="nav-content collapse {{Request::is('bukukas','rekap','pengajuan') ? 'show' : ''}}" data-bs-parent="#sidebar-nav">
           <li class="nav-item ">
-            <a class="nav-link collapsed" href="{{url('/bukukas')}}">
+            <a class="nav-link collapsed {{Request::is('bukukas') ? 'active' : ''}}" href="{{url('/bukukas')}}" id="kasumum">
               <i class="bi bi-menu-button-wide"></i>
               <span>Buku Kas Umum</span>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link collapsed" href="{{url('/rekap')}}">
+            <a class="nav-link collapsed {{Request::is('rekap') ? 'active' : ''}}" href="{{url('/rekap')}}">
               <i class="bi bi-menu-button-wide"></i>
               <span>Rekap Buku Kas</span>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link collapsed" href="{{url('/pengajuan')}}">
+            <a class="nav-link collapsed {{Request::is('pengajuan') ? 'active' : ''}}" href="{{url('/pengajuan')}}">
               <i class="bi bi-menu-button-wide"></i>
               <span>Laporan Pengajuan</span>
             </a>
@@ -60,24 +60,24 @@
         <a class="nav-link collapsed" data-bs-target="#jenis-kas" data-bs-toggle="collapse" href="#jenis-kas">
           <i class="bi bi-menu-button-wide"></i><span>Jenis Kas</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="jenis-kas" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+        <ul id="jenis-kas" class="nav-content collapse {{Request::is('bukumaterial','bukuaset','bukuoperasional','bukuupah') ? 'show' : ''}}" data-bs-parent="#sidebar-nav">
           <li>
-            <a href="{{url('/bukumaterial')}}">
+            <a href="{{url('/bukumaterial')}}" class="nav-link collapsed  {{Request::is('bukumaterial') ? 'active' : ''}}">
               <i class="bi bi-circle"></i><span>Buku Material</span>
             </a>
           </li>
           <li>
-            <a href="{{url('/bukuoperasional')}}">
+            <a href="{{url('/bukuoperasional')}}" class="nav-link collapsed  {{Request::is('bukuoperasional') ? 'active' : ''}}">
               <i class="bi bi-circle"></i><span>Buku Operasional</span>
             </a>
           </li>
           <li>
-            <a href="{{url('/bukuaset')}}">
+            <a href="{{url('/bukuaset')}}" class="nav-link collapsed  {{Request::is('bukuaset') ? 'active' : ''}}">
               <i class="bi bi-circle"></i><span>Buku Aset</span>
             </a>
           </li>
           <li>
-            <a href="{{url('/bukuupah')}}">
+            <a href="{{url('/bukuupah')}}" class="nav-link collapsed  {{Request::is('bukuupah') ? 'active' : ''}}">
               <i class="bi bi-circle"></i><span>Buku Upah</span>
             </a>
           </li>
@@ -88,24 +88,24 @@
         <a class="nav-link collapsed" data-bs-target="#components-nav2" data-bs-toggle="collapse" href="#">
           <i class="bi bi-journal-text"></i><span>Data Master</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="components-nav2" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul id="components-nav2" class="nav-content collapse {{Request::is('dmbukumaterial','dmbukuaset','dmbukuoperasional','dmbukuupah') ? 'show' : ''}}" data-bs-parent="#sidebar-nav">
           <li>
-            <a href="{{url('/dmbukumaterial')}}">
+            <a href="{{url('/dmbukumaterial')}}" class="nav-link collapsed  {{Request::is('dmbukumaterial') ? 'active' : ''}}">
               <i class="bi bi-circle"></i><span>Buku Material</span>
             </a>
           </li>
           <li>
-            <a href="{{url('/dmbukuoperasional')}}">
+            <a href="{{url('/dmbukuoperasional')}}" class="nav-link collapsed  {{Request::is('dmbukuoperasional') ? 'active' : ''}}">
               <i class="bi bi-circle"></i><span>Buku Operasional</span>
             </a>
           </li>
           <li>
-            <a href="{{url('/dmbukuaset')}}">
+            <a href="{{url('/dmbukuaset')}}" class="nav-link collapsed  {{Request::is('dmbukuaset') ? 'active' : ''}}">
               <i class="bi bi-circle"></i><span>Buku Aset</span>
             </a>
           </li>
           <li>
-            <a href="{{url('/dmbukuupah')}}">
+            <a href="{{url('/dmbukuupah')}}" class="nav-link collapsed  {{Request::is('dmbukuupah') ? 'active' : ''}}">
               <i class="bi bi-circle"></i><span>Buku Upah</span>
             </a>
           </li>
@@ -116,47 +116,48 @@
 
       @can('supervisor')
       <li class="nav-item ">
-        <a class="nav-link collapsed" data-bs-target="#components-na2" data-bs-toggle="collapse" href="{{url('/bukukas')}}">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="{{url('/kas')}}">
           <i class="bi bi-menu-button-wide"></i>
           <span>Buku Kas</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="components-na2" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul id="components-nav" class="nav-content collapse {{Request::is('bukukas','rekap','pengajuan') ? 'show' : ''}}" data-bs-parent="#sidebar-nav">
           <li class="nav-item ">
-            <a class="nav-link collapsed" href="{{url('/bukukas')}}">
+            <a class="nav-link collapsed {{Request::is('bukukas') ? 'active' : ''}}" href="{{url('/bukukas')}}" id="kasumum">
               <i class="bi bi-menu-button-wide"></i>
               <span>Buku Kas Umum</span>
             </a>
           </li>
         </ul>
+      </li>
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav3" data-bs-toggle="collapse" href="#">
+        <a class="nav-link collapsed" data-bs-target="#jenis-kas" data-bs-toggle="collapse" href="#jenis-kas">
           <i class="bi bi-menu-button-wide"></i><span>Jenis Kas</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="components-nav3" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul id="jenis-kas" class="nav-content collapse {{Request::is('bukumaterial','bukuaset','bukuoperasional','bukuupah') ? 'show' : ''}}" data-bs-parent="#sidebar-nav">
           <li>
-            <a href="{{url('/bukumaterial')}}">
+            <a href="{{url('/bukumaterial')}}" class="nav-link collapsed  {{Request::is('bukumaterial') ? 'active' : ''}}">
               <i class="bi bi-circle"></i><span>Buku Material</span>
             </a>
           </li>
           <li>
-            <a href="{{url('/bukuoperasional')}}">
+            <a href="{{url('/bukuoperasional')}}" class="nav-link collapsed  {{Request::is('bukuoperasional') ? 'active' : ''}}">
               <i class="bi bi-circle"></i><span>Buku Operasional</span>
             </a>
           </li>
           <li>
-            <a href="{{url('/bukuaset')}}">
+            <a href="{{url('/bukuaset')}}" class="nav-link collapsed  {{Request::is('bukuaset') ? 'active' : ''}}">
               <i class="bi bi-circle"></i><span>Buku Aset</span>
             </a>
           </li>
           <li>
-            <a href="{{url('/bukuupah')}}">
+            <a href="{{url('/bukuupah')}}" class="nav-link collapsed  {{Request::is('bukuupah') ? 'active' : ''}}">
               <i class="bi bi-circle"></i><span>Buku Upah</span>
             </a>
           </li>
         </ul>
       </li>
       <li class="nav-item ">
-        <a class="nav-link collapsed" href="{{url('/laporan')}}">
+        <a class="nav-link {{Request::is('laporan') ? '' : 'collapsed'}}" href="{{url('/laporan')}}">
           <i class="bi bi-menu-button-wide"></i>
           <span>Laporan Rekap</span>
         </a>
@@ -167,7 +168,7 @@
       <li class="nav-heading">Pages</li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="\profile">
+        <a class="nav-link {{Request::is('profile') ? '' : 'collapsed'}}" href="\profile">
           <i class="bi bi-person"></i>
           <span>Profile</span>
         </a>
@@ -183,7 +184,7 @@
       </li>
       @else
       <li class="nav-item">
-        <a class="nav-link collapsed" href="\login">
+        <a class="nav-link collapsed " href="\login">
           <i class="bi bi-box-arrow-in-right"></i>
           <span>Login</span>
         </a>

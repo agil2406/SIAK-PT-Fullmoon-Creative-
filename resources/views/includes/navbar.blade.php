@@ -14,7 +14,6 @@
     @auth
     <li class="nav-item dropdown header-nav ms-auto align-items-center  ">
       <a class="nav-link nav-profile d-flex align-items-center" href="#" data-bs-toggle="dropdown">
-        <img src="assets/img/profile-img.jpg" alt="" class="rounded-circle">
         <span class="d-none d-md-block dropdown-toggle fs-6 mb-3">{{auth()->user()->name}}</span>
       </a><!-- End Profile Iamge Icon -->
       <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">

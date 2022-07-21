@@ -17,7 +17,7 @@ class BukuKasController extends Controller
     public function index()
     {
 
-        $data = BukuKas::all();
+        $data = BukuKas::orderBy('created_at', 'desc')->get();
         return view('pages.bukukas.Kas', compact('data'));
     }
     public function cari(Request $request)
@@ -72,8 +72,7 @@ class BukuKasController extends Controller
             'image' => 'required|image|file|max:2048',
             'noBukti' => 'required'
         ]);
-        $file_name = $request->image->getClientOriginalName();
-        $image = $request->image->storeAs('kwitansi', $file_name);
+        $image = $request->file('image')->store('kwitansi');
         BukuKas::create([
             'uraian' => $request->uraian,
             'harga' => $request->harga,
@@ -129,9 +128,12 @@ class BukuKasController extends Controller
 
         return redirect('/bukukas')->with('success', 'Data berhasil di ubah');
     }
-    public function destroy($id, Request $request)
+    public function destroy($id, Request $request, BukuKas $bukukas)
     {
         $bukukas = BukuKas::find($id);
+        if ($bukukas->image) {
+            Storage::delete($bukukas->image);
+        }
         $bukukas->delete();
         return redirect('/bukukas')->with('success', 'Data berhasil di Hapus');
     }
@@ -152,8 +154,7 @@ class BukuKasController extends Controller
             'proyek_id' => 'required',
             'image' => 'required|image|file|max:2048'
         ]);
-        $file_name = $request->image->getClientOriginalName();
-        $image = $request->image->storeAs('kwitansi', $file_name);
+        $image = $request->file('image')->store('kwitansi');
         BukuKas::create([
             'uraian' => $request->uraian,
             'master_id' => $request->master_id,
