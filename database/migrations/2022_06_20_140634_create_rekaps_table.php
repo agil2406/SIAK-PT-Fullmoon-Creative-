@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('rekaps', function (Blueprint $table) {
             $table->id();
-
             $table->integer('sk_bl')->nullable();
             $table->integer('sb_bl')->nullable();
             $table->integer('in_cash')->nullable();
@@ -41,6 +40,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('rekaps');
     }
 };

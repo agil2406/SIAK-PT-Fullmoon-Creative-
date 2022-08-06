@@ -103,6 +103,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/rekap/{id}/tolak', 'tolak');
         Route::get('/rekap/{id}/edit', 'edit');
         Route::put('/rekap/{id}', 'update');
+        Route::delete('/rekap/{id}', 'destroy');
         Route::get('/rekap/{id}/pdf', 'printpdf');
         Route::get('/pesan/{id}', 'pesan');
         Route::get('/pesan/{id}/detail', 'detailpesan');

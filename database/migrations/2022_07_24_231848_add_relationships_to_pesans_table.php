@@ -13,11 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pesans', function (Blueprint $table) {
-            $table->id();
-            $table->string('pesan')->nullable();
-            $table->foreignId('rekap_id')->nullable();
-            $table->timestamps();
+        Schema::table('pesans', function (Blueprint $table) {
+            $table->foreign('rekap_id')->references('id')->on('rekaps')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -28,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pesans');
+        Schema::table('pesans', function (Blueprint $table) {
+            $table->dropForeign(['rekap_id']);
+        });
     }
 };
